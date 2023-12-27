@@ -1,0 +1,109 @@
+.main-div-of-servies{
+    display: flex;
+    flex-direction: row;
+}
+.left-side-of-services{
+    width:50%;
+}
+.right-side-of-services{
+    width: 50%;
+}
+.right-side-of-services h2{
+    color: #2E3480;
+    font-size: 60px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 100px; /* 125% */
+    letter-spacing: 0px;
+    margin: 0px;
+}
+.right-side-of-services p{
+    color: #7576C6;
+    text-align: justify;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 30px; /* 107.143% */
+}
+.left-side-of-services img{
+    width:80%;
+    height: 400px;
+    display: block;
+}
+.last-in-right-side-of-services{
+    display: flex;
+    flex-direction: row;
+    column-gap: 15%;
+}
+.elipse_in_services{
+    background-color: #F0EEF0;
+    height: 90px;
+    width:90px;
+    border-radius:50%;
+    border-color: #F0EEF0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.div-of-circle-and-text{
+    display: flex;
+    flex-direction: row;
+    column-gap: 2%;
+    margin: 10px;
+}
+.div-of-circle-and-text p{
+    width:70%;
+}
+.elipse_in_services img{
+    width:50px;
+    height: 50px;
+}
+@media screen and (min-width:767px) and (max-width:1123px){
+    .main-div-of-servies{
+        display: flex;
+        flex-direction: column;
+    }
+    .right-side-of-services{
+        width:90%;
+    }
+    .right-side-of-services h2{
+        color: #2E3480;
+        font-size: 50px;
+        font-style: normal;
+        font-weight: 700;
+        line-height: 100px; /* 125% */
+        letter-spacing: 0px;
+        margin: 0px;
+    }
+    .last-in-right-side-of-services{
+        display: flex;
+        flex-direction: column;
+    }
+}
+@media (max-width: 766px) {
+    .main-div-of-servies{
+        display: flex;
+        flex-direction: column;
+    }
+    .left-side-of-services img{
+        width:80%;
+        height: 400px;
+        display: none;
+    }
+    .right-side-of-services{
+        width:90%;
+    }
+    .right-side-of-services h2{
+        color: #2E3480;
+        font-size: 50px;
+        font-style: normal;
+        font-weight: 700;
+        line-height: 100px; /* 125% */
+        letter-spacing: 0px;
+        margin: 0px;
+    }
+    .last-in-right-side-of-services{
+        display: flex;
+        flex-direction: column;
+    }
+}

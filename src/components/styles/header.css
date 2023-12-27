@@ -1,0 +1,193 @@
+.header-back{
+    display: flex;
+    flex-direction: row;
+    background-color: #f0eef0;
+}
+.hero-header{
+    background-color: #f0eef0;
+}
+.slide{
+    background: #A1A4CD; 
+    width:100%;
+}
+.left-side-of-header{
+    width:60%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    margin: 1%;
+}
+.left-side-of-header h1{
+    color: #2E3480;
+    font-family: Poppins;
+    font-size: 68px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+  
+    margin: 0px;
+}
+.left-side-of-header p{
+    color: #7576C6;
+    font-family: Poppins;
+    font-size: 22px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    width: 65%;
+}
+.right-side-of-header{
+    width: 50%;
+    margin-top: 0px;
+}
+.right-side-of-header-img{
+    width:100%;
+    transform: scaleX(-1);
+    height: 420px;
+}
+.left-side-of-header-button{
+    border-radius: 23px;
+    background: #2E3480;
+    border-color: #2E3480;
+    color: #F0EEF0;
+    font-family: Poppins;
+    font-size: 22px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    width: 249px;
+    height: 53px;
+    flex-shrink: 0;
+}
+.left-side-of-header-button:hover{
+    border-radius: 23px;
+    color: #2E3480;
+    border-color: #2E3480;
+    background-color: #F0EEF0;
+    font-size: 18px;
+}
+.first-one-in-slide{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    column-gap: 2%;
+}
+.left-side-of-first-in-slide{
+    background-color: #F0EEF0;
+    width:115px;
+    height: 115px;
+    border-radius: 30px;
+    margin: 1%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+.left-side-of-first-in-slide img{
+    width:70px;
+    height: 70px;
+}
+.right-side-of-first-in-slide h1{
+    color: #2E3480;
+    font-family: Poppins;
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 700;
+    
+    }
+.right-side-of-first-in-slide p{
+    color: #F0EEF0;
+    font-family: Poppins;
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 400;
+    margin-top: -25px;
+}
+.slide{
+    display: flex;
+    flex-direction: row;
+    margin-top: -10px ;
+}
+@media screen and (min-width:767px) and (max-width:1123px){
+    .header-back{
+        display: flex;
+        flex-direction: column;
+        background-color: #f0eef0;
+    }
+    .left-side-of-header{
+        width:100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: flex-start;
+        margin: 1%;
+    }
+    .left-side-of-header h1{
+        color: #2E3480;
+        font-family: Poppins;
+        font-size: 80px;
+        font-style: normal;
+        font-weight: 700;
+        line-height: normal;
+        margin: 0px;
+    }
+    .left-side-of-header p{
+        color: #7576C6;
+        font-family: Poppins;
+        font-size: 22px;
+        font-style: normal;
+        font-weight: 400;
+        line-height: normal;
+        width: 100%;
+    }
+    .right-side-of-header{
+        width: 100%;
+        margin-top: 9%;
+    }
+    .right-side-of-header-img{
+        width:100%;
+        transform: scaleX(1);
+    }
+}
+@media (max-width: 766px) {
+    .header-back{
+        display: flex;
+        flex-direction: column;
+        background-color: #f0eef0;
+    }
+    .left-side-of-header{
+        width:100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: flex-start;
+        margin: 1%;
+    }
+    .left-side-of-header h1{
+        color: #2E3480;
+        font-family: Poppins;
+        font-size: 54px;
+        font-style: normal;
+        font-weight: 700;
+        line-height: normal;
+        margin: 0px;
+    }
+    .left-side-of-header p{
+        color: #7576C6;
+        font-family: Poppins;
+        font-size: 22px;
+        font-style: normal;
+        font-weight: 400;
+        line-height: normal;
+        width: 100%;
+    }
+    .right-side-of-header{
+        width: 100%;
+        margin-top: 9%;
+    }
+    .right-side-of-header-img{
+        width:100%;
+        transform: scaleX(1);
+    }
+}
