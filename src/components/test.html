@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+ <meta charset="UTF-8">
+ <meta name="viewport" content="width=device-width, initial-scale=1.0">
+ <style>
+    #slider {
+        width: 100%;
+        overflow: hidden;
+        position: relative;
+    }
+
+    .slide {
+        float: left;
+        width: calc(100% / 3); /* Display 3 slides at once */
+        display: none; /* Hide all slides initially */
+        transition: transform 5s ease-in-out;
+    }
+
+    .slide.active {
+        display: block; /* Show active slides */
+    }
+
+    .slide.active:nth-child(2) {
+        transform: scale(1.2); /* Scale up the middle slide */
+    }
+
+    .slide.active ~ .slide {
+        transform: scale(1); /* Reset scale for subsequent slides */
+    }
+
+    .slide.active ~ .slide ~ .slide {
+        transform: scale(1); /* Reset scale for subsequent slides */
+    }
+ </style>
+</head>
+<body>
+ <div id="slider">
+    <div class="slide active">Content 1</div>
+    <div class="slide active">Content 2</div>
+    <div class="slide active">Content 3</div>
+    <div class="slide">Content 4</div>
+    <div class="slide">Content 5</div>
+    <div class="slide">Content 6</div>
+ </div>
+
+ <script>
+    var slides = document.querySelectorAll('.slide');
+    var currentIndex = 0;
+
+    // Function to update the visible slides
+    function updateSlides() {
+        // Hide all slides
+        for (var i = 0; i < slides.length; i++) {
+            slides[i].classList.remove('active');
+        }
+
+        // Show the current set of slides
+        for (var i = currentIndex; i < currentIndex + 3 && i < slides.length; i++) {
+            slides[i].classList.add('active');
+        }
+    }
+
+    // Event listener for mouseenter
+    document.getElementById('slider').addEventListener('mouseenter', function(event) {
+        if (event.offsetX < window.innerWidth / 3) {
+            currentIndex--;
+            if (currentIndex < 0) {
+               currentIndex = slides.length - 3;
+            }
+        } else {
+            currentIndex++;
+            if (currentIndex >= slides.length) {
+               currentIndex = 0;
+            }
+        }
+        updateSlides();
+    });
+
+    updateSlides(); // Initial call to show the first set of slides
+ </script>
+</body>
+</html>
