@@ -14,10 +14,8 @@ function App() {
        <Route path="/" element={<> <Navbar/>
          <Header />
         <Services /></>}/>
-       
-       
-     
-   </Routes></Router></>
+   </Routes>
+   </Router></>
  
  );
 }
