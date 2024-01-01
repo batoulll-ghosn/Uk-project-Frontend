@@ -1,0 +1,39 @@
+function Login() {
+ const [passwordShown, setPasswordShown] = useState(false);
+ const [passwordInputType, setPasswordInputType] = useState("password");
+
+ const togglePasswordVisibility = () => {
+ setPasswordShown(!passwordShown);
+ setPasswordInputType(passwordShown ? "password" : "text");
+ };
+
+ return (
+ <Container>
+   <Row className="justify-content-md-center">
+     <Col xs lg="4">
+       <h2>Login</h2>
+       <Form>
+         <Form.Group controlId="formBasicEmail">
+           <Form.Label>Email address</Form.Label>
+           <Form.Control type="email" placeholder="Enter email" className="custom-input" />
+         </Form.Group>
+
+         <Form.Group controlId="formBasicPassword">
+           <Form.Label>Password</Form.Label>
+           <Form.Control type={passwordInputType} placeholder="Password" className="custom-input" />
+           <button type="button" onClick={togglePasswordVisibility}>
+             {passwordShown ? 'Hide' : 'Show'}
+           </button>
+         </Form.Group>
+
+         <Button variant="primary" type="submit" style={{backgroundColor: "#2E3480", borderColor: "#2E3480"}}>
+           Submit
+         </Button>
+       </Form>
+     </Col>
+   </Row>
+ </Container>
+ );
+}
+
+export default Login;
