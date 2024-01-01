@@ -6,10 +6,6 @@
 .hero-header{
     background-color: #f0eef0;
 }
-.slide{
-    background: #A1A4CD; 
-    width:100%;
-}
 .left-side-of-header{
     width:60%;
     display: flex;
@@ -104,10 +100,8 @@
     font-weight: 400;
     margin-top: -25px;
 }
-.slide{
-    display: flex;
-    flex-direction: row;
-    margin-top: -10px ;
+.slidee{
+    background: #A1A4CD; 
 }
 @media screen and (min-width:767px) and (max-width:1123px){
     .header-back{
