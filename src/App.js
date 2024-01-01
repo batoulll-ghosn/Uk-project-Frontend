@@ -5,13 +5,14 @@ import Services from './components/services';
 import MiddleSection from './components/MiddleSection';
 import Slice from './components/slice';
 import Login from './components/login';
-
+import Test from './components/test';
 function App() {
   return (
     <>  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins&display=swap" />
   <Router>
    <Routes>
        <Route path="/login" element={ <Login />}/>
+       <Route path="/batoul" element={ <Test />}/>
        <Route path="/" element={<>
     <Navbar />
     <Header /> 
