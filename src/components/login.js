@@ -30,7 +30,7 @@ const Login = () => {
   };
 
   return (
-    <>
+    <div>
       <div className='first-in-login'>
         {/*<img className='logo-img-in-login' src='./images/logo.png' alt='Logo' /> */}
         <img className='second-img-in-login' src='./images/login.jpg' alt='photo'/>
@@ -108,7 +108,8 @@ const Login = () => {
             </Link>
       </div>
     
-    </>
+    </div>
+  </div>
   );
 }
 
