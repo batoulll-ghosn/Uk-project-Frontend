@@ -97,7 +97,7 @@ const Login = () => {
               <p id="forget_password"className=" text-lg hover:text-#2E3480 text-shadow">
                 or connect using 
               </p>
-              <Loginn className='auth-loginn'/>
+              <Loginn className='auth-login'/>
           </div>
         </form>
         <div className="mb-4 text-left">
