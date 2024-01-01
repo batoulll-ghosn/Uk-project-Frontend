@@ -100,6 +100,12 @@ const Login = () => {
               <Loginn className='auth-login'/>
           </div>
         </form>
+        <div className="mb-4 text-left">
+            <Link to="/SignUp">
+              <a href="" id="forget_password"className="underline text-lg hover:text-#2E3480 text-shadow">
+                Don't Have an Account? SignUp.
+              </a>
+            </Link>
       </div>
     
     </>
