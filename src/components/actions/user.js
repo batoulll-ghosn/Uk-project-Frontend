@@ -37,7 +37,7 @@ export const login = (Email, password) => {
    export const getUsersByEmail = (email) => {
     return async (dispatch) => {
       try {
-        const response = await axios.get(`http://localhost:8000/users/getUserByEmail/${email}`);
+        const response = await axios.get(`https://ukbackendproject.onrender.com/users/getUserByEmail/${email}`);
         const users = response.data.data;
         dispatch({
           type: "getUsersByEmail",
