@@ -1,12 +1,9 @@
 import React, { useState } from 'react';
 
 const Login = () => {
-  
-  
-
   return (
     <div>
-<h1>Heello </h1>
+     <h1>Hello </h1>
     </div>
   );
 }
