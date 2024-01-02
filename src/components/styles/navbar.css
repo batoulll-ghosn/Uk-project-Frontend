@@ -39,7 +39,7 @@ body {
     height: 67px;
     border-color: #2e3480;
     margin-right: 10px;
-    margin-top: 20px;
+    margin-top: -10px;
   }
   .join-us-button:hover{
      background-color: #f0eef0;

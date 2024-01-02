@@ -10,10 +10,11 @@ function App() {
   return (
   <Router>
   <div className="App">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins&display=swap" />
    <Routes>
-        <Route path="/" element={<><Navbar /><Header /> <Slice /><Services /></>}/>
-       <Route path="/Login" element={ <Login />}/>
-       <Route path="/batoul" element={ <Test />}/>
+        <Route exact path="/" element={<><Navbar /><Header /> <Slice /><Services /></>}/>
+       <Route exact path="/Login" element={ <Login />}/>
+       <Route exact path="/batoul" element={ <Test />}/>
        
   </Routes>
   </div>

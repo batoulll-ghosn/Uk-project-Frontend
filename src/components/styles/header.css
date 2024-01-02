@@ -84,6 +84,11 @@
     width:70px;
     height: 70px;
 }
+.right-side-of-first-in-slide{
+    display: flex;
+    flex-direction: column;
+    row-gap: 15px;
+}
 .right-side-of-first-in-slide h1{
     color: #2E3480;
     font-family: Poppins;

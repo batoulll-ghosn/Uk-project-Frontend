@@ -50,6 +50,7 @@
     flex-direction: row;
     column-gap: 2%;
     margin: 10px;
+    align-items: center;
 }
 .div-of-circle-and-text p{
     width:70%;
