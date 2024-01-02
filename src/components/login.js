@@ -1,42 +1,108 @@
-import React, { useState } from 'react';
-import './styles/login.css';
-import 'bootstrap/dist/css/bootstrap.min.css';
-import { Link } from "react-router-dom";
-import Loginn from './loginn';
-import { useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
+import { GoogleLogin, GoogleOAuthProvider } from '@react-oauth/google';
+import { jwtDecode } from 'jwt-decode';
+import './styles/header.css';
+import { Link } from 'react-router-dom';
+import { login, getUsersByEmail } from './actions/user';
+import { useNavigate } from 'react-router-dom';
+import { toast } from 'react-toastify';
 import { gapi } from 'gapi-script';
-  const clientId="865161690861-6nk4hq8qj0df5jmm543ma4mpvje02kft.apps.googleusercontent.com";
-const Login = () => {
-  
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [showPassword, setShowPassword] = useState(false);
-  useEffect(()=>{
-    function start (){
-    gapi.client.init({
-      clientId: clientId,
-      scope:""
-    })
+import { useDispatch } from 'react-redux';
+import './styles/login.css';
+const clientId = '865161690861-6nk4hq8qj0df5jmm543ma4mpvje02kft.apps.googleusercontent.com';
+
+function Loginn({ onClick }) {
+  const onSuccess = (res) => {
+    const decodedToken = jwtDecode(res.credential);
+    console.log('LOGIN SUCCESS! User email:', decodedToken.email);
+    onClick(decodedToken.email);
   };
-  gapi.load('client:auth2',start);
-  });
 
+  const onFailure = (res) => {
+    console.log('LOGIN failed!!', res);
+  };
 
+  return (
+    <GoogleOAuthProvider clientId={clientId}>
+      <div id="signInButton">
+        <GoogleLogin
+          buttonText="Login"
+          onSuccess={onSuccess}
+          onFailure={onFailure}
+          cookiePolicy={'single_host_origin'}
+          isSignedIn={true}
+          scope="email"
+          className="signInButton"
+        />
+      </div>
+    </GoogleOAuthProvider>
+  );
+}
 
+// Login component
+const Login = () => {
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [showPassword, setShowPassword] = useState(false);
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
 
+  useEffect(() => {
+    function start() {
+      gapi.client.init({
+        clientId: clientId,
+        scope: '',
+      });
+    }
+    gapi.load('client:auth2', start);
+  }, []);
+
+  const handleClick = async (googleEmail) => {
+    try {
+      const response = await dispatch(getUsersByEmail(googleEmail));
+      console.log(response.length)
+      if (response.length=='1') {
+        toast.success('Login Successful');
+        navigate('/');
+      } else {
+        toast.error('Login Failed');
+      }
+    } catch (error) {
+      console.error('Error:', error);
+      toast.error('An error occurred during login');
+    }
+  };
 
   const togglePasswordVisibility = () => {
     setShowPassword(!showPassword);
   };
 
-  return (
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+
+    try {
+      const response = await dispatch(login(email, password));
+
+      if (response.success) {
+        toast.success(response.message);
+        navigate('/');
+      } else {
+        toast.error(response.message);
+      }
+    } catch (error) {
+      console.error('Error:', error);
+      toast.error('An error occurred during login');
+    }
+  };
+
+  return  (
     <div>
       <div className='first-in-login'>
         {/*<img className='logo-img-in-login' src='./images/logo.png' alt='Logo' /> */}
         <img className='second-img-in-login' src='./images/login.jpg' alt='photo'/>
       </div>
       <div className="flex h-screen SignIn-container scale-95 justify-center items-center pt-0">
-        <form className="form-of-login">
+        <form className="form-of-login" onSubmit={handleSubmit}>
         <h2 className='the-welcome-sentence'> Welcome Back!</h2>
           <div className="mb-8">
             <input
@@ -46,6 +112,7 @@ const Login = () => {
               value={email}
               className="rounded-full p-2 py-2 border border-black bg-gray-100 italic text-xl w-80"
               placeholder="Email"
+              onChange={(e) => setEmail(e.target.value)}
             />
           </div>
 
@@ -57,6 +124,7 @@ const Login = () => {
               className="rounded-full w-80 p-2 py-2 border border-black bg-gray-100 pr-10 italic text-xl"
               placeholder="Password"
               value={password}
+              onChange={(e) => setPassword(e.target.value)}
             />
             <div
               className="absolute top-1/2 transform -translate-y-1/2 right-2 cursor-pointer"
@@ -91,13 +159,13 @@ const Login = () => {
               </a>
             </Link>
           </div>
-          <button className='loginButton' >Login
+          <button className='loginButton' type="submit" >Login
           </button>
           <div className="mb-4 text-left">
               <p className="login-connectusing text-lg hover:text-#2E3480 text-shadow">
                 or connect using 
               </p>
-              <Loginn className='auth-login'/>
+              <Loginn onClick={handleClick}/>
           </div>
         </form>
         <div className="mb-4 text-left">
@@ -111,6 +179,6 @@ const Login = () => {
     </div>
   </div>
   );
-}
+};
 
 export default Login;
