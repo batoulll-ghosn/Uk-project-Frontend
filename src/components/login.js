@@ -39,7 +39,6 @@ function Loginn({ onClick }) {
   );
 }
 
-// Login component
 const Login = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -104,6 +103,9 @@ const Login = () => {
       <div className="flex h-screen SignIn-container scale-95 justify-center items-center pt-0">
         <form className="form-of-login" onSubmit={handleSubmit}>
         <h2 className='the-welcome-sentence'> Welcome Back!</h2>
+        <p className="text-after-welcome">
+        Login to your existing account in our community 
+        </p>
           <div className="mb-8">
             <input
               type="email"
@@ -162,7 +164,7 @@ const Login = () => {
           <button className='loginButton' type="submit" >Login
           </button>
           <div className="mb-4 text-left">
-              <p className="login-connectusing text-lg hover:text-#2E3480 text-shadow">
+              <p className="text-after-welcome">
                 or connect using 
               </p>
               <Loginn onClick={handleClick}/>

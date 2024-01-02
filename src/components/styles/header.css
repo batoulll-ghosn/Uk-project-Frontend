@@ -192,3 +192,22 @@
         transform: scaleX(1);
     }
 }
+.text-after-welcome{
+    color: #7576C6;
+    text-align: center;
+    font-family: Poppins;
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    margin-bottom: 10px;
+}
+.form-of-register{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    row-gap:0px;
+}
+#blablabla{
+    margin-bottom: 32px;
+}

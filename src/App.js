@@ -9,6 +9,7 @@ import MiddleSection from './components/MiddleSection';
 import Slice from './components/slice';
 import Login from './components/login';
 import Test from './components/test';
+import Register from './components/Register';
 function App() {
   return (
  
@@ -21,7 +22,7 @@ function App() {
         <Route exact  path="/" element={<><Navbar /><Header /> <Slice /><Services /></>}/>
        <Route path="/Login" element={ <Login />}/>
        <Route path="/batoul" element={ <Test />}/>
-       
+       <Route path="/SignUp" element={ <Register />}/>
   </Routes>
   </Router>
   </div>
