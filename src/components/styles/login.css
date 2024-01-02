@@ -34,6 +34,14 @@ margin-bottom: 20px;
 #forget_password{
     color: #2E3480;
 }
+.the-div{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-top:0px;
+    padding-top: 0px;
+}
 .loginButton{
     width:50%;
     background-color: #2E3480;
@@ -42,6 +50,21 @@ margin-bottom: 20px;
     padding: 5px;
     font-weight: 700;
     font-size: 24px;
+}
+.SignIn-container{
+    display: flex;
+    flex-direction: column;
+}
+.login-connectusing{
+    text-align: center;
+}
+.loginButton:hover{
+   color: #2E3480;
+   background-color: #FFF;
+    
+}
+#forget_password:hover{
+    color: #D9D9D9;
 }
 .auth-login{
     width:50%;
@@ -68,7 +91,10 @@ flex-shrink: 0;
     align-items: center;
     margin-top: -400px;
 }
-
+.the-div-of-welcoming{
+    display: flex;
+    flex-direction: column;
+}
 @media (max-width: 767px) {
     .SignIn-container {
   

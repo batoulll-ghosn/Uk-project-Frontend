@@ -1,6 +1,6 @@
 import { GoogleLogin, GoogleOAuthProvider } from '@react-oauth/google';
 import { jwtDecode } from 'jwt-decode';
-
+import './styles/header.css';
 const clientId = "865161690861-6nk4hq8qj0df5jmm543ma4mpvje02kft.apps.googleusercontent.com";
 
 function Login() {
@@ -21,7 +21,8 @@ function Login() {
                onFailure={onFailure}
                cookiePolicy={'single_host_origin'}
                isSignedIn={true}
-               scope='email'/>
+               scope='email'
+               className='signInButton'/>
          </div>
      </GoogleOAuthProvider>
  )

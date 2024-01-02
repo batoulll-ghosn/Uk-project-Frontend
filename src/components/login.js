@@ -94,7 +94,7 @@ const Login = () => {
           <button className='loginButton' >Login
           </button>
           <div className="mb-4 text-left">
-              <p id="forget_password"className=" text-lg hover:text-#2E3480 text-shadow">
+              <p className="login-connectusing text-lg hover:text-#2E3480 text-shadow">
                 or connect using 
               </p>
               <Loginn className='auth-login'/>
@@ -102,7 +102,7 @@ const Login = () => {
         </form>
         <div className="mb-4 text-left">
             <Link to="/SignUp">
-              <a href="" id="forget_password"className="underline text-lg hover:text-#2E3480 text-shadow">
+              <a href="" id="forget_password" className="underline text-lg hover:text-#2E3480 text-shadow">
                 Don't Have an Account? SignUp.
               </a>
             </Link>
