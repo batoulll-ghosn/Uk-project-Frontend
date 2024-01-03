@@ -25,7 +25,7 @@ const Login = () => {
   const [registerShow, setRegisterShow] = useState(true);
   const [LoginShow, setLoginShow] = useState(false);
   const [fullName, setFullName] = useState("");
-  const [img, setImg] = useState('');
+  const [img, setImg] = useState(null);
   const [name, setName] = useState('');
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -66,10 +66,21 @@ const Login = () => {
       setPasswordError("Passwords do not match");
       return;
     }
-    dispatch(register(fullName, email, password, phoneNumber, img));
+    const formData = new FormData();
+   
+  
+    formData.append('fullName', fullName);
+    formData.append('email', email);
+    formData.append('password', password);
+    formData.append('phone', phoneNumber);
+   
+  
+    formData.append('img', img);
+    dispatch(register(formData));
     onSignup();
     setPasswordError("");
    };
+   
    
   function onSignup() {
     setLoading(true);
@@ -283,10 +294,10 @@ const Login = () => {
                 type="text"
                 id="fullname"
                 name="fullname"
-                value={name}
+                value={fullName}
                 className="rounded-full p-2 py-2 border border-black bg-gray-100 italic text-xl w-80"
                 placeholder="Full Name"
-                onChange={(e) => setName(e.target.value)}
+                onChange={(e) => setFullName(e.target.value)}
               />
             </div>
             <div className="mb-8">
@@ -297,8 +308,7 @@ const Login = () => {
                 className="rounded-full p-2 py-2 border border-black bg-gray-100 italic text-l w-80"
                 onChange={(e) => {
                   const file = e.target.files[0];
-                  setImg(URL.createObjectURL(file));
-                }}
+                  setImg(file);}}
               />
             </div>
             <button className='loginButton' type="submit" >Register
