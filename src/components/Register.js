@@ -1,38 +1,188 @@
-import React, { useState, useEffect } from 'react';
-import { GoogleLogin, GoogleOAuthProvider } from '@react-oauth/google';
-import { jwtDecode } from 'jwt-decode';
-import './styles/header.css';
+import { React, useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
+import axios from "axios";
+import { BsFillShieldLockFill, BsTelephoneFill } from "react-icons/bs";
+import { CgSpinner } from "react-icons/cg";
+import OtpInput from "otp-input-react";
+import PhoneInput from "react-phone-input-2";
+import "react-phone-input-2/lib/style.css";
+import { auth } from "./firebase.config";
+import { RecaptchaVerifier, signInWithPhoneNumber } from "firebase/auth";
+import {Toaster } from "react-hot-toast";
 import { Link } from 'react-router-dom';
-import { login, getUsersByEmail } from './actions/user';
-import { useNavigate } from 'react-router-dom';
+import {register} from './actions/user';
 import { toast } from 'react-toastify';
-import { gapi } from 'gapi-script';
-import { useDispatch } from 'react-redux';
-
-const Register = () => {
-    const [email, setEmail] = useState('');
-    const [password, setPassword] = useState('');
-    const [showPassword, setShowPassword] = useState(false);
-    const [name, setName] = useState('');
-    const [phone, setPhone] = useState('');
-    const [gender, setGender] = useState('');
-    const [confirmpassword, setConfirmPassword] = useState('');
-    const dispatch = useDispatch();
-    const navigate = useNavigate();
-  
-    const togglePasswordVisibility = () => {
+const Login = () => {
+  const [otp, setOtp] = useState("");
+  const [phoneNumber, setphoneNumber] = useState("");
+  const [loading, setLoading] = useState(false);
+  const [showOTP, setShowOTP] = useState(false);
+  const [user, setUser] = useState(null);
+  const navigate= useNavigate();
+  const dispatch = useDispatch();
+  const [registerShow, setRegisterShow] = useState(true);
+  const [LoginShow, setLoginShow] = useState(false);
+  const [fullName, setFullName] = useState("");
+  const [img, setImg] = useState('');
+  const [name, setName] = useState('');
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [confirmPass, setConfirmPass] = useState("");
+  const [fullNameError, setFullNameError] = useState("");
+  const [phoneNumberError, setPhoneNumberError] = useState("");
+  const [emailError, setEmailError] = useState("");
+  const [passwordError, setPasswordError] = useState("");
+  const [confirmPassError, setConfirmPassError] = useState("");
+  const [loginError, setLoginError] = useState("");
+  const [showPassword,setShowPassword] = useState(false);
+  const [confirmpassword, setConfirmPassword] = useState('');
+  const togglePasswordVisibility = () => {
     setShowPassword(!showPassword);
   };
-    return  (
+  const users = useSelector(state => state.users);
+  useEffect(() => {
+    console.log("yes")
+  }, []);
+  function onCaptchVerify() {
+    if (!window.recaptchaVerifier) {
+      window.recaptchaVerifier = new RecaptchaVerifier(
+        "recaptcha-container",
+        {
+          size: "invisible",
+          callback: (response) => {
+            onSignup();
+          },
+          "expired-callback": () => {},
+        },
+        auth
+      );
+    }
+  }
+  const handleRegister = (e) => {
+    e.preventDefault();
+    if (password !== confirmpassword) {
+      setPasswordError("Passwords do not match");
+      return;
+    }
+    dispatch(register(fullName, email, password, phoneNumber, img));
+    onSignup();
+    setPasswordError("");
+   };
+   
+  function onSignup() {
+    setLoading(true);
+    onCaptchVerify();
+
+    const appVerifier = window.recaptchaVerifier;
+    const formatPh = "+" + phoneNumber;
+
+    signInWithPhoneNumber(auth, formatPh, appVerifier)
+      .then((confirmationResult) => {
+        window.confirmationResult = confirmationResult;
+        setLoading(false);
+        setShowOTP(true);
+        toast.success("OTP sended successfully!");
+      })
+      .catch((error) => {
+        console.log(error);
+        setLoading(false);
+      });
+  }
+  const handleLogin = (e) => {
+    e.preventDefault();
+    axios
+      .post(`${process.env.REACT_APP_HOSTING_BACKEND_LINK}/users/login`, { email, password })
+      .then((response) => {
+        const token = response.data.token;
+        const id = response.data.id;
+        toast.success("You logged in successfully!");
+        localStorage.setItem("token",token);
+        localStorage.setItem("id",id);
+        navigate('/')
+      })
+      .catch((error) => {
+        console.error("Error fetching data:", error);
+        throw error;
+      });
+    
+  };
+  function onOTPVerify() {
+    setLoading(true);
+    window.confirmationResult
+      .confirm(otp)
+      .then(async (res) => {
+        console.log(res);
+        setUser(res.user);
+        setLoading(false);
+        toast.success("You logged in successfully!");
+        navigate("/");
+      })
+      .catch((err) => {
+        console.log(err);
+        setLoading(false);
+      });
+  }
+
+  return (
+    <section  style={{backgroundColor: "#A1A4CD"}} className="flex items-center justify-center">
       <div>
+        <Toaster toastOptions={{ duration: 4000 }} />
+        <div id="recaptcha-container"></div>
+        {user ? (
+          <h2 className="text-center text-white font-medium text-2xl">
+            👍Login Success
+          </h2>
+        ) : (
+          <div className="register">
+            {showOTP ? (
+              <div className="card">
+                    <h1 className="text-center leading-normal text-white font-medium text-3xl mb-6">
+                        Verify Your Phone Number <br /> 
+                    </h1>
+                <div className="bg-white text-emerald-500 w-fit mx-auto p-4 rounded-full">
+                  <BsFillShieldLockFill size={30} />
+                </div>
+                <label
+                  htmlFor="otp"
+                  className="font-bold text-xl text-white text-center"
+                >
+                  Enter your verification code
+                </label>
+                <OtpInput
+                  value={otp}
+                  onChange={setOtp}
+                  OTPLength={6}
+                  otpType="number"
+                  disabled={false}
+                  autoFocus
+                  className="opt-container "
+                ></OtpInput>
+                <button
+                  onClick={onOTPVerify}
+                  className="register-button"
+                >
+                  {loading && (
+                    <CgSpinner size={20} className="mt-1 animate-spin" />
+                  )}
+                  <span>Verify OTP</span>
+                </button>
+              </div>
+            ) : (
+              <>
+              <div className="register">
+     
+       <>
+       <div>
         <div className='first-in-login'>
           <img className='logo-img-in-login' src='./images/logo.png' alt='Logo' />
           
         </div>
         <div className="flex h-screen SignIn-container scale-95 justify-center items-center pt-0">
-          <form className="form-of-register" >
-          <h2 className='the-welcome-sentence'> Let's Get  Started</h2>
-        <p className="text-after-welcome">
+          <form className="form-of-register" onSubmit={(e) => handleRegister(e)}>
+          <h2 className='the-welcome-sentencee'> Let's Get  Started</h2>
+        <p className="text-after-welcomee">
         Looking beyond to see you a part of our community 
         </p>
             <div className="mb-8">
@@ -120,16 +270,14 @@ const Register = () => {
               </div>
             </div>
             <div className="mb-8">
-              <input
-                type="text"
-                id="phone"
-                name="phone"
-                value={phone}
-                className="rounded-full p-2 py-2 border border-black bg-gray-100 italic text-xl w-80"
-                placeholder="Phone Number"
-                onChange={(e) => setPhone(e.target.value)}
-              />
-            </div>
+            <PhoneInput  country={"lb"} value={phoneNumber} onChange={setphoneNumber}  inputStyle={{ 
+                  height: '50px', 
+                  borderRadius: '400px',
+                  width:"330px",
+                  backgroundColor:"#f5f5f5",
+                  borderColor:"black"
+                }} />
+</div>
             <div className="mb-8">
               <input
                 type="text"
@@ -143,13 +291,14 @@ const Register = () => {
             </div>
             <div className="mb-8">
               <input
-                type="text"
-                id="gender"
-                name="gender"
-                value={gender}
-                className="rounded-full p-2 py-2 border border-black bg-gray-100 italic text-xl w-80"
-                placeholder="Gender"
-                onChange={(e) => setGender(e.target.value)}
+                type="file"
+                id="img"
+                name="img"
+                className="rounded-full p-2 py-2 border border-black bg-gray-100 italic text-l w-80"
+                onChange={(e) => {
+                  const file = e.target.files[0];
+                  setImg(URL.createObjectURL(file));
+                }}
               />
             </div>
             <button className='loginButton' type="submit" >Register
@@ -157,7 +306,7 @@ const Register = () => {
           </form>
           <div className="mb-4 text-left">
               <Link to="/login">
-                <a href="" id="forget_password" className="underline text-lg hover:text-#2E3480 text-shadow">
+                <a href="" id="forget_passwordd" className="underline text-lg hover:text-#2E3480 text-shadow">
                   Do you  Have an Account? SignIn.
                 </a>
               </Link>
@@ -165,8 +314,15 @@ const Register = () => {
       
       </div>
     </div>
-    );
-  };
-  
-  export default Register;
-  
+       </>
+    </div>  
+              </>
+            )}
+          </div>
+        )}
+      </div>
+    </section>
+  );
+};
+
+export default Login;

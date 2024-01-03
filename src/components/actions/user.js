@@ -49,5 +49,39 @@ export const login = (Email, password) => {
       }
     };
    };
+export const register = (fullName,email, password,phone, img) => {
+    const newUser = {
+      fullName,
+      email,
+      password,
+      phone,
+      img,
+    };
+    return (dispatch) => {
+      axios
+        .post(`http://localhost:8000/users/register`, newUser)
+        .then((response) => {
+          const user = response.data.data.user;
+          const token = response.data.data.token;
+          const id = response.data.data.id;
+          dispatch({
+            type: "register",
+            payload: {user,token, id}
+          });
+        })
+        .catch((error) => {
+          if (error.response) {
+            console.log(error.response.data);
+            console.log(error.response.status);
+            console.log(error.response.headers);
+          } else if (error.request) {
+            console.log(error.request);
+          } else {
+            console.log('Error', error.message);
+          }
+          console.log(error.config);
+        });
+    };
+   };
    
    

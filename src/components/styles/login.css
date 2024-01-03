@@ -27,12 +27,18 @@ font-size: 80px;
 font-style: normal;
 font-weight: 700;
 line-height: 90px; /* 84.906% */
-margin-top: 0px;
+margin-top: -32px;
 text-align: center;
-margin-bottom: 20px;
+
 }
 #forget_password{
     color: #FFFFFF;
+}
+#forget_passwordd{
+    color: #2E3480;
+}
+#forget_passwordd:hover{
+    color: #A1A4CD;
 }
 .the-div{
     display: flex;

@@ -202,6 +202,17 @@
     line-height: normal;
     margin-bottom: 10px;
 }
+.text-after-welcomee{
+    color: #2E3480;
+    text-align: center;
+    font-family: Poppins;
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    margin-bottom: 10px;
+   
+}
 .form-of-register{
     display: flex;
     flex-direction: column;
@@ -224,3 +235,20 @@
    background-repeat: no-repeat;
    width:100%;
 }
+#blablabla{
+    margin-bottom: 30px;
+}
+.phone-input {
+    height: 200px;
+    border-radius: 10px; /* adjust this value to your liking */
+   }
+.the-welcome-sentencee{
+    color: #2E3480;
+    font-family: Poppins;
+    font-size: 70px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 70px;
+     margin-top: -25px; 
+    text-align: center;
+}   
