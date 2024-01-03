@@ -23,16 +23,16 @@ function Loginn({ onClick }) {
   };
 
   return (
-    <GoogleOAuthProvider clientId={clientId}>
+    <GoogleOAuthProvider  clientId={clientId}>
       <div id="signInButton">
         <GoogleLogin
           buttonText="Login"
           onSuccess={onSuccess}
           onFailure={onFailure}
-          cookiePolicy={'single_host_origin'}
-          isSignedIn={true}
           scope="email"
-          className="signInButton"
+          isSignedIn={true} 
+          cookiePolicy={'single_host_origin'}
+          /* className="signInButton"*/
         />
       </div>
     </GoogleOAuthProvider>
@@ -95,12 +95,7 @@ const Login = () => {
   };
 
   return  (
-    <div>
-      <div className='first-in-login'>
-        {/*<img className='logo-img-in-login' src='./images/logo.png' alt='Logo' /> */}
-        <img className='second-img-in-login' src='./images/login.jpg' alt='photo'/>
-      </div>
-      <div className="flex h-screen SignIn-container scale-95 justify-center items-center pt-0">
+      <div id ='login-full-vision' className="flex h-screen SignIn-container  justify-center items-center pt-0">
         <form className="form-of-login" onSubmit={handleSubmit}>
         <h2 className='the-welcome-sentence'> Welcome Back!</h2>
         <p className="text-after-welcome">
@@ -179,7 +174,7 @@ const Login = () => {
       </div>
     
     </div>
-  </div>
+ 
   );
 };
 
