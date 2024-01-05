@@ -1,0 +1,10 @@
+<p>Hello</p>
+<p>You got a new message from United Kingdom For education and learning</p>
+<p style="padding: 12px; border-left: 4px solid #d0d0d0; font-style: italic;">
+  thank you for subscribing in our website, 
+  we hope to see you a part of our community , 
+  for joining this community use the following link "https://united-kingdom-for-education-and.onrender.com/signup"
+</p>
+<p>
+  Sincerely,<br>The United Kingdom For Education and Learning Public Relations' team
+</p>

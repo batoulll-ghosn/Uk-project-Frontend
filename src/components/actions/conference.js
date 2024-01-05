@@ -5,7 +5,6 @@ export const getAllConferences = () => {
     axios
       .get(`https://ukbackendproject.onrender.com/confrences/getAll`)
       .then((response) => {
-        console.log(response.data)
         const confrences = response.data.data;
         dispatch({
           type: "getAll",
