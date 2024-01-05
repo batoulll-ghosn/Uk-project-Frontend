@@ -1,0 +1,78 @@
+.the-main-div-in-footer{
+    background-color: #2E3480;
+    width: 100%;
+    margin-top: 100px;
+    padding: 2%;
+    display: flex;
+    flex-direction: row;
+    column-gap: 17%;
+}
+.div-of-logo-in-footer{
+    height:fit-content;
+    width:fit-content;
+    border-radius: 50%;
+}
+.div-of-logo-in-footer img{
+    width: 104px;
+    height: 104px;
+    border-radius: 50%;
+
+}
+.the-text-in-footer{
+    color: #FFF;
+font-family: Poppins;
+font-size: 12px;
+font-style: normal;
+font-weight: 300;
+line-height: 1.2;
+width: 300px;
+}
+.the-follow-us{
+color: #FFF;
+font-family: Poppins;
+font-size: 30px;
+font-style: normal;
+font-weight: 500;
+line-height: 45px; 
+}
+.first-div-in-footer{
+    display: flex;
+    flex-direction: column;
+    row-gap: 30px;
+}
+.the-ul-in-the-footer{
+    color: #FFF;
+    font-family: Poppins;
+font-size: 25px;
+font-style: normal;
+font-weight: 200;
+line-height: 45px; 
+}
+.third-div-in-footer{
+    display: flex;
+    flex-direction: column;
+    row-gap: 40px;
+}
+.the-subscribe-form-in-footer{
+    display: flex;
+    flex-direction: column;
+    row-gap: 20px;
+    align-items: left;
+}
+.the-email-button{
+    border:none;
+    border-bottom: 1px solid #fff;
+    outline: none;
+    background-color: #2E3480;
+}
+.the-email-button::placeholder {
+    color: #FFF;
+}
+.the-subscribe-button{
+    border-radius: 30px;
+background: #A1A4CD;
+color: #2E3480;
+height: 55px;
+font-size: 22px;
+font-weight: 700;
+}

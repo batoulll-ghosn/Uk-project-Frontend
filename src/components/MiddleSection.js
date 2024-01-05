@@ -49,10 +49,11 @@ const MiddleSection = () => {
               className={`slide ${i >= currentIndex && i <= currentIndex + 2 ? 'active' : ''}`}
             > 
             <div id='ddd'> <img className='img-in-thee-slide' src={contents[i].img} alt={contents[i].name} />
-            <h2 className='header-in-thee-slide'>{contents[i].name}</h2>
+            <div className='dddt'><h2 className='header-in-thee-slide'>{contents[i].name}</h2>
             <p className='text-in-thee-slide'>{contents[i].type}</p>
             <p className='textt-in-thee-slide'>{contents[i].description}</p>
-            <p className='header-in-thee-slide'>{contents[i].price}</p>
+            <p className='header-in-thee-slide'>{contents[i].price}</p></div>
+            
             </div>
             
              
