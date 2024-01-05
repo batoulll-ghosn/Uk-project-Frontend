@@ -15,12 +15,12 @@ const MiddleSection = () => {
  const courses =useSelector((state)=>state.courses);
   const dispatch = useDispatch();
   useEffect(() => {
-    dispatch(getAllCourses());
-  }, []);
+    dispatch(getAllConferences());
+    }, [conferences]);
   const contentData = {
-    'courses': courses ? courses.map(course => ({ name: course.course_name, img: course.img })) : [],
+    'courses': ['Book 1', 'Book 2', 'Book 3', 'Book 4', 'Book 5', 'Book 6'],
     'books': ['Book 1', 'Book 2', 'Book 3', 'Book 4', 'Book 5', 'Book 6'],
-    'confreces': conferences ? conferences.map(conference => ({ name: conference.conference_name, img: conference.img })) : [],
+    'confreces': conferences ? conferences.map(conference => ({ name: conference.conference_name, img: conference.img, type: conference.type, price:conference.price, description:conference.description })) : [],
 
     'movies': ['Movie 1', 'Movie 2', 'Movie 3', 'Movie 4', 'Movie 5', 'Movie 6'],
     'generalcourses':['Course 1', 'Book 2', 'Track 3', 'Movie 4', 'Course 5', 'Course 6']
@@ -44,11 +44,18 @@ const MiddleSection = () => {
     for (let i = 0; i < contents.length; i++) {
         slides.push(
             <div 
+            
               key={i} 
               className={`slide ${i >= currentIndex && i <= currentIndex + 2 ? 'active' : ''}`}
-            >
-              <h2>{contents[i].name}</h2>
-              <img src={contents[i].img} alt={contents[i].name} />
+            > 
+            <div id='ddd'> <img className='img-in-thee-slide' src={contents[i].img} alt={contents[i].name} />
+            <h2 className='header-in-thee-slide'>{contents[i].name}</h2>
+            <p className='text-in-thee-slide'>{contents[i].type}</p>
+            <p className='textt-in-thee-slide'>{contents[i].description}</p>
+            <p className='header-in-thee-slide'>{contents[i].price}</p>
+            </div>
+            
+             
             </div>
         );
     }
@@ -69,10 +76,10 @@ const MiddleSection = () => {
          <button onClick={() => handleButtonClick('movies')}>Workshops</button>
          <button onClick={() => handleButtonClick('generalcourses')}>General Courses</button>
     </div>
-         
+         <div id='the-div-in-middle-section'>
          <div id="slider" onMouseEnter={handleMouseEnter}>
              {renderSlides()}
-         </div>
+         </div></div>
      </div>
  );
 };
