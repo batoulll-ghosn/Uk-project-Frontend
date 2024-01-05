@@ -12,7 +12,8 @@
     flex-direction: column;
     justify-content: flex-start;
     align-items: flex-start;
-    margin: 1%;
+    margin-left: 4%;
+    row-gap: 8%;
 }
 .left-side-of-header h1{
     color: #2E3480;

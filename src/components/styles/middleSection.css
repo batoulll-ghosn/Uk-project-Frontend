@@ -63,3 +63,7 @@ margin-top: 0px;}
     padding: 20px;
     
 }
+.buttons-in-middle-section button:hover{
+  background-color: #fff;
+  color: #2E3480;
+}

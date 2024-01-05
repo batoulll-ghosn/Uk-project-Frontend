@@ -10,6 +10,7 @@ body {
     width: 133px;
     height: 115.373px;
     flex-shrink: 0;
+    margin-left: 50px;
   }
   
   .navbar {
@@ -35,8 +36,8 @@ body {
     line-height: normal;
     border-radius: 30px;
     background: #2e3480;
-    width: 181px;
-    height: 67px;
+    width: 151px;
+    height: 57px;
     border-color: #2e3480;
     margin-right: 10px;
     margin-top: -10px;
@@ -60,7 +61,10 @@ body {
     align-items: center;
     list-style-type: none;
   }
-  
+.ul-in-the-navbar li:hover{
+    text-decoration: underline;
+    cursor: pointer;
+}
   .burger-menu {
     font-size: 35px;
     background: none;

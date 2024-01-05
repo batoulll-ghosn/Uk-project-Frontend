@@ -19,7 +19,7 @@ function App() {
   <Router>
     
    <Routes>
-        <Route exact  path="/" element={<><Navbar /><Header /> <Slice /><Services /></>}/>
+        <Route exact  path="/" element={<><Navbar /><Header /> <Slice /><Services /><MiddleSection /></>}/>
        <Route path="/Login" element={ <Login />}/>
        <Route path="/batoul" element={ <Test />}/>
        <Route path="/SignUp" element={ <Register />}/>
