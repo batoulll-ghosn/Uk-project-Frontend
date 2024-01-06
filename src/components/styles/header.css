@@ -111,6 +111,7 @@
 .slidee{
     background: #A1A4CD; 
 }
+/* Responsive for iPad*/
 @media screen and (min-width:767px) and (max-width:1123px){
     .header-back{
         display: flex;
@@ -151,12 +152,31 @@
         width:100%;
         transform: scaleX(1);
     }
+    .left-side-of-servicess{
+        width:0%;
+        display: none;
+        margin:12px;
+    }
+    .main-div-of-servicess{
+        margin:2%;
+    }
+    .right-side-of-servicess p{
+        width:80%;
+    }
 }
 @media (max-width: 766px) {
     .header-back{
         display: flex;
         flex-direction: column;
         background-color: #f0eef0;
+    }
+    .left-side-of-servicess{
+        width:0%;
+        display: none;
+        margin:12px;
+    }
+    .main-div-of-servicess{
+        margin:2%;
     }
     .left-side-of-header{
         width:100%;

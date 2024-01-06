@@ -1,7 +1,6 @@
 .the-main-div-in-footer{
     background-color: #2E3480;
     width: 100%;
-    margin-top: 100px;
     padding: 2%;
     display: flex;
     flex-direction: row;
@@ -75,4 +74,25 @@ color: #2E3480;
 height: 55px;
 font-size: 22px;
 font-weight: 700;
+}
+.the-subscribe-button:hover{
+    color: #A1A4CD;
+    background-color: #2E3480;
+}
+.the-ul-in-the-footer li:hover{
+    text-decoration: underline;
+}
+@media screen and (min-width:767px) and (max-width:1123px){
+    .the-main-div-in-footer{
+        display: flex;
+        flex-direction: column;
+        row-gap: 30px;
+    }
+}
+@media (max-width: 766px) {
+    .the-main-div-in-footer{
+        display: flex;
+        flex-direction: column;
+        row-gap: 30px;
+    }
 }
