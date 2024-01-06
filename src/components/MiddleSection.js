@@ -16,9 +16,10 @@ const MiddleSection = () => {
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(getAllConferences());
-    }, [conferences]);
+    dispatch(getAllCourses());
+    }, []);
   const contentData = {
-    'courses': ['Book 1', 'Book 2', 'Book 3', 'Book 4', 'Book 5', 'Book 6'],
+    'courses': courses? courses.map(course =>({ name: course.languageName, img: course.img, type: course.type, price:course.price, description:course.level})):[],
     'books': ['Book 1', 'Book 2', 'Book 3', 'Book 4', 'Book 5', 'Book 6'],
     'confreces': conferences ? conferences.map(conference => ({ name: conference.conference_name, img: conference.img, type: conference.type, price:conference.price, description:conference.description })) : [],
 

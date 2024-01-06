@@ -1,6 +1,6 @@
 const conferenceReducer = (state = [], action) => {
     switch (action.type) {
-      case "getAll":
+      case "getAllConferences":
         return action.payload;
       default:
        return state;

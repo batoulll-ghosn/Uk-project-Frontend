@@ -8,7 +8,7 @@ export const getAllCourses = () => {
         console.log(response.data)
         const courses = response.data.data;
         dispatch({
-          type: "getAll",
+          type: "getAllCourses",
           payload: courses,
         });
       })
