@@ -118,3 +118,16 @@ font-style: normal;
 font-weight: 200;
 line-height: normal;
 }
+@media screen and (min-width:767px) and (max-width:1123px){
+  .header-in-middle-section{
+    font-size: 25px;
+    line-height: 1.2;
+  }
+}
+@media (max-width: 766px) {
+  .header-in-middle-section{
+    font-size: 25px; 
+    line-height: 1.2;
+  }
+ 
+}

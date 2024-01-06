@@ -13,6 +13,7 @@ import Login from './components/login';
 import Test from './components/test';
 import Register from './components/Register';
 import Footer from './components/footer';
+
 function App() {
   return (
  
@@ -22,7 +23,7 @@ function App() {
   <Router>
     
    <Routes>
-        <Route exact  path="/" element={<><Navbar /><Header /> <Slice /><Services /><MiddleSection /><Workshops/><Testimonial/><Footer/></>}/>
+        <Route exact  path="/" element={<><Navbar /><Header /> <Slice /><Test/><MiddleSection /><Workshops/><Testimonial/><Footer/></>}/>
        <Route path="/Login" element={ <Login />}/>
        <Route path="/batoul" element={ <Test />}/>
        <Route path="/SignUp" element={ <Register />}/>

@@ -2,12 +2,36 @@
     display: flex;
     flex-direction: row;
 }
+.first-images-in-workshops{
+    display: flex;
+    flex-direction: row;
+    column-gap: 2%;
+    margin:2%;
+}
+.first-images-in-workshops img{
+    width:300px;
+    height: 200px;
+}
+.first-div-in-scroll{
+    display: flex;
+    flex-direction: column;
+    row-gap: 2%;
+}
+.first-div-in-scroll h3{
+    text-align: center;
+    align-items: center;
+}
 .main-div-of-serviess{
     display: flex;
     flex-direction: row;
+    column-gap: 0px;
 }
 .left-side-of-services{
     width:50%;
+}
+.left-side-of-servicess{
+    width:50%;
+    margin: 0px;
 }
 .right-side-of-services{
     width: 50%;
@@ -111,6 +135,12 @@
         display: flex;
         flex-direction: column;
     }
+    .main-div-of-serviess{
+        margin:2%;
+    }
+    .right-side-of-servicess{
+        width:80%;
+    }
 }
 @media (max-width: 766px) {
     .main-div-of-servies{
@@ -137,6 +167,18 @@
     .last-in-right-side-of-services{
         display: flex;
         flex-direction: column;
+    }
+    .main-div-of-serviess{
+        margin:2%;
+    }
+    .right-side-of-servicess{
+        width:80%;
+    }
+    .header-in-testimonial{
+        font-family: Poppins;
+        font-size: 24px;
+        font-weight: 200;
+        line-height: 1.2;
     }
 }
 .left-side-of-work-button{

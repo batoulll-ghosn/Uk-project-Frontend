@@ -79,4 +79,124 @@ line-height: 90px; /* 163.636% */
 .main-in-testimlonial{
    display: flex;
    flex-direction: row;
+   background-color:#D9D9D9;
+   padding-bottom: 150px;
+   padding-top:50px;
+   margin-bottom: 0px;
+}
+@media screen and (min-width:767px) and (max-width:1123px){
+    .main-div-of-servies{
+        display: flex;
+        flex-direction: column;
+    }
+    .right-side-of-services{
+        width:90%;
+    }
+    .right-side-of-services h2{
+        color: #2E3480;
+        font-size: 50px;
+        font-style: normal;
+        font-weight: 700;
+        line-height: 100px; /* 125% */
+        letter-spacing: 0px;
+        margin: 0px;
+    }
+    .last-in-right-side-of-services{
+        display: flex;
+        flex-direction: column;
+    }
+    .main-div-of-serviess{
+        margin:2%;
+    }
+    .right-side-of-servicess{
+        width:80%;
+    }
+    .header-in-testimonial{
+        font-family: Poppins;
+        font-size: 34px;
+        font-weight: 200;
+        line-height: 1.2;
+    }
+    .testimoniage{
+        font-size: 22px;
+        line-height: 1.2;
+    }
+    .main-in-testimlonial{
+        display: flex;
+        flex-direction: column;
+        row-gap: 250px;
+    }
+    .dots-container{
+        margin-top: 290px;
+        margin-left: 5%;
+    }
+    .name-testi{
+        font-size: 20px;
+    }
+    .testi-line {
+        height:8px;
+        width:100px;
+    }
+    .right-in-testimlonial img{
+        margin-top: 5%;
+    }
+}
+@media (max-width: 766px) {
+    .main-div-of-servies{
+        display: flex;
+        flex-direction: column;
+    }
+    .left-side-of-services img{
+        width:80%;
+        height: 400px;
+        display: none;
+    }
+    .right-side-of-services{
+        width:90%;
+    }
+    .right-side-of-services h2{
+        color: #2E3480;
+        font-size: 50px;
+        font-style: normal;
+        font-weight: 700;
+        line-height: 100px; /* 125% */
+        letter-spacing: 0px;
+        margin: 0px;
+    }
+    .last-in-right-side-of-services{
+        display: flex;
+        flex-direction: column;
+    }
+    .main-div-of-serviess{
+        margin:2%;
+    }
+    .right-side-of-servicess{
+        width:80%;
+    }
+    .header-in-testimonial{
+        font-family: Poppins;
+        font-size: 24px;
+        font-weight: 200;
+        line-height: 1.2;
+    }
+    .testimoniage{
+        font-size: 12px;
+        line-height: 1.2;
+    }
+    .main-in-testimlonial{
+        display: flex;
+        flex-direction: column;
+        row-gap: 250px;
+    }
+    .dots-container{
+        margin-top: 260px;
+        margin-left: 5%;
+    }
+    .name-testi{
+        font-size: 20px;
+    }
+    .testi-line {
+        height:8px;
+        width:100px;
+    }
 }
