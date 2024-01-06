@@ -7,7 +7,7 @@ export const getAllConferences = () => {
       .then((response) => {
         const confrences = response.data.data;
         dispatch({
-          type: "getAll",
+          type: "getAllConferences",
           payload: confrences,
         });
       })
