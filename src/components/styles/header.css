@@ -273,3 +273,33 @@
      margin-top: -25px; 
     text-align: center;
 }   
+.Confoverlay {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 9998;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+   }
+   
+   .Conferencepopup {
+    position: relative;
+    z-index: 9999;
+    /* Other styles for the popup */
+   }
+   .Conferencepopup-content{
+    background-color: aliceblue;
+    padding: 38px;
+    color: #2E3480;
+    font-size: 28px;
+   }
+   .buttonsOfConfPopup{
+    display: flex;
+    flex-direction: row;
+    column-gap: 50px;
+   }
+   

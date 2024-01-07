@@ -34,13 +34,28 @@ export const login = (Email, password) => {
         });
     };
    };
-   export const getUsersByEmail = (email) => {
+export const getUsersByEmail = (email) => {
     return async (dispatch) => {
       try {
         const response = await axios.get(`https://ukbackendproject.onrender.com/users/getUserByEmail/${email}`);
         const users = response.data.data;
         dispatch({
           type: "getUsersByEmail",
+          payload: users
+        });
+        return users;
+      } catch (error) {
+        console.error("Error fetching data:", error);
+      }
+    };
+   };
+export const getUsersByFullName = (fullName) => {
+    return async (dispatch) => {
+      try {
+        const response = await axios.get(`https://ukbackendproject.onrender.com/users/getUserByFullName/${fullName}`);
+        const users = response.data.data;
+        dispatch({
+          type: "getUsersByFullName",
           payload: users
         });
         return users;

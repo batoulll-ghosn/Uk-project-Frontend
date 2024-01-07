@@ -53,3 +53,16 @@ font-style: normal;
 font-weight: 700;
 line-height: 30px; /* 23.438% */
 }
+.the-Our-Conferencess{
+    color: #FFF;
+font-family: Poppins;
+font-size: 58px;
+font-style: normal;
+font-weight: 600;
+line-height: 30px; /* 23.438% */
+display: flex;
+align-items: center;
+justify-content: center;
+padding: 15px;
+text-align: center;
+}

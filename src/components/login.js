@@ -60,9 +60,13 @@ const Login = () => {
     try {
       const response = await dispatch(getUsersByEmail(googleEmail));
       console.log(response.length)
-      if (response.length=='1') {
+      if (response.length === 1) {
+        console.log(response[0].id)
+        const userId = response[0].id;
+        localStorage.setItem('userId', userId);
         toast.success('Login Successful');
         navigate('/');
+        localStorage.setItem('userId', userId);
       } else {
         toast.error('Login Failed');
       }
@@ -70,7 +74,8 @@ const Login = () => {
       console.error('Error:', error);
       toast.error('An error occurred during login');
     }
-  };
+   };
+   
 
   const togglePasswordVisibility = () => {
     setShowPassword(!showPassword);

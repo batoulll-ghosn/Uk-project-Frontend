@@ -172,12 +172,13 @@ const Login = () => {
                 ></OtpInput>
                 <button
                   onClick={onOTPVerify}
-                  className="register-button"
+                 
+                  className='left-side-of-header-button'
                 >
                   {loading && (
                     <CgSpinner size={20} className="mt-1 animate-spin" />
                   )}
-                  <span>Verify OTP</span>
+                  <span className='left-side-of-header-button'>Verify OTP</span>
                 </button>
               </div>
             ) : (

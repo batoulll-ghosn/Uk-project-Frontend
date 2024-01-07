@@ -5,9 +5,8 @@ import { useDispatch } from 'react-redux';
 import { getAllConferences } from './actions/conference';
 import { getAllCourses } from './actions/course';
 import { getAllWorkshops } from './actions/workshop';
-import { useNavigate } from 'react-router-dom';
+
 const MiddleSection = () => {
-  const navigate = useNavigate();
   const [currentIndex, setCurrentIndex] = useState(0);
   const [category, setCategory] = useState('transcourses');
   const categories = ['transcourses', 'lancourses', 'workshops', 'conferences', 'generalcourses'];
@@ -17,17 +16,7 @@ const MiddleSection = () => {
   const languageCourses = courses.filter((course) => course.type === 'Language');
   const translationCourses = courses.filter((course) => course.type === 'Translation');
   const dispatch = useDispatch();
-  const [showPopup, setShowPopup] = useState(false);
-  const [selectedConference, setSelectedConference] = useState(null);
-  const parseDate = (input) => {
-    const [day, month, year] = input.split("/");
-    return new Date(`${month}/${day}/${year}`);
-   };
-   const compareDates = (a, b) => parseDate(a.date) - parseDate(b.date);
- conferences.sort(compareDates);
 
- const now = new Date();
- const upcomingConferences = conferences.filter(conference => parseDate(conference.date) > now);
   useEffect(() => {
     dispatch(getAllConferences());
     dispatch(getAllCourses());
@@ -49,8 +38,8 @@ const MiddleSection = () => {
       price: course.price,
       description: course.level,
     })),
-    conferences: upcomingConferences
-      ? upcomingConferences.map((conference) => ({
+    conferences: conferences
+      ? conferences.map((conference) => ({
           id: conference.id,
           name: conference.conference_name,
           img: conference.img,
@@ -92,25 +81,27 @@ const MiddleSection = () => {
     setCategory(newCategory);
   };
 
-  const handleSlideClick = (content) => {
-    console.log("Slide clicked");
-    setSelectedConference(content);
-    
-    console.log(`Selected Conference: ${JSON.stringify(content)}`);
-    
-    let userId = localStorage.getItem('userId');
-    if (userId && userId.length === 1) {
-        setShowPopup(true);
-        console.log("Setting showPopup to true");
+  const handleSlideClick = () => {
+    if (localStorage.getItem('userId')) {
+      // Navigate to the appropriate page based on the category
+      switch (category) {
+        case 'transcourses':
+        case 'lancourses':
+        case 'generalcourses':
+          window.location.href = '/courses';
+          break;
+        case 'conferences':
+          window.location.href = '/conferences';
+          break;
+        case 'workshops':
+          window.location.href = '/workshops';
+          break;
+        default:
+          break;
+      }
     } else {
-        navigate('/Login'); 
+      window.location.href = '/login';
     }
- };
- 
-   
-
-  const closePopup = () => {
-    setShowPopup(false);
   };
 
   const renderSlides = () => {
@@ -121,7 +112,7 @@ const MiddleSection = () => {
         <div
           key={i}
           className={`slide ${i >= currentIndex && i <= currentIndex + 2 ? 'active' : ''}`}
-          onClick={() => handleSlideClick(contents[i])}
+          onClick={handleSlideClick}
         >
           <div id="ddd">
             <img className="img-in-thee-slide" src={contents[i].img} alt={contents[i].name} />
@@ -162,21 +153,6 @@ const MiddleSection = () => {
           {renderSlides()}
         </div>
       </div>
-      {showPopup && selectedConference && (
-     <div className="Confoverlay">
-       <div className="Conferencepopup">
-         <div className="Conferencepopup-content">
-            <p>{`Do you want to Register?`}</p>
-           <h2>{selectedConference.name}</h2>
-           <p>{selectedConference.description}</p>
-           <p>{selectedConference.price}</p>
-           <div className='buttonsOfConfPopup'><button className='left-side-of-header-button'>Yes</button>
-           <button className='left-side-of-header-button' onClick={closePopup}>Close</button></div>
-           
-         </div>
-       </div>
-     </div>
-   )}
     </div>
   );
 };

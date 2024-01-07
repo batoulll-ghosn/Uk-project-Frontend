@@ -6,6 +6,8 @@ const userReducer = (state = [], action) => {
       return action.payload;
       case "getUsersByEmail":
       return action.payload ;
+      case "getUsersByFullName":
+      return action.payload ;
       case "register":
       return action.payload ;
       default:
