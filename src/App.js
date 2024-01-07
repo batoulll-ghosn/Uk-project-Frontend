@@ -13,7 +13,9 @@ import Login from './components/login';
 import Test from './components/test';
 import Register from './components/Register';
 import Footer from './components/footer';
-
+import ConferencesPage from './components/conferencesPage';
+import CoursesPage from './components/coursesPage';
+import WorkshopSection from './components/workshopSection';
 function App() {
   return (
  
@@ -23,10 +25,13 @@ function App() {
   <Router>
     
    <Routes>
-        <Route exact  path="/" element={<><Navbar /><Header /> <Slice /><Test/><MiddleSection /><Workshops/><Testimonial/><Footer/></>}/>
+        <Route exact  path="/" element={<><Navbar /><Header /> <Slice /><Test/><MiddleSection /><WorkshopSection/><Testimonial/><Footer/></>}/>
        <Route path="/Login" element={ <Login />}/>
        <Route path="/batoul" element={ <Test />}/>
        <Route path="/SignUp" element={ <Register />}/>
+       <Route path="/workshops" element={<Workshops/>} />
+       <Route path="/conferences" element={<ConferencesPage/>} />
+       <Route path="/courses" element={<CoursesPage/>} />
   </Routes>
   </Router>
   </div>

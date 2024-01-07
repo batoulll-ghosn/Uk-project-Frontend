@@ -12,3 +12,44 @@
     align-items: center;
     justify-content: center;
 }
+.conferences-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    
+   }
+   
+.conference-card {
+    flex: 0 0 calc(30% - 10px);
+    margin: 20px;
+}
+.main-container-conference{
+    display: flex;
+    flex-direction: column;
+}
+.the-heading-in-conferences{
+    color: #000;
+font-family: Poppins;
+font-size: 48px;
+font-style: normal;
+font-weight: 700;
+line-height: 1.2;
+}
+.the-header-in-conferences{
+    background-color: #2E3480;
+    width:100%;
+    height: fit-content;
+    padding: 20px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    column-gap: 20px;
+}
+.the-Our-Conferences{
+    color: #FFF;
+font-family: Poppins;
+font-size: 88px;
+font-style: normal;
+font-weight: 700;
+line-height: 30px; /* 23.438% */
+}
