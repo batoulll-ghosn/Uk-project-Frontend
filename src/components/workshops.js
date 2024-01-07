@@ -1,22 +1,51 @@
-import React, { useState } from 'react';
+import React, { useEffect } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBars, faTimes } from '@fortawesome/free-solid-svg-icons';
 import './styles/services.css';
-
-const Workshops=()=> {
-
+import { useNavigate } from 'react-router-dom';
+import { getAllWorkshops } from './actions/workshop';
+import { useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
+import {Link} from 'react-router-dom';
+const Workshops = () => {
+  const workshops = useSelector((state) => state.workshops);
+ 
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+ 
+  useEffect(() => {
+    dispatch(getAllWorkshops());
+  }, []);
+ 
+  const GoToWorkshops = (event) => {
+    event.preventDefault();
+    navigate('/workshops');
+  };
+ 
   return (
-    <div className='main-div-of-serviess'>
-    <div className='left-side-of-servicess'><div className='first-images-in-workshops'><img src='./images/workshop1.jpg'/><img src='./images/workshop2.jpg'/></div>
-    <div className='first-images-in-workshops'><img src='./images/workshop3.jpg'/><img src='./images/workshop4.jpg'/></div></div>
-    <div className='right-side-of-servicess'><h2>Check Our Free Workshops</h2>
-    <p>include audio and video for each course include audio and video for each course include audio and video for each course
-       include audio and video for each course include audio and video for each course  </p>
-       <button className='left-side-of-work-button'>Check Now</button>
-       </div>
-    
+    <> 
+    <div className='the-header-in-conferences'>
+<div className='div-of-logo-in-footer'><Link to='/'><img src='./images/logo.jpeg'/></Link></div>
+<div><h2 className='the-Our-Conferences'>Our Workshops</h2></div>
 </div>
+    <div className="conferences-container">
+    <div className="main-container-conference">
+      <div className="conferences-container">
+        {workshops.map((workshop, index) => (
+          <div key={index} className="conference-card">
+            <img className="img-in-thee-slide" src={workshop.img} />
+            <div className="dddt">
+            <h2 className="header-in-thee-slidee">{workshop.workshopname}</h2>
+            <p className="text-in-thee-slidee">Date: {workshop.date}</p>
+            </div>
+          </div>
+        ))}
+      </div>
+   </div>
+   </div></>
+   
   );
-}
-
-export default Workshops;
+ };
+ 
+ export default Workshops;
+ 

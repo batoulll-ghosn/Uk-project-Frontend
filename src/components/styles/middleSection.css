@@ -102,6 +102,14 @@ font-style: normal;
 font-weight: 600;
 line-height: 30px; /* 83.333% */
 }
+.header-in-thee-slidee{
+  color: #2E3480;
+font-family: Poppins;
+font-size: 28px;
+font-style: normal;
+font-weight: 500;
+line-height: 1; /* 83.333% */
+}
 .text-in-thee-slide{
   color: #2E3480;
   font-family: Poppins;
@@ -114,6 +122,14 @@ line-height: 30px; /* 83.333% */
   color: #7576C6;
 font-family: Poppins;
 font-size: 18px;
+font-style: normal;
+font-weight: 200;
+line-height: normal;
+}
+.textt-in-thee-slidee{
+  color: #7576C6;
+font-family: Poppins;
+font-size: 12px;
 font-style: normal;
 font-weight: 200;
 line-height: normal;

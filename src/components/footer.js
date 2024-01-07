@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import emailjs from '@emailjs/browser';
 import './styles/footer.css';
-
+import {Link} from 'react-router-dom';
 const Footer=()=> {
   const sendEmail = (event) => {
     event.preventDefault();
@@ -25,10 +25,10 @@ course include audio and video</p>
         <h2 className='the-follow-us'>Follow Us</h2>
       </div>
       <div className='second-div-in-footer'>
-        <ul className='the-ul-in-the-footer'><li>Home</li>
-        <li>Workshops</li>
-        <li>Conferences</li>
-        <li>Courses</li>
+        <ul className='the-ul-in-the-footer'><li><Link to='/'>Home</Link></li>
+        <li><Link to='/workshops'>Workshops</Link></li>
+        <li><Link to='/conferences'>Conferences</Link></li>
+        <li><Link to='/courses'>Courses</Link></li>
         </ul>
       </div>
       <div className='third-div-in-footer'><h2 className='the-follow-us'>Let's Keep in Touch!</h2>
