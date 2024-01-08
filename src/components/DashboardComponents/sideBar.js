@@ -3,6 +3,9 @@ import { useNavigate } from 'react-router-dom'
 import Users from './users';
 import {Link} from 'react-router-dom';
 import '../styles/dashboard2.css';
+import Courses from './coursesPage';
+import Workshops from './workshopsPage';
+import Conferences from './ConferencesPage';
 function Dashboard() {
     const [activePage, setActivePage] = useState('teacher');
 
@@ -29,13 +32,13 @@ function Dashboard() {
                         <a href="#users" onClick={() => handleMenuClick('users')}>Users</a>
                     </div>
                     <div className="menu-item">
-                        <a href="#student" onClick={() => handleMenuClick('student')}>Student</a>
+                        <a href="#courses" onClick={() => handleMenuClick('courses')}>Courses</a>
                     </div>
                     <div className="menu-item">
-                        <a href="#language" onClick={() => handleMenuClick('language')}>Language</a>
+                        <a href="#workshops" onClick={() => handleMenuClick('workshops')}>Workshops</a>
                     </div>
                     <div className="menu-item">
-                        <a href="#course" onClick={() => handleMenuClick('course')}>Course</a>
+                        <a href="#conf" onClick={() => handleMenuClick('conf')}>Conferences</a>
                     </div>
                     <div className="menu-item">
                         <a href="#schedule" onClick={() => handleMenuClick('schedule')}>Schedule</a>
@@ -52,7 +55,9 @@ function Dashboard() {
                 <div className='the-Our-Conferencess'><h2>Welcome Super Admin!</h2></div>
                 </div>
                 {activePage === 'users' && <Users />}
-                
+                {activePage === 'courses' && <Courses />}
+                {activePage === 'workshops' && <Workshops />}
+                {activePage === 'conf' && <Conferences />}
             </div>
         </div>
     );
