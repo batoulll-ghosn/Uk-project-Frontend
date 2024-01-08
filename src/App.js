@@ -16,6 +16,7 @@ import Footer from './components/footer';
 import ConferencesPage from './components/conferencesPage';
 import CoursesPage from './components/coursesPage';
 import WorkshopSection from './components/workshopSection';
+import AdminDashboard from './components/DashboardComponents/sideBar';
 function App() {
   return (
  
@@ -32,6 +33,7 @@ function App() {
        <Route path="/workshops" element={<Workshops/>} />
        <Route path="/conferences" element={<ConferencesPage/>} />
        <Route path="/courses" element={<CoursesPage/>} />
+       <Route path="/dashboard" element={<AdminDashboard/>} />
   </Routes>
   </Router>
   </div>
