@@ -22,7 +22,12 @@ function Loginn({ onClick }) {
     console.error('LOGIN failed!!', error);
     toast.error(`Login failed: ${error.message}`);
   };
-
+  const customStyle = {
+    backgroundColor: '#ff0000',
+    color: '#ffffff',
+    borderRadius: '10px',
+   };
+   
   return (
     <GoogleOAuthProvider clientId={clientId}>
       <div id="signInButton">
@@ -31,12 +36,15 @@ function Loginn({ onClick }) {
           onSuccess={onSuccess}
           onFailure={onFailure}
           scope="email"
+          style={{  borderRadius:"500px"  }}
           isSignedIn={true}
           cookiePolicy={'single_host_origin'}
+         
         />
       </div>
     </GoogleOAuthProvider>
-  );
+   );
+   
 }
 
 const Login = () => {
@@ -61,10 +69,13 @@ const Login = () => {
       const response = await dispatch(getUsersByEmail(googleEmail));
       if (response.length === 1) {
         const userId = response[0].id;
+        const email = response[0].email;
         localStorage.setItem('userId', userId);
+        localStorage.setItem('email', email);
         toast.success('Login Successful');
         navigate('/');
         localStorage.setItem('userId', userId);
+        localStorage.setItem('email', email);
       } else {
         toast.error('Login Failed');
       }

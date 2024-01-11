@@ -7,7 +7,7 @@ import Courses from './coursesPage';
 import Workshops from './workshopsPage';
 import Conferences from './ConferencesPage';
 function Dashboard() {
-    const [activePage, setActivePage] = useState('teacher');
+    const [activePage, setActivePage] = useState('users');
 
     const handleMenuClick = (page) => {
         setActivePage(page);

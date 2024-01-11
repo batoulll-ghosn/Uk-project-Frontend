@@ -2,9 +2,12 @@ import React, { useState, useEffect } from 'react';
 import './styles/middleSection.css';
 import { useSelector } from 'react-redux';
 import { useDispatch } from 'react-redux';
-import { getAllConferences } from './actions/conference';
+import { engageToConference } from './actions/conference';
+import { getAllConferences} from './actions/conference';
 import { getAllCourses } from './actions/course';
-import { getAllWorkshops } from './actions/workshop';
+import {engageToCourse} from './actions/course'
+import { getAllWorkshops,engageToWorkshop } from './actions/workshop';
+import { toast } from 'react-toastify';
 import { useNavigate } from 'react-router-dom';
 const MiddleSection = () => {
   const navigate = useNavigate();
@@ -36,18 +39,22 @@ const MiddleSection = () => {
 
   const contentData = {
     transcourses: translationCourses.map((course) => ({
+      id:course.id,
       name: course.languageName,
       img: course.img,
       type: course.type,
       price: course.price,
       description: course.level,
+      abv: course.abv
     })),
     lancourses: languageCourses.map((course) => ({
+      id:course.id,
       name: course.languageName,
       img: course.img,
       type: course.type,
       price: course.price,
       description: course.level,
+      abv: course.abv
     })),
     conferences: upcomingConferences
       ? upcomingConferences.map((conference) => ({
@@ -57,24 +64,29 @@ const MiddleSection = () => {
           type: conference.type,
           price: conference.price,
           description: conference.description,
+          abv: conference.abv
         }))
       : [],
     workshops: workshops
       ? workshops.map((workshop) => ({
+          id :workshop.id,
           name: workshop.workshopname,
           img: workshop.img,
           type: workshop.type,
           price: workshop.price,
           description: workshop.description,
+          abv: workshop.abv
         }))
       : [],
     generalcourses: courses
       ? courses.map((course) => ({
+          id:course.id,
           name: course.languageName,
           img: course.img,
           type: course.type,
           price: course.price,
           description: course.level,
+          abv: course.abv
         }))
       : [],
   };
@@ -107,9 +119,60 @@ const MiddleSection = () => {
     }
  };
  
-   
+ const handleRegisterYes = async () => {
+  if (selectedConference) {
+    const userId = localStorage.getItem('userId');
+    const userMail = localStorage.getItem('email');
+    const emailData = {
+      email: userMail,
+      content: `Registration for ${selectedConference.name} - ${selectedConference.description}. Price: ${selectedConference.price}`,
+    };
+    switch (selectedConference.abv) {
+      case "con":
+        try {
+          dispatch(engageToConference(selectedConference.id, userId));
+          toast.success("Successfully registered to the Conference!");
+        } catch (error) {
+          toast.error("Failed to register to the Conference!");
+        }
+        break;
+      case "co":
+        try {
+          dispatch(engageToCourse(selectedConference.id, userId));
+          toast.success("Successfully registered to the Course!");
+        } catch (error) {
+          toast.error("Failed to register to the Course!");
+        }
+        break;
+        case "w":
+        try {
+          dispatch(engageToWorkshop(selectedConference.id, userId));
+          toast.success("Successfully registered to the Workshop!");
+        } catch (error) {
+          toast.error("Failed to register to the Workshop!");
+        }
+        break;
+      default:
+        break;
+    }
+    const response = await fetch('https://ukbackendproject.onrender.com/email/registerToConf', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(emailData),
+    });
+    if (!response.ok) {
+      throw new Error('HTTP error ' + response.status);
+    }
+  }
+  setShowPopup(false);
+ };
+ 
+ 
 
-  const closePopup = () => {
+
+const closePopup = () => {
     setShowPopup(false);
   };
 
@@ -170,7 +233,8 @@ const MiddleSection = () => {
            <h2>{selectedConference.name}</h2>
            <p>{selectedConference.description}</p>
            <p>{selectedConference.price}</p>
-           <div className='buttonsOfConfPopup'><button className='left-side-of-header-button'>Yes</button>
+           <p>{selectedConference.id}</p>
+           <div className='buttonsOfConfPopup'><button className='left-side-of-header-button' onClick={handleRegisterYes}>Yes</button>
            <button className='left-side-of-header-button' onClick={closePopup}>Close</button></div>
            
          </div>
