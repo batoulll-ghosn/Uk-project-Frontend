@@ -4,8 +4,10 @@ const courseReducer = (state = [], action) => {
         return action.payload;
       case "engageToCourse":
           return action.payload;
+      case "getScheduleOfCourse":
+         return action.payload;
       default:
        return state;
     }
     };
-    export default courseReducer;
+export default courseReducer;

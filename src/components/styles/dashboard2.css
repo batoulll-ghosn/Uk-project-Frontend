@@ -108,6 +108,21 @@
     align-items: center;
     justify-content: center;
 }
+.the-div-of-userss{
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+}
+.the-div-of-userss table td{
+   border: solid 1px #2E3480;
+   color: #2E3480;
+   text-align: center;
+}
+.the-div-of-userss table th{
+    border: solid 1px #2E3480;
+    color: #2E3480;
+    text-align: center;
+ }
 .first-div-in-users{
     display: flex;
     justify-content: space-between;

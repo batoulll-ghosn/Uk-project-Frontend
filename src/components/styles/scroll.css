@@ -16,9 +16,16 @@
     display: flex;
     flex-wrap: wrap;
     justify-content: flex-start;
-    
    }
-   
+   .conferences-containerr {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+   }
+.conference-cardd{
+    width:400px;
+    margin:20px;
+}
 .conference-card {
     flex: 0 0 calc(30% - 10px);
     margin: 20px;
@@ -27,7 +34,11 @@
     display: flex;
     flex-direction: column;
 }
-
+.main-container-conferencee{
+    display: flex;
+    flex-direction: row;
+    column-gap: 15%;
+}
 .the-heading-in-conferences{
     color: #2E3480;
 font-family: Poppins;
@@ -35,7 +46,9 @@ font-size: 48px;
 font-style: normal;
 font-weight: 700;
 line-height: 1.2;
+margin-left: 10px;
 }
+
 .the-header-in-conferences{
     background-color: #2E3480;
     width:100%;

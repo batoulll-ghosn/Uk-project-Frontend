@@ -91,21 +91,27 @@ const Login = () => {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-
-    try {
       const response = await dispatch(login(email, password));
+      const response1 = await dispatch(getUsersByEmail(email));
+      console.log('Login response:', response1);
+      const userId = response1[0].id;
+      const userEmail = response1[0].email;
 
-      if (response.success) {
+      console.log('Hello');
+      if (response.success===true) {
+       
+        console.log('Email:', userEmail);
+  
+        localStorage.setItem('userId', userId);
+        localStorage.setItem('email', userEmail);
+  
         toast.success(response.message);
         navigate('/');
       } else {
         toast.error(response.message);
       }
-    } catch (error) {
-      console.error('Error:', error);
-      toast.error('An error occurred during login');
-    }
   };
+  
 
   return (
     <div id='login-full-vision' className="flex h-screen SignIn-container  justify-center items-center pt-0">

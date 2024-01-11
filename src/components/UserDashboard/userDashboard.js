@@ -2,41 +2,129 @@ import React, { useState, useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { useDispatch } from 'react-redux';
 import { getAllEnngagedConferences } from '../actions/conference';
+import { getAllEngagedWorkshops } from '../actions/workshop';
+import { getScheduleOfCourse } from '../actions/schedule';
 import { Link } from 'react-router-dom';
-
-const Conferences = () => {
+import { updateUserInfo } from '../actions/user';
+const UserDashboard = () => {
  const conferences = useSelector((state) => state.conferences);
+ const workshops = useSelector((state) => state.workshops);
+ const schedule= useSelector((state) => state.schedules);
  const dispatch = useDispatch();
  const userId = localStorage.getItem('userId');
  const [selectedConference, setSelectedConference] = useState(null);
-
+ const [selectedWorkshop, setSelectedWorkshop] = useState(null);
  useEffect(() => {
-   dispatch(getAllEnngagedConferences(userId));
+  dispatch(getScheduleOfCourse(userId));
+  dispatch(getAllEnngagedConferences(userId));
+  dispatch(getAllEngagedWorkshops(userId));
  }, [userId, dispatch]);
 
+ const handleWorkshopClick = (workshop) => {
+  setSelectedWorkshop(workshop);
+};
+
+const handleCloseWorkshopPopup = () => {
+  setSelectedWorkshop(null);
+};
  const parseDate = (input) => {
-   const [day, month, year] = input.split('/');
-   return new Date(`${month}/${day}/${year}`);
+  const [day, month, year] = input.split('/');
+  return new Date(`${month}/${day}/${year}`);
  };
 
  const compareDates = (a, b) => parseDate(a.date) - parseDate(b.date);
  conferences.sort(compareDates);
 
  const now = new Date();
- const pastConferences = conferences.filter((conference) => parseDate(conference.date) <= now);
- const upcomingConferences = conferences.filter((conference) => parseDate(conference.date) > now);
+ const pastConferences = conferences.filter((conference) => parseDate(conference.date) < now);
+ const upcomingConferences = conferences.filter((conference) => parseDate(conference.date) >= now);
+ const upcomingWorkshops = workshops.filter((workshop) => parseDate(workshop.date) >= now);
 
  const handleConferenceClick = (conference, isPast) => {
-   setSelectedConference({...conference, isPast});
+  setSelectedConference({...conference, isPast});
  };
 
  const handleClosePopup = () => {
-   setSelectedConference(null);
+  setSelectedConference(null);
  };
+ const scheduleArray = Array.isArray(schedule) ? schedule : [];
+  const days = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"];
+  const hours = ["9:00", "10:00", "11:00", "12:00", "13:00", "14:00", "15:00", "16:00", "17:00","18:00","19:00","20:00"];
 
+ 
+  const scheduleTable = Array.from({ length: days.length }, () =>
+    Array.from({ length: hours.length }, () => [])
+  );
+
+  // Fill in the schedule table based on the schedule data
+  scheduleArray.forEach((event) => {
+    const eventDayIndex = days.indexOf(event.day);
+    const eventHourIndex = hours.indexOf(event.hour);
+
+    if (eventDayIndex >= 0 && eventHourIndex >= 0) {
+      scheduleTable[eventDayIndex][eventHourIndex].push(
+        <div key={event.id}>
+          <p>{event.languageName} {event.level}</p>
+         <a href={event.zoom_link} target="_blank" rel="noopener noreferrer">Zoom Meeting Link</a>
+
+        </div>
+      );
+    }
+  });
+  const [isProfilePopupOpen, setProfilePopupOpen] = useState(false);
+  const [profileFormData, setProfileFormData] = useState({
+    email: '',
+    fullName: '',
+    password: '',
+    confirmPassword: '',
+    img: null, // Updated to store a file object
+  });
+
+  const handlePersonIconClick = () => {
+    setProfilePopupOpen(true);
+  };
+
+  const handleCloseProfilePopup = () => {
+    setProfilePopupOpen(false);
+    setProfileFormData({
+      email: '',
+      fullName: '',
+      password: '',
+      confirmPassword: '',
+      img: null,
+    });
+  };
+
+  const handleProfileInputChange = (e) => {
+    const { name, value, type, files } = e.target;
+
+    // Check if the input is a file type
+    const inputValue = type === 'file' ? files[0] : value;
+
+    setProfileFormData({
+      ...profileFormData,
+      [name]: inputValue,
+    });
+  };
+  const handleSaveProfile = () => {
+    console.log('Profile data saved:', profileFormData);
+    dispatch(
+      updateUserInfo(
+        userId,
+        profileFormData.fullName,
+        profileFormData.email,
+        profileFormData.oldPassword,
+        profileFormData.newPassword,
+        profileFormData.img
+      )
+    );
+    handleCloseProfilePopup();
+   };
+   
+   
  return (
-   <>
-     <div className="the-header-in-conferences">
+  <>
+   <div className="the-header-in-conferences">
        <div className="div-of-logo-in-footer">
          <Link to="/">
            <img src="./images/logo.jpeg" alt="Logo" />
@@ -45,13 +133,14 @@ const Conferences = () => {
        <div>
          <h2 className="the-Our-Conferencess">Welcome to your dashboard!</h2>
        </div>
-       <div className="person-icon" > <img src="./images/person-icon.svg"/></div>
+       <div className="person-icon" onClick={handlePersonIconClick}> <img src="./images/person-icon.svg"/></div>
      </div>
-     <div className="main-container-conference">
+     <div className="main-container-conferencee">
+      <div>
        <h2 className="the-heading-in-conferences">Upcoming Conferences</h2>
-       <div className="conferences-container">
+       <div className="conferences-containerr">
          {upcomingConferences.map((conference, index) => (
-           <div key={index} className="conference-card" onClick={() => handleConferenceClick(conference, false)}>
+           <div key={index} className="conference-cardd" onClick={() => handleConferenceClick(conference, false)}>
              <img className="img-in-thee-slide" src={conference.img} alt={conference.conference_name} />
              <div className="dddt">
                <h2 className="header-in-thee-slide">{conference.conference_name}</h2>
@@ -64,10 +153,12 @@ const Conferences = () => {
            </div>
          ))}
        </div>
+       </div>
+       <div>
        <h2 className="the-heading-in-conferences">Past Conferences</h2>
-       <div className="conferences-container">
+       <div className="conferences-containerr">
          {pastConferences.map((conference, index) => (
-           <div key={index} className="conference-card" onClick={() => handleConferenceClick(conference, true)}>
+           <div key={index} className="conference-cardd" onClick={() => handleConferenceClick(conference, true)}>
             <img className="img-in-thee-slide" src={conference.img} alt={conference.conference_name} />
              <div className="dddt">
                <h2 className="header-in-thee-slide">{conference.conference_name}</h2>
@@ -78,6 +169,7 @@ const Conferences = () => {
              </div>
            </div>
          ))}
+       </div>
        </div>
      </div>
      {selectedConference && (
@@ -100,8 +192,124 @@ const Conferences = () => {
          </div>
        </div>
      )}
-   </>
+     <h2 className="the-heading-in-conferences">Workshops</h2>
+      <div className="conferences-container">
+        <div className="main-container-conference">
+          <div className="conferences-container">
+            {upcomingWorkshops.map((workshop, index) => (
+              <div
+                key={index}
+                className="conference-cardd"
+                onClick={() => handleWorkshopClick(workshop)}
+              >
+                <img className="img-in-thee-slide" src={workshop.img} />
+                <div className="dddt">
+                  <h2 className="header-in-thee-slidee">{workshop.workshopname}</h2>
+                  <p className="text-in-thee-slidee">Date: {workshop.date}</p>
+                  <p className="registered-in-green">Registered</p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+ <h2 className="the-heading-in-conferences">Schedule Of Your Courses</h2>
+ <div className="the-div-of-userss">
+ <table className="the-users-table">
+ <thead>
+   <tr>
+     <th></th>
+     {hours.map((hour, index) => (
+       <th key={index}>{hour}</th>
+     ))}
+   </tr>
+ </thead>
+ <tbody>
+   {days.map((day, dayIndex) => (
+     <tr key={dayIndex}>
+       <td>{day}</td>
+       {hours.map((hour, hourIndex) => (
+         <td key={hourIndex}>{scheduleTable[dayIndex][hourIndex]}</td>
+       ))}
+     </tr>
+   ))}
+ </tbody>
+</table>
+</div>
+{selectedWorkshop && (
+        <div className="Confoverlay">
+          <div className="Conferencepopup">
+            <div className="Conferencepopup-content">
+              <span className="close" onClick={handleCloseWorkshopPopup}>
+                &times;
+              </span>
+              <h2>{selectedWorkshop.workshopname}</h2>
+              <p>Date: {selectedWorkshop.date}</p>
+              <p>Zoom Link: {selectedWorkshop.zoom_link}</p>
+          
+            </div>
+          </div>
+        </div>
+      )}  
+   {isProfilePopupOpen && (
+        <div className="Confoverlay">
+          <div className="Conferencepopup">
+            <div className="Conferencepopup-content">
+              <span className="close" onClick={handleCloseProfilePopup}>
+                &times;
+              </span>
+              <h2>Edit Profile</h2>
+              <div>
+                <label>Email:</label>
+                <input
+                  type="email"
+                  name="email"
+                  value={profileFormData.email}
+                  onChange={handleProfileInputChange}
+                />
+              </div>
+              <div>
+                <label>Full Name:</label>
+                <input
+                  type="text"
+                  name="fullName"
+                  value={profileFormData.fullName}
+                  onChange={handleProfileInputChange}
+                />
+              </div>
+              <div>
+                <label>Password:</label>
+                <input
+                  type="password"
+                  name="password"
+                  value={profileFormData.password}
+                  onChange={handleProfileInputChange}
+                />
+              </div>
+              <div>
+                <label>Confirm Password:</label>
+                <input
+                  type="password"
+                  name="confirmPassword"
+                  value={profileFormData.confirmPassword}
+                  onChange={handleProfileInputChange}
+                />
+              </div>
+              <div>
+                <label>Image URL:</label>
+                <input
+                  type="file"
+                  name="img"
+                  onChange={handleProfileInputChange}
+                />
+              </div>
+              <button onClick={handleSaveProfile}>Save</button>
+            </div>
+          </div>
+        </div>
+      )}
+  </>
  );
 };
 
-export default Conferences;
+export default UserDashboard;
