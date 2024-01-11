@@ -6,7 +6,9 @@ import { getAllEngagedWorkshops } from '../actions/workshop';
 import { getScheduleOfCourse } from '../actions/schedule';
 import { Link } from 'react-router-dom';
 import { updateUserInfo } from '../actions/user';
+import { useNavigate } from 'react-router-dom';
 const UserDashboard = () => {
+  const navigate = useNavigate();
  const conferences = useSelector((state) => state.conferences);
  const workshops = useSelector((state) => state.workshops);
  const schedule= useSelector((state) => state.schedules);
@@ -14,6 +16,9 @@ const UserDashboard = () => {
  const userId = localStorage.getItem('userId');
  const [selectedConference, setSelectedConference] = useState(null);
  const [selectedWorkshop, setSelectedWorkshop] = useState(null);
+ const emailFromLocalStorage = localStorage.getItem('email');
+ const nameFromLocalStorage = localStorage.getItem('fullName');
+ const img= localStorage.getItem('userImage');
  useEffect(() => {
   dispatch(getScheduleOfCourse(userId));
   dispatch(getAllEnngagedConferences(userId));
@@ -73,11 +78,11 @@ const handleCloseWorkshopPopup = () => {
   });
   const [isProfilePopupOpen, setProfilePopupOpen] = useState(false);
   const [profileFormData, setProfileFormData] = useState({
-    email: '',
-    fullName: '',
+    email:  emailFromLocalStorage || '',
+    fullName: nameFromLocalStorage || '',
     password: '',
     confirmPassword: '',
-    img: null, // Updated to store a file object
+    img: null, 
   });
 
   const handlePersonIconClick = () => {
@@ -107,7 +112,6 @@ const handleCloseWorkshopPopup = () => {
     });
   };
   const handleSaveProfile = () => {
-    console.log('Profile data saved:', profileFormData);
     dispatch(
       updateUserInfo(
         userId,
@@ -120,7 +124,13 @@ const handleCloseWorkshopPopup = () => {
     );
     handleCloseProfilePopup();
    };
-   
+   const handleLogoutProfile = () => {
+        localStorage.removeItem('userId');
+        localStorage.removeItem('fullName');
+        localStorage.removeItem('userrole');
+        localStorage.removeItem('userImage');
+        navigate('/');
+  };
    
  return (
   <>
@@ -133,7 +143,7 @@ const handleCloseWorkshopPopup = () => {
        <div>
          <h2 className="the-Our-Conferencess">Welcome to your dashboard!</h2>
        </div>
-       <div className="person-icon" onClick={handlePersonIconClick}> <img src="./images/person-icon.svg"/></div>
+       <div className="person-icon" onClick={handlePersonIconClick}> <img src={img}/></div>
      </div>
      <div className="main-container-conferencee">
       <div>
@@ -259,8 +269,8 @@ const handleCloseWorkshopPopup = () => {
                 &times;
               </span>
               <h2>Edit Profile</h2>
-              <div>
-                <label>Email:</label>
+              <div className='inputs-in-user-info'>
+                <label>Email: </label>
                 <input
                   type="email"
                   name="email"
@@ -268,8 +278,8 @@ const handleCloseWorkshopPopup = () => {
                   onChange={handleProfileInputChange}
                 />
               </div>
-              <div>
-                <label>Full Name:</label>
+              <div  className='inputs-in-user-info'>
+                <label>Full Name: </label>
                 <input
                   type="text"
                   name="fullName"
@@ -277,33 +287,35 @@ const handleCloseWorkshopPopup = () => {
                   onChange={handleProfileInputChange}
                 />
               </div>
-              <div>
-                <label>Password:</label>
+              <div  className='inputs-in-user-info'>
+                <label>Password: </label>
                 <input
                   type="password"
-                  name="password"
-                  value={profileFormData.password}
+                  name="oldPassword"
+                  value={profileFormData.oldpassword}
                   onChange={handleProfileInputChange}
                 />
               </div>
-              <div>
-                <label>Confirm Password:</label>
+              <div  className='inputs-in-user-info'>
+                <label>Confirm Password: </label>
                 <input
                   type="password"
-                  name="confirmPassword"
-                  value={profileFormData.confirmPassword}
+                  name="newPassword"
+                  value={profileFormData.newPassword}
                   onChange={handleProfileInputChange}
                 />
               </div>
-              <div>
-                <label>Image URL:</label>
+              <div  className='inputs-in-user-info'>
+                <label>Image URL: </label>
                 <input
                   type="file"
                   name="img"
                   onChange={handleProfileInputChange}
                 />
               </div>
-              <button onClick={handleSaveProfile}>Save</button>
+              <div className='buttons-in-edit-user'> <button className='saveButton' onClick={handleSaveProfile}>Save</button>
+              <button className='saveButton' onClick={handleLogoutProfile}>Logout</button></div>
+             
             </div>
           </div>
         </div>

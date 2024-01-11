@@ -96,17 +96,21 @@ const Login = () => {
       console.log('Login response:', response1);
       const userId = response1[0].id;
       const userEmail = response1[0].email;
-
-      console.log('Hello');
+      const fullName=response1[0].fullName;
+      const Role=response1[0].role;
+      const img=response1[0].img;
+      console.log(response1);
       if (response.success===true) {
        
         console.log('Email:', userEmail);
   
         localStorage.setItem('userId', userId);
         localStorage.setItem('email', userEmail);
-  
+        localStorage.setItem('fullName',fullName);
+        localStorage.setItem('userrole',Role);
+        localStorage.setItem('userImage',img);
         toast.success(response.message);
-        navigate('/');
+        navigate('/dash');
       } else {
         toast.error(response.message);
       }

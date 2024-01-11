@@ -11,10 +11,16 @@ const NavBar=()=> {
   const toggleMenu = () => {
     setMenuOpen(!isMenuOpen);
   };
- const GoToLogin = (event) =>{
-  event.preventDefault();
- navigate('/login');
- }
+  const GoToLogin = (event) => {
+    event.preventDefault();
+    const userId = localStorage.getItem('userId');
+    if (userId) {
+      navigate('/dash');
+    } else {
+      navigate('/login');
+    }
+   }
+   
   return (
     <div className={`header-main ${isMenuOpen ? 'menu-open' : ''}`}>
       <div className='first-row'>

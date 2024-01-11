@@ -34,3 +34,49 @@ export const engageToCourse = (course_id,user_id) => {
       });
   };
 }; 
+
+export const getCourseByLanguageName = (languageName) => {
+  return async (dispatch) => {
+    try {
+      const response = await axios.get(`https://ukbackendproject.onrender.com/courses/getByLanguageName/${languageName}`);
+      const users = response.data.data;
+      dispatch({
+        type: "getCourseByLanguageName",
+        payload: users
+      });
+      return users;
+    } catch (error) {
+      console.error("Error fetching data:", error);
+    }
+  };
+ };
+export const getCourseByType = (type) => {
+  return async (dispatch) => {
+    try {
+      const response = await axios.get(`https://ukbackendproject.onrender.com/courses/getByType/${type}`);
+      const users = response.data.data;
+      dispatch({
+        type: "getCourseBytype",
+        payload: users
+      });
+      return users;
+    } catch (error) {
+      console.error("Error fetching data:", error);
+    }
+  };
+ };
+ export const getCourseByLevel = (level) => {
+  return async (dispatch) => {
+    try {
+      const response = await axios.get(`https://ukbackendproject.onrender.com/courses/getByLanguageLevel/${level}`);
+      const users = response.data.data;
+      dispatch({
+        type: "getCourseByLevel",
+        payload: users
+      });
+      return users;
+    } catch (error) {
+      console.error("Error fetching data:", error);
+    }
+  };
+ };

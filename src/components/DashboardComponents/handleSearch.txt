@@ -1,7 +1,0 @@
-const handleSearch = () => {
- if (searchType === 'email') {
-   dispatch(getUsersByEmail(searchTerm));
- } else if (searchType === 'fullName') {
-   dispatch(getUsersByFullName(searchTerm));
- }
-};
