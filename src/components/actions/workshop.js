@@ -17,3 +17,19 @@ export const getAllWorkshops = () => {
       });
   };
 };
+export const engageToWorkshop = (workshop_id, user_id) => {
+  return (dispatch) => {
+    axios
+      .post('https://ukbackendproject.onrender.com/workshops/engageToWorshop', {
+        workshop_id: workshop_id, 
+        user_id: user_id,
+      })
+      .then((response) => {
+        dispatch({ type: 'engageToWorkshop', payload: response.data });
+      })
+      .catch((error) => {
+        console.error(error.toString()); 
+        console.log(error.toString())
+      });
+  };
+}; 

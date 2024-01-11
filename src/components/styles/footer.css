@@ -63,6 +63,7 @@ line-height: 45px;
     border-bottom: 1px solid #fff;
     outline: none;
     background-color: #2E3480;
+    color: #FFF;
 }
 .the-email-button::placeholder {
     color: #FFF;

@@ -38,9 +38,6 @@ const Users = () => {
     image: null,
   });
 
-  useEffect(() => {
-    dispatch(getAllUsers());
-  }, [dispatch]);
 
   const handleSearch = () => {
     let results;
@@ -182,6 +179,10 @@ const Users = () => {
     };
     reader.readAsBinaryString(file);
    };
+   
+  useEffect(() => {
+    dispatch(getAllUsers());
+  }, [dispatch,handleRoleSwitch,handleToggleActive,confirmUpdate,handleAddUser,confirmDelete]);
   return (
     <div>
       <div className='first-div-in-users'>
@@ -191,7 +192,10 @@ const Users = () => {
           <input
             type="text"
             value={searchTerm}
-            onChange={(e) => setSearchTerm(e.target.value)}
+            onChange={(e) => {
+              setSearchTerm(e.target.value);
+              handleSearch();
+            }}
             placeholder="Enter value"
             className="left-side-of-header-buttonnn"
           />
@@ -199,7 +203,7 @@ const Users = () => {
             <option value="email">Email</option>
             <option value="fullName">Full Name</option>
           </select>
-          <button onClick={handleSearch} className="left-side-of-header-buttonn">Search</button>
+         
         </div>
       </div>
 

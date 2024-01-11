@@ -16,7 +16,10 @@ import Footer from './components/footer';
 import ConferencesPage from './components/conferencesPage';
 import CoursesPage from './components/coursesPage';
 import WorkshopSection from './components/workshopSection';
+import Faq from './components/FAQ';
 import AdminDashboard from './components/DashboardComponents/sideBar';
+import EmailSender from './components/sendingEmail';
+import UserDashboard from './components/UserDashboard/userDashboard';
 function App() {
   return (
  
@@ -26,7 +29,7 @@ function App() {
   <Router>
     
    <Routes>
-        <Route exact  path="/" element={<><Navbar /><Header /> <Slice /><Test/><MiddleSection /><WorkshopSection/><Testimonial/><Footer/></>}/>
+        <Route exact  path="/" element={<><Navbar /><Header /> <Slice /><Test/><MiddleSection /><WorkshopSection/><Testimonial/><Faq/><Footer/></>}/>
        <Route path="/Login" element={ <Login />}/>
        <Route path="/batoul" element={ <Test />}/>
        <Route path="/SignUp" element={ <Register />}/>
@@ -34,6 +37,8 @@ function App() {
        <Route path="/conferences" element={<ConferencesPage/>} />
        <Route path="/courses" element={<CoursesPage/>} />
        <Route path="/dashboard" element={<AdminDashboard/>} />
+       <Route path="/userdashboard" element={<UserDashboard/>} />
+       <Route path="/email" element={<EmailSender/>} />
   </Routes>
   </Router>
   </div>
