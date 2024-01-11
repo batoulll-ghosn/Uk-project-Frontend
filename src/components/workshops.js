@@ -17,10 +17,6 @@ const Workshops = () => {
     dispatch(getAllWorkshops());
   }, []);
  
-  const GoToWorkshops = (event) => {
-    event.preventDefault();
-    navigate('/workshops');
-  };
  
   return (
     <> 

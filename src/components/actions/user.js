@@ -5,7 +5,6 @@ export const getAllUsers = () => {
     axios
       .get(`https://ukbackendproject.onrender.com/users/getAll`)
       .then((response) => {
-        console.log(response.data)
         const users = response.data.data;
         dispatch({
           type: "getAll",
@@ -214,4 +213,37 @@ export const updateUsertoStudent = (Id) => {
         });
     };
    };
+export const updateUserInfo = (
+    Id,
+    fullName,
+    email,
+    oldPassword,
+    newPassword,
+    img
+  ) => {
+    const newUser = {
+      fullName,
+      email,
+      oldPassword,
+      newPassword,
+      img
+    };
+    return (dispatch) => {
+      axios
+        .put(`https://ukbackendproject.onrender.com/users/editUser/${Id}`, newUser,{
+          headers: {
+          'Content-Type': 'multipart/form-data',
+        },})
+        .then((response) => {
+          const user = response.data.user;
+          dispatch({
+            type: "updateUserInfo",
+            payload: { user, Id },
+          });
+        })
+        .catch((error) => {
+          console.error("Error fetching data:", error);
+        });
+    };
+  };
    

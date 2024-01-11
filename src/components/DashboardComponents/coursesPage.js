@@ -1,16 +1,26 @@
-import React, { useState,useEffect } from 'react';
-import { useSelector } from 'react-redux';
-import { useDispatch } from 'react-redux';
-import { getAllCourses } from '../actions/course';
+import React, { useState, useEffect } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import { getAllCourses, getCourseByLanguageName, getCourseByLevel, getCourseByType } from '../actions/course';
 import { Link } from 'react-router-dom';
 
 const Courses = () => {
+  const [searchTerm, setSearchTerm] = useState('');
+  const [filteredCourses, setFilteredCourses] = useState([]);
   const courses = useSelector((state) => state.courses);
   const dispatch = useDispatch();
 
   useEffect(() => {
     dispatch(getAllCourses());
-  }, []);
+  }, [dispatch]);
+
+  useEffect(() => {
+    const filtered = courses.filter((course) =>
+      course.languageName.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      course.type.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      course.level.toLowerCase().includes(searchTerm.toLowerCase())
+    );
+    setFilteredCourses(filtered);
+  }, [courses, searchTerm]);
 
   const groupByType = (courses) =>
     courses.reduce((groups, course) => {
@@ -22,11 +32,21 @@ const Courses = () => {
       return groups;
     }, {});
 
-  const groupedCourses = groupByType(courses);
+  const groupedCourses = groupByType(filteredCourses.length > 0 ? filteredCourses : courses);
 
   return (
     <>
-     
+      <div className='first-div-in-users'>
+      <button  className="left-side-of-header-button">+ Add Course</button>
+        <input
+          type="text"
+          placeholder="Search..."
+          value={searchTerm}
+          onChange={(e) => setSearchTerm(e.target.value)}
+          className="left-side-of-header-search"
+        />
+      </div>
+
       <div className="main-container-conference">
         {Object.entries(groupedCourses).map(([type, courses], index) => (
           <div key={index}>

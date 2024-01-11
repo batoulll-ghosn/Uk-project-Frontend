@@ -33,3 +33,19 @@ export const engageToWorkshop = (workshop_id, user_id) => {
       });
   };
 }; 
+export const getAllEngagedWorkshops = (user_id) => {
+  return (dispatch) => {
+    axios
+      .get(`https://ukbackendproject.onrender.com/workshops/getEngagedWorkshops/${user_id}`)
+      .then((response) => {
+        const workshops = response.data.data;
+        dispatch({
+          type: "getEngagedWorkshops",
+          payload: workshops,
+        });
+      })
+      .catch((error) => {
+        console.error("Error fetching data:", error);
+      });
+  };
+};

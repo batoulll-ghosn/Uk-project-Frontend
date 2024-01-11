@@ -108,6 +108,21 @@
     align-items: center;
     justify-content: center;
 }
+.the-div-of-userss{
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+}
+.the-div-of-userss table td{
+   border: solid 1px #2E3480;
+   color: #2E3480;
+   text-align: center;
+}
+.the-div-of-userss table th{
+    border: solid 1px #2E3480;
+    color: #2E3480;
+    text-align: center;
+ }
 .first-div-in-users{
     display: flex;
     justify-content: space-between;
@@ -148,6 +163,36 @@
     border-bottom-left-radius: 23px;
     background: #FFFF;
     border-color: #2E3480;
+    color: #2E3480;
+    font-family: Poppins;
+    font-size: 22px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    width: 250px;
+    height: 53px;
+    flex-shrink: 0;
+    padding: 15px;
+}
+.left-side-of-header-search{
+    border-radius: 23px;
+    background: #FFFF;
+    border-color: #2E3480;
+    color: #2E3480;
+    font-family: Poppins;
+    font-size: 22px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    width: 250px;
+    height: 53px;
+    flex-shrink: 0;
+    padding: 15px;
+}
+.left-side-of-header-search:focus{
+    border-radius: 23px;
+    background: #ffff;
+    border-color: solid 2px #2E3480;
     color: #2E3480;
     font-family: Poppins;
     font-size: 22px;
@@ -241,10 +286,28 @@
     width: 70px;
     height: 70px;
 }
+.person-icon img:hover{
+    width: 70px;
+    height: 70px;
+    cursor: pointer;
+}
 .person-icon{
     display: flex;
     justify-content: flex-end;
     align-items: right;
     width: 20%;
 }
-   
+.saveButton:hover{
+   cursor: pointer;
+   color:#D9D9D9;
+}
+.inputs-in-user-info input{
+    border-radius: 30px;
+    margin-bottom: 1%;
+    padding: 10px;
+}
+.buttons-in-edit-user{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}

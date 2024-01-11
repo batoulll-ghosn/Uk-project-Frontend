@@ -12,6 +12,10 @@ const userReducer = (state = [], action) => {
       return state.map((user) =>
         user._id === action.payload.Id ? action.payload.user : user
       );
+    case "updateUserInfo":
+        return state.map((user) =>
+          user._id === action.payload.Id ? action.payload.user : user
+        );
     case "updateNonActive":
       return state.map((user) =>
         user._id === action.payload.Id ? action.payload.user : user

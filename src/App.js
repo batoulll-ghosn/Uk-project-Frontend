@@ -20,6 +20,8 @@ import Faq from './components/FAQ';
 import AdminDashboard from './components/DashboardComponents/sideBar';
 import EmailSender from './components/sendingEmail';
 import UserDashboard from './components/UserDashboard/userDashboard';
+import ProtectedRoute from './components/protectedRoute';
+import MainDash from './components/mainDashboard'
 function App() {
   return (
  
@@ -39,6 +41,14 @@ function App() {
        <Route path="/dashboard" element={<AdminDashboard/>} />
        <Route path="/userdashboard" element={<UserDashboard/>} />
        <Route path="/email" element={<EmailSender/>} />
+       <Route
+            path="/dash/*"
+            element={
+              <ProtectedRoute>
+                <MainDash />
+              </ProtectedRoute>
+            }
+          />
   </Routes>
   </Router>
   </div>
