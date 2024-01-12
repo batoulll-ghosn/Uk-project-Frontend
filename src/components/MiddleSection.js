@@ -111,7 +111,7 @@ const MiddleSection = () => {
     console.log(`Selected Conference: ${JSON.stringify(content)}`);
     
     let userId = localStorage.getItem('userId');
-    if (userId && userId.length === 1) {
+    if (userId && userId.length >= 1) {
         setShowPopup(true);
         console.log("Setting showPopup to true");
     } else {
@@ -233,7 +233,7 @@ const closePopup = () => {
            <h2>{selectedConference.name}</h2>
            <p>{selectedConference.description}</p>
            <p>{selectedConference.price}</p>
-           <p>{selectedConference.id}</p>
+           
            <div className='buttonsOfConfPopup'><button className='left-side-of-header-button' onClick={handleRegisterYes}>Yes</button>
            <button className='left-side-of-header-button' onClick={closePopup}>Close</button></div>
            

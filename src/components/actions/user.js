@@ -100,7 +100,9 @@ export const AddUser = (formData) => {
           },
         })
         .then((response) => {
-          dispatch({ type: 'ADD_USER', payload: response.data });
+          dispatch({
+             type: 'ADD_USER',
+            });
         })
         .catch((error) => {
           console.log(error);

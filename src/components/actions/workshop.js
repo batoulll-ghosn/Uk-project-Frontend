@@ -41,7 +41,6 @@ export const getAllEngagedWorkshops = (user_id) => {
         const workshops = response.data.data;
         dispatch({
           type: "getEngagedWorkshops",
-          payload: workshops,
         });
       })
       .catch((error) => {

@@ -33,13 +33,38 @@ font-size: 30px;
 font-style: normal;
 font-weight: 500;
 line-height: 45px; 
+
+}
+.icons-in-footer{
+    width: 40px;
+    height: 40px;
+}
+.social-media{
+    display: flex;
+    flex-direction: row;
+    column-gap: 8%;
+}
+.the-follow-us-div{
+    display: flex;
+    align-items: flex-start;
+    flex-direction: column;
+    justify-content: left;
 }
 .first-div-in-footer{
     display: flex;
     flex-direction: column;
     row-gap: 30px;
 }
+
+.second-div-in-footer{
+    display: flex;
+    flex-direction: column;
+    row-gap: 50px;
+}
 .the-ul-in-the-footer{
+    display: flex;
+    flex-direction: column;
+    row-gap: 28px;
     color: #FFF;
     font-family: Poppins;
 font-size: 25px;

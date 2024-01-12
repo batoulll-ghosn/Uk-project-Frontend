@@ -33,7 +33,7 @@ const userReducer = (state = [], action) => {
             user._id === action.payload.Id ? action.payload.user : user
           );
     case "deleteUser":
-      return state.filter((user) => user._id !== action.payload);
+      return state.filter((user) => user.id !== action.payload);
     case "register":
       return action.payload;
       case 'ADD_USER':

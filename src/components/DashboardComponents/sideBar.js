@@ -6,6 +6,8 @@ import '../styles/dashboard2.css';
 import Courses from './coursesPage';
 import Workshops from './workshopsPage';
 import Conferences from './ConferencesPage';
+import Schedule from './Schedule';
+import Payment from './Payment';
 function Dashboard() {
     const [activePage, setActivePage] = useState('users');
 
@@ -14,7 +16,10 @@ function Dashboard() {
     };
     const navigate = useNavigate();
     const handleLogout = () => {
-        localStorage.removeItem('user_id');
+        localStorage.removeItem('userId');
+        localStorage.removeItem('fullName');
+        localStorage.removeItem('userrole');
+        localStorage.removeItem('userImage');
         navigate('/');
     }
 
@@ -43,7 +48,9 @@ function Dashboard() {
                     <div className="menu-item">
                         <a href="#schedule" onClick={() => handleMenuClick('schedule')}>Schedule</a>
                     </div>
-                    
+                    <div className="menu-item">
+                        <a href="#payment" onClick={() => handleMenuClick('payment')}>Payment</a>
+                    </div>
                     <div className="button-logout-31">
                         <button className='logout-in-dashboard' onClick={handleLogout}>Logout</button>
                     </div>
@@ -58,6 +65,8 @@ function Dashboard() {
                 {activePage === 'courses' && <Courses />}
                 {activePage === 'workshops' && <Workshops />}
                 {activePage === 'conf' && <Conferences />}
+                {activePage === 'schedule' && <Schedule />}
+                {activePage === 'payment' && <Payment />}
             </div>
         </div>
     );
