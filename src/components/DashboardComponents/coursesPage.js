@@ -2,13 +2,26 @@ import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { getAllCourses, getCourseByLanguageName, getCourseByLevel, getCourseByType } from '../actions/course';
 import { Link } from 'react-router-dom';
-
+import { AddCourse } from '../actions/course';
 const Courses = () => {
   const [searchTerm, setSearchTerm] = useState('');
   const [filteredCourses, setFilteredCourses] = useState([]);
   const courses = useSelector((state) => state.courses);
   const dispatch = useDispatch();
+  const [showAddCoursePopup, setShowAddCoursePopup] = useState(false); 
+  const [newCourse, setNewCourse] = useState({
+    languageName: '',
+    level: '',
+    zoom_link: '',
+    type: '',
+    price: '',
 
+    img: null,
+  });
+  const handleImageChange = (e) => {
+    const file = e.target.files[0];
+    setNewCourse({ ...newCourse, img: file });
+  };
   useEffect(() => {
     dispatch(getAllCourses());
   }, [dispatch]);
@@ -33,11 +46,22 @@ const Courses = () => {
     }, {});
 
   const groupedCourses = groupByType(filteredCourses.length > 0 ? filteredCourses : courses);
-
+  const handleAddCourse = () => {
+    dispatch(AddCourse(newCourse));
+    setShowAddCoursePopup(false);
+    setNewCourse({
+      languageName: '',
+      level: '',
+      zoom_link: '',
+      type: '',
+      price: '',
+      img: null,
+    });
+  };
   return (
     <>
       <div className='first-div-in-users'>
-      <button  className="left-side-of-header-button">+ Add Course</button>
+      <button onClick={() => setShowAddCoursePopup(true)} className="left-side-of-header-button">+ Add Course</button>
         <input
           type="text"
           placeholder="Search..."
@@ -70,6 +94,62 @@ const Courses = () => {
           </div>
         ))}
       </div>
+      {showAddCoursePopup && (
+            <div className="Confoverlay">
+            <div className="Conferencepopup">
+            <div className="Conferencepopup-contenttt">
+            <h2>Add Course</h2>
+            <label>
+              Language Name:
+              <input
+                type="text"
+                value={newCourse.languageName}
+                onChange={(e) => setNewCourse({ ...newCourse, languageName: e.target.value })}
+              />
+            </label>
+            <label>
+              Level:
+              <input
+                type="text"
+                value={newCourse.level}
+                onChange={(e) => setNewCourse({ ...newCourse, level: e.target.value })}
+              />
+            </label>
+            <label>
+              Zoom Link:
+              <input
+                type="text"
+                value={newCourse.zoom_link}
+                onChange={(e) => setNewCourse({ ...newCourse, zoom_link: e.target.value })}
+              />
+            </label>
+            <label>
+              Type:
+              <input
+                type="text"
+                value={newCourse.type}
+                onChange={(e) => setNewCourse({ ...newCourse, type: e.target.value })}
+              />
+            </label>
+            <label>
+              Price:
+              <input
+                type="text"
+                value={newCourse.price}
+                onChange={(e) => setNewCourse({ ...newCourse, price: e.target.value })}
+              />
+            </label>
+            <label>
+              Image:
+              <input type="file" onChange={handleImageChange} />
+            </label>
+            
+            <button onClick={handleAddCourse}>Add Course</button>
+            <button onClick={() => setShowAddCoursePopup(false)}>Cancel</button>
+          </div>
+        </div>
+        </div>
+      )}
     </>
   );
 };

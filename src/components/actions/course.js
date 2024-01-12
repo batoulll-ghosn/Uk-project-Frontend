@@ -80,3 +80,19 @@ export const getCourseByType = (type) => {
     }
   };
  };
+export const AddCourse = (formData) => {
+  return (dispatch) => {
+    axios
+      .post(`https://ukbackendproject.onrender.com/courses/AddCourse`, formData, {
+        headers: {
+          'Content-Type': 'multipart/form-data',
+        },
+      })
+      .then((response) => {
+        dispatch({ type: 'ADD_COURSE', payload: response.data });
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
+ };

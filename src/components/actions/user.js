@@ -100,12 +100,9 @@ export const AddUser = (formData) => {
           },
         })
         .then((response) => {
-          // Handle the response from the server here
-          // For example, you could dispatch an action to add the new user to your Redux store
           dispatch({ type: 'ADD_USER', payload: response.data });
         })
         .catch((error) => {
-          // Handle the error here
           console.log(error);
         });
     };

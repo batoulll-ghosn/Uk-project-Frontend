@@ -12,6 +12,8 @@ const courseReducer = (state = [], action) => {
           return action.payload;
       case "getScheduleOfCourse":
          return action.payload;
+     case 'ADD_COURSE':
+          return action.payload;
       default:
        return state;
     }
