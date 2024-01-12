@@ -83,3 +83,27 @@ export const deleteCon = (Id) => {
       });
   };
 };
+export const updateConf = (Id, conference_name, type, date, price, description, zoom_link, resources, img) => {
+  const newConf = {
+    conference_name, type, date, price, description, zoom_link, resources, img
+  };
+  return (dispatch) => {
+    axios
+      .put(`https://ukbackendproject.onrender.com/confrences/EditConference/${Id}`, newConf, {
+        headers: {
+          'Content-Type': 'multipart/form-data',
+        },
+      })
+      .then((response) => {
+        const conf = response.data.user;
+        dispatch({
+          type: "updateConf",
+         
+        });
+      })
+      .catch((error) => {
+        console.error("Error fetching data:", error);
+      });
+  };
+ };
+ 
