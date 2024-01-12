@@ -1,13 +1,14 @@
 
 import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { getAllConferences, engageToConference, AddConf,deleteCon } from '../actions/conference';
+import { getAllConferences, engageToConference, AddConf,deleteCon, updateConf } from '../actions/conference';
 import { toast } from 'react-toastify';
 
 const Conferences = () => {
   const conferences = useSelector((state) => state.conferences);
   const dispatch = useDispatch();
   const [showDeletePopup, setShowDeletePopup] = useState(false);
+  const [showUpdatePopup, setShowUpdatePopup] = useState(false);
   const [selectedId, setSelectedId] = useState('');
   const parseDate = (input) => {
     const [day, month, year] = input.split('/');
@@ -50,9 +51,41 @@ const Conferences = () => {
     dispatch(AddConf(newConference));
     setShowAddConfPopup(false);
   };
-
+  const handleUpdateConference = () => {
+    dispatch(updateConf(selectedId, newConference.conference_name, newConference.type, newConference.date, newConference.price, newConference.description, newConference.zoom_link, newConference.resources, newConference.img));
+    setShowUpdatePopup(false);
+    setSelectedId('');
+    setNewConference({
+      conference_name: '',
+      type: '',
+      date: '',
+      price: '',
+      description: '',
+      resources: '',
+      img: null,
+    });
+   };
+   
   const openPopup = (conference) => {
     setShowAddConfPopup(true);
+  };
+  const handleUpdate = (id) => {
+    
+    setShowUpdatePopup(true);
+    const selectedConference = conferences.find((conference) => conference.id === id);
+
+    setSelectedId(id);
+    setNewConference({
+      conference_name: selectedConference.conference_name,
+      type: selectedConference.type,
+      date: selectedConference.date,
+      price: selectedConference.price,
+      description: selectedConference.description,
+      zoom_link: selectedConference.zoom_link,
+      resources: selectedConference.resources,
+      img: selectedConference.img,
+    });
+    
   };
   const handleDeleteCourse = (id) => {
     setSelectedId(id);
@@ -70,9 +103,21 @@ const Conferences = () => {
       img: null,
     });
   };
+  const closePopupOfEdit = () => {
+    setShowUpdatePopup(false);
+    setNewConference({
+      conference_name: '',
+      type: '',
+      date: '',
+      price: '',
+      description: '',
+      resources: '',
+      img: null,
+    });
+  };
   useEffect(() => {
     dispatch(getAllConferences());
-  }, [dispatch,handleAddConference,confirmDelete]);
+  }, [dispatch,handleAddConference,confirmDelete,handleUpdateConference]);
   return (
     <>
       <div className='first-div-in-users'>
@@ -104,7 +149,7 @@ const Conferences = () => {
               .map((conference, index) => (
                 <div key={index} className="conference-card">
                   <div className='buttons-in-courses-of-admin'>
-                       <button ><img className='bin-in-tables' src='./images/pen.svg'/></button>
+                       <button ><img className='bin-in-tables' src='./images/pen.svg' onClick={() => handleUpdate(conference.id)}/></button>
                        <button onClick={() => handleDeleteCourse(conference.id)}><img className='bin-in-tables' src='./images/bin.svg'/></button>
                   </div>
                   <img className="img-in-thee-slide" src={conference.img} alt={conference.conference_name} />
@@ -136,7 +181,7 @@ const Conferences = () => {
               .map((conference, index) => (
                 <div key={index} className="conference-card" onClick={() => openPopup(conference)}>
                   <div className='buttons-in-courses-of-admin'>
-                       <button ><img className='bin-in-tables' src='./images/pen.svg'/></button>
+                       <button ><img className='bin-in-tables' src='./images/pen.svg' onClick={() => handleUpdate(conference.id)}/></button>
                        <button onClick={() => handleDeleteCourse(conference.id)}><img className='bin-in-tables' src='./images/bin.svg'/></button>
                   </div>
                   <img className="img-in-thee-slide" src={conference.img} alt={conference.conference_name} />
@@ -146,6 +191,7 @@ const Conferences = () => {
                     <p className="textt-in-thee-slide">{conference.description}</p>
                     <p className="textt-in-thee-slide">Date: {conference.date}</p>
                     <p className="header-in-thee-slide">{conference.price}</p>
+                    
                   </div>
                 </div>
               ))}
@@ -220,6 +266,77 @@ const Conferences = () => {
               </label>
               <button onClick={handleAddConference}>Add Conference</button>
               <button onClick={closePopup}>Cancel</button>
+            </div>
+          </div>
+        </div>
+      )}
+       {showUpdatePopup && (
+        <div className="Confoverlay">
+          <div className="Conferencepopup">
+            <div className="Conferencepopup-contenttt">
+              <h2>Update Conference</h2>
+              <label>
+                Conference Name:
+                <input
+                  type="text"
+                  value={newConference.conference_name}
+                  onChange={(e) => setNewConference({ ...newConference, conference_name: e.target.value })}
+                />
+              </label>
+              <label>
+                Type:
+                <input
+                  type="text"
+                  value={newConference.type}
+                  onChange={(e) => setNewConference({ ...newConference, type: e.target.value })}
+                />
+              </label>
+              <label>
+                Date:
+                <input
+                  type="text"
+                  value={newConference.date}
+                  onChange={(e) => setNewConference({ ...newConference, date: e.target.value })}
+                />
+              </label>
+              <label>
+                Price:
+                <input
+                  type="text"
+                  value={newConference.price}
+                  onChange={(e) => setNewConference({ ...newConference, price: e.target.value })}
+                />
+              </label>
+              <label>
+                Description:
+                <input
+                  type="text"
+                  value={newConference.description}
+                  onChange={(e) => setNewConference({ ...newConference, description: e.target.value })}
+                />
+              </label>
+              <label>
+                Zoom Link:
+                <input
+                  type="text"
+                  value={newConference.zoom_link}
+                  onChange={(e) => setNewConference({ ...newConference, zoom_link: e.target.value })}
+                />
+              </label>
+              <label>
+                Resources:
+                <input
+                  type="text"
+                  value={newConference.resources}
+                  onChange={(e) => setNewConference({ ...newConference, resources: e.target.value })}
+                />
+              </label>
+              <label>
+                Image:
+                <input type="file" name="img" onChange={handleImageChange} />
+              </label>
+              <button onClick={handleUpdateConference}>Update</button>
+              <button onClick={closePopupOfEdit}>Cancel</button>
             </div>
           </div>
         </div>
