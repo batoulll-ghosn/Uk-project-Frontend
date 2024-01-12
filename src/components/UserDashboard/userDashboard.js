@@ -145,41 +145,55 @@ const handleCloseWorkshopPopup = () => {
        </div>
        <div className="person-icon" onClick={handlePersonIconClick}> <img src={img}/></div>
      </div>
-     <div className="main-container-conferencee">
-      <div>
-       <h2 className="the-heading-in-conferences">Upcoming Conferences</h2>
-       <div className="conferences-containerr">
-         {upcomingConferences.map((conference, index) => (
-           <div key={index} className="conference-cardd" onClick={() => handleConferenceClick(conference, false)}>
-             <img className="img-in-thee-slide" src={conference.img} alt={conference.conference_name} />
-             <div className="dddt">
-               <h2 className="header-in-thee-slide">{conference.conference_name}</h2>
-               <p className="text-in-thee-slide">{conference.type}</p>
-               <p className="textt-in-thee-slide">{conference.description}</p>
-               <p className="textt-in-thee-slide">Date: {conference.date}</p>
-               <p className="header-in-thee-slide">{conference.price}</p>
-               <p className='registered-in-green'>Registered</p>
-             </div>
-           </div>
-         ))}
-       </div>
-       </div>
-       <div>
-       <h2 className="the-heading-in-conferences">Past Conferences</h2>
-       <div className="conferences-containerr">
-         {pastConferences.map((conference, index) => (
-           <div key={index} className="conference-cardd" onClick={() => handleConferenceClick(conference, true)}>
+     <div>
+      <div className='afterEdit'>
+        <>{upcomingConferences.length > 0 && (
+  <div className="main-container-conferencee">
+    <div>
+      <h2 className="the-heading-in-conferences">Upcoming Conferences</h2>
+      <div className="conferences-containerr">
+        {upcomingConferences.map((conference, index) => (
+          <div key={index} className="conference-cardd" onClick={() => handleConferenceClick(conference, false)}>
             <img className="img-in-thee-slide" src={conference.img} alt={conference.conference_name} />
-             <div className="dddt">
-               <h2 className="header-in-thee-slide">{conference.conference_name}</h2>
-               <p className="text-in-thee-slide">{conference.type}</p>
-               <p className="textt-in-thee-slide">{conference.description}</p>
-               <p className="textt-in-thee-slide">Date: {conference.date}</p>
-               <p className="header-in-thee-slide">{conference.price}</p>
-             </div>
-           </div>
-         ))}
-       </div>
+            <div className="dddt">
+              <h2 className="header-in-thee-slide">{conference.conference_name}</h2>
+              <p className="text-in-thee-slide">{conference.type}</p>
+              <p className="textt-in-thee-slide">{conference.description}</p>
+              <p className="textt-in-thee-slide">Date: {conference.date}</p>
+              <p className="header-in-thee-slide">{conference.price}</p>
+              <p className="registered-in-green">Registered</p>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </div>
+)}
+</>
+       
+<>
+  {pastConferences.length > 0 && (
+    <div className="main-container-conferencee">
+      <h2 className="the-heading-in-conferences">Past Conferences</h2>
+      <div className="conferences-containerr">
+        {pastConferences.map((conference, index) => (
+          <div key={index} className="conference-cardd" onClick={() => handleConferenceClick(conference, true)}>
+            <img className="img-in-thee-slide" src={conference.img} alt={conference.conference_name} />
+            <div className="dddt">
+              <h2 className="header-in-thee-slide">{conference.conference_name}</h2>
+              <p className="text-in-thee-slide">{conference.type}</p>
+              <p className="textt-in-thee-slide">{conference.description}</p>
+              <p className="textt-in-thee-slide">Date: {conference.date}</p>
+              <p className="header-in-thee-slide">{conference.price}</p>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  )}
+</>
+
+      
        </div>
      </div>
      {selectedConference && (
@@ -202,50 +216,59 @@ const handleCloseWorkshopPopup = () => {
          </div>
        </div>
      )}
-     <h2 className="the-heading-in-conferences">Workshops</h2>
-      <div className="conferences-container">
-        <div className="main-container-conference">
-          <div className="conferences-container">
-            {upcomingWorkshops.map((workshop, index) => (
-              <div
-                key={index}
-                className="conference-cardd"
-                onClick={() => handleWorkshopClick(workshop)}
-              >
-                <img className="img-in-thee-slide" src={workshop.img} />
-                <div className="dddt">
-                  <h2 className="header-in-thee-slidee">{workshop.workshopname}</h2>
-                  <p className="text-in-thee-slidee">Date: {workshop.date}</p>
-                  <p className="registered-in-green">Registered</p>
-                </div>
+     {upcomingWorkshops.length > 0 && (
+  <>
+    <h2 className="the-heading-in-conferences">Workshops</h2>
+    <div className="conferences-container">
+      <div className="main-container-conference">
+        <div className="conferences-container">
+          {upcomingWorkshops.map((workshop, index) => (
+            <div
+              key={index}
+              className="conference-cardd"
+              onClick={() => handleWorkshopClick(workshop)}
+            >
+              <img className="img-in-thee-slide" src={workshop.img} alt={workshop.workshopname} />
+              <div className="dddt">
+                <h2 className="header-in-thee-slidee">{workshop.workshopname}</h2>
+                <p className="text-in-thee-slidee">Date: {workshop.date}</p>
+                <p className="registered-in-green">Registered</p>
               </div>
-            ))}
-          </div>
+            </div>
+          ))}
         </div>
       </div>
- <h2 className="the-heading-in-conferences">Schedule Of Your Courses</h2>
- <div className="the-div-of-userss">
- <table className="the-users-table">
- <thead>
-   <tr>
-     <th></th>
-     {hours.map((hour, index) => (
-       <th key={index}>{hour}</th>
-     ))}
-   </tr>
- </thead>
- <tbody>
-   {days.map((day, dayIndex) => (
-     <tr key={dayIndex}>
-       <td>{day}</td>
-       {hours.map((hour, hourIndex) => (
-         <td key={hourIndex}>{scheduleTable[dayIndex][hourIndex]}</td>
-       ))}
-     </tr>
-   ))}
- </tbody>
-</table>
-</div>
+    </div>
+  </>
+)}
+
+{scheduleArray.length > 0 && (
+  <>
+    <h2 className="the-heading-in-conferences">Schedule Of Your Courses</h2>
+    <div className="the-div-of-userss">
+      <table className="the-users-table">
+        <thead>
+          <tr>
+            <th></th>
+            {hours.map((hour, index) => (
+              <th key={index}>{hour}</th>
+            ))}
+          </tr>
+        </thead>
+        <tbody>
+          {days.map((day, dayIndex) => (
+            <tr key={dayIndex}>
+              <td>{day}</td>
+              {hours.map((hour, hourIndex) => (
+                <td key={hourIndex}>{scheduleTable[dayIndex][hourIndex]}</td>
+              ))}
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+  </>
+)}
 {selectedWorkshop && (
         <div className="Confoverlay">
           <div className="Conferencepopup">

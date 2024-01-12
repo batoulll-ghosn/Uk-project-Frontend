@@ -6,6 +6,10 @@ const conferenceReducer = (state = [], action) => {
         return action.payload;
       case "engageToConference":
         return action.payload;
+        case 'addConf':
+          return action.payload;
+          case "deleteConf":
+            return state.filter((course) => course.id !== action.payload);
       default:
        return state;
     }

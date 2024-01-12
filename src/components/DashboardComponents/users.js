@@ -125,7 +125,7 @@ const Users = () => {
     const imageFile = e.target.files[0];
     setAddUserFormData({
       ...addUserFormData,
-      image: imageFile,
+      img: imageFile,
     });
   };
 
@@ -138,7 +138,7 @@ const Users = () => {
       phone: '',
       password: '',
       role: '',
-      image: null,
+      img: null,
     });
     toast.success('User Added Successfully!');
   };
@@ -151,7 +151,7 @@ const Users = () => {
       phone: '',
       password: '',
       role: '',
-      image: null,
+      img: null,
     });
   };
 
@@ -351,7 +351,7 @@ const Users = () => {
                 onChange={handleAddUserFormChange}
                 placeholder="Enter Role"
               />
-              <input type="file" name="image" onChange={handleAddUserImageChange} /></div>
+              <input type="file" name="img" onChange={handleAddUserImageChange} /></div>
               <div className="buttonsOfUpdatePopupp">
                 <button className="left-side-of-header-button" onClick={confirmAddUser}>
                   Add User

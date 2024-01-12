@@ -40,7 +40,9 @@ export const engageToConference = (conference_id, user_id) => {
         user_id: user_id,
       })
       .then((response) => {
-        dispatch({ type: 'engageToConference', payload: response.data });
+        dispatch({
+           type: 'engageToConference', 
+       });
       })
       .catch((error) => {
         console.error(error.toString()); 
@@ -48,3 +50,36 @@ export const engageToConference = (conference_id, user_id) => {
       });
   };
 }; 
+export const AddConf = (formData) => {
+  return (dispatch) => {
+    axios
+      .post(`https://ukbackendproject.onrender.com/confrences/AddConference`, formData, {
+        headers: {
+          'Content-Type': 'multipart/form-data',
+        },
+      })
+      .then((response) => {
+        dispatch({ 
+          type: 'addConf',
+       });
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
+ };
+export const deleteCon = (Id) => {
+  return (dispatch) => {
+    axios
+      .delete(`https://ukbackendproject.onrender.com/confrences/deleteConf/${Id}`)
+      .then((response) => {
+        dispatch({
+          type: "deleteConf",
+          payload: Id,
+        });
+      })
+      .catch((error) => {
+        console.error("Error fetching data:", error);
+      });
+  };
+};

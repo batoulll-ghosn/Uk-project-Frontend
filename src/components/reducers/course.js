@@ -12,6 +12,12 @@ const courseReducer = (state = [], action) => {
           return action.payload;
       case "getScheduleOfCourse":
          return action.payload;
+      case "deleteUser":
+          return state.filter((course) => course.id !== action.payload);
+     case 'ADD_COURSE':
+          return action.payload;
+     case 'updateCourse':
+           return action.payload;
       default:
        return state;
     }

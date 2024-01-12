@@ -311,3 +311,14 @@
     flex-direction: row;
     justify-content: space-between;
 }
+.afterEdit{
+    display: flex;
+    flex-direction: column;
+}
+.buttons-in-courses-of-admin{
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: flex-end;
+    justify-content: right;
+}

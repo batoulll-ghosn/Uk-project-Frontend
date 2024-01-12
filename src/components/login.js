@@ -5,7 +5,7 @@ import './styles/header.css';
 import { Link } from 'react-router-dom';
 import { login, getUsersByEmail } from './actions/user';
 import { useNavigate } from 'react-router-dom';
-import { toast } from 'react-toastify';
+import { toast } from 'react-toastify'; 
 import { gapi } from 'gapi-script';
 import { useDispatch } from 'react-redux';
 import './styles/login.css';
@@ -70,12 +70,21 @@ const Login = () => {
       if (response.length === 1) {
         const userId = response[0].id;
         const email = response[0].email;
+        const fullName=response[0].fullName;
+        const Role=response[0].role;
+        const img=response[0].img;
         localStorage.setItem('userId', userId);
         localStorage.setItem('email', email);
+        localStorage.setItem('fullName',fullName);
+        localStorage.setItem('userrole',Role);
+        localStorage.setItem('userImage',img);
         toast.success('Login Successful');
         navigate('/');
         localStorage.setItem('userId', userId);
         localStorage.setItem('email', email);
+        localStorage.setItem('fullName',fullName);
+        localStorage.setItem('userrole',Role);
+        localStorage.setItem('userImage',img);
       } else {
         toast.error('Login Failed');
       }

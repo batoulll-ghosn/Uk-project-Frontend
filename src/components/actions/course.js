@@ -26,7 +26,9 @@ export const engageToCourse = (course_id,user_id) => {
         user_id: user_id,
       })
       .then((response) => {
-        dispatch({ type: 'engageToCourse', payload: response.data });
+        dispatch({ 
+          type: 'engageToCourse', 
+       });
       })
       .catch((error) => {
         console.error(error.toString()); 
@@ -80,3 +82,61 @@ export const getCourseByType = (type) => {
     }
   };
  };
+export const AddCourse = (formData) => {
+  return (dispatch) => {
+    axios
+      .post(`https://ukbackendproject.onrender.com/courses/AddCourse`, formData, {
+        headers: {
+          'Content-Type': 'multipart/form-data',
+        },
+      })
+      .then((response) => {
+        dispatch({ 
+          type: 'ADD_COURSE',
+       });
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
+ };
+ export const updateCoursee = (
+  Id,
+  languageName, level, zoom_link,type,price,img
+) => {
+  const newCourse = {
+    languageName, level, zoom_link,type,price,img
+  };
+  return (dispatch) => {
+    axios
+      .put(`https://ukbackendproject.onrender.com/courses/EditCourse/${Id}`, newCourse, {
+        headers: {
+          'Content-Type': 'multipart/form-data',
+        },
+      })
+      .then((response) => {
+        const course = response.data.user;
+        dispatch({
+          type: "updateCourse",
+        });
+      })
+      .catch((error) => {
+        console.error("Error fetching data:", error);
+      });
+  };
+};
+export const deleteCourse = (Id) => {
+  return (dispatch) => {
+    axios
+      .delete(`https://ukbackendproject.onrender.com/courses/deleteCourse/${Id}`)
+      .then((response) => {
+        dispatch({
+          type: "deleteCourse",
+          payload: Id,
+        });
+      })
+      .catch((error) => {
+        console.error("Error fetching data:", error);
+      });
+  };
+};

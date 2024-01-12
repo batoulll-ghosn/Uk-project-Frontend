@@ -1,14 +1,16 @@
-
 import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { getAllConferences, engageToConference, AddConf,deleteCon } from '../actions/conference';
+import { getAllConferences, engageToConference, AddConf } from '../actions/conference';
 import { toast } from 'react-toastify';
 
 const Conferences = () => {
   const conferences = useSelector((state) => state.conferences);
   const dispatch = useDispatch();
-  const [showDeletePopup, setShowDeletePopup] = useState(false);
-  const [selectedId, setSelectedId] = useState('');
+
+  useEffect(() => {
+    dispatch(getAllConferences());
+  }, [dispatch]);
+
   const parseDate = (input) => {
     const [day, month, year] = input.split('/');
     return new Date(`${month}/${day}/${year}`);
@@ -38,14 +40,7 @@ const Conferences = () => {
     const file = e.target.files[0];
     setNewConference({ ...newConference, img: file });
   };
-  const confirmDelete = () => {
-    dispatch(deleteCon(selectedId));
-    setShowDeletePopup(false);
-    setSelectedId('');
-  };
-  const cancelDelete = () => {
-    setShowDeletePopup(false);
-  };
+
   const handleAddConference = () => {
     dispatch(AddConf(newConference));
     setShowAddConfPopup(false);
@@ -54,10 +49,7 @@ const Conferences = () => {
   const openPopup = (conference) => {
     setShowAddConfPopup(true);
   };
-  const handleDeleteCourse = (id) => {
-    setSelectedId(id);
-    setShowDeletePopup(true);
-  };
+
   const closePopup = () => {
     setShowAddConfPopup(false);
     setNewConference({
@@ -70,9 +62,7 @@ const Conferences = () => {
       img: null,
     });
   };
-  useEffect(() => {
-    dispatch(getAllConferences());
-  }, [dispatch,handleAddConference,confirmDelete]);
+
   return (
     <>
       <div className='first-div-in-users'>
@@ -87,69 +77,57 @@ const Conferences = () => {
       </div>
 
       <div className="main-container-conference">
-        <div>
-          
-          <div className="conferences-container">
-            {upcomingConferences
-              .filter((conference) => {
-                const lowerCaseSearchTerm = searchTerm.toLowerCase();
-                return (
-                  conference.conference_name.toLowerCase().includes(lowerCaseSearchTerm) ||
-                  conference.type.toLowerCase().includes(lowerCaseSearchTerm) ||
-                  conference.date.includes(searchTerm) ||
-                  conference.description.toLowerCase().includes(lowerCaseSearchTerm) ||
-                  conference.price.includes(searchTerm)
-                );
-              })
-              .map((conference, index) => (
-                <div key={index} className="conference-card">
-                  <div className='buttons-in-courses-of-admin'>
-                       <button ><img className='bin-in-tables' src='./images/pen.svg'/></button>
-                       <button onClick={() => handleDeleteCourse(conference.id)}><img className='bin-in-tables' src='./images/bin.svg'/></button>
-                  </div>
-                  <img className="img-in-thee-slide" src={conference.img} alt={conference.conference_name} />
-                  <div className="dddt">
-                    <h2 className="header-in-thee-slide">{conference.conference_name}</h2>
-                    <p className="text-in-thee-slide">{conference.type}</p>
-                    <p className="textt-in-thee-slide">{conference.description}</p>
-                    <p className="textt-in-thee-slide">Date: {conference.date}</p>
-                    <p className="header-in-thee-slide">{conference.price}</p>
-                  </div>
+        {upcomingConferences.length > 0 && <h2 className="the-heading-in-conferences">Upcoming Conferences</h2>}
+        <div className="conferences-container">
+          {upcomingConferences
+            .filter((conference) => {
+              const lowerCaseSearchTerm = searchTerm.toLowerCase();
+              return (
+                conference.conference_name.toLowerCase().includes(lowerCaseSearchTerm) ||
+                conference.type.toLowerCase().includes(lowerCaseSearchTerm) ||
+                conference.date.includes(searchTerm) ||
+                conference.description.toLowerCase().includes(lowerCaseSearchTerm) ||
+                conference.price.includes(searchTerm)
+              );
+            })
+            .map((conference, index) => (
+              <div key={index} className="conference-card">
+                <img className="img-in-thee-slide" src={conference.img} alt={conference.conference_name} />
+                <div className="dddt">
+                  <h2 className="header-in-thee-slide">{conference.conference_name}</h2>
+                  <p className="text-in-thee-slide">{conference.type}</p>
+                  <p className="textt-in-thee-slide">{conference.description}</p>
+                  <p className="textt-in-thee-slide">Date: {conference.date}</p>
+                  <p className="header-in-thee-slide">{conference.price}</p>
                 </div>
-              ))}
-          </div>
+              </div>
+            ))}
         </div>
 
-        <div>
-          
-          <div className="conferences-container">
-            {pastConferences
-              .filter((conference) => {
-                const lowerCaseSearchTerm = searchTerm.toLowerCase();
-                return (
-                  conference.conference_name.toLowerCase().includes(lowerCaseSearchTerm) ||
-                  conference.type.toLowerCase().includes(lowerCaseSearchTerm) ||
-                  conference.date.includes(searchTerm) ||
-                  conference.description.toLowerCase().includes(lowerCaseSearchTerm)
-                );
-              })
-              .map((conference, index) => (
-                <div key={index} className="conference-card" onClick={() => openPopup(conference)}>
-                  <div className='buttons-in-courses-of-admin'>
-                       <button ><img className='bin-in-tables' src='./images/pen.svg'/></button>
-                       <button onClick={() => handleDeleteCourse(conference.id)}><img className='bin-in-tables' src='./images/bin.svg'/></button>
-                  </div>
-                  <img className="img-in-thee-slide" src={conference.img} alt={conference.conference_name} />
-                  <div className="dddt">
-                    <h2 className="header-in-thee-slide">{conference.conference_name}</h2>
-                    <p className="text-in-thee-slide">{conference.type}</p>
-                    <p className="textt-in-thee-slide">{conference.description}</p>
-                    <p className="textt-in-thee-slide">Date: {conference.date}</p>
-                    <p className="header-in-thee-slide">{conference.price}</p>
-                  </div>
+        {pastConferences.length > 0 && <h2 className="the-heading-in-conferences">Past Conferences</h2>}
+        <div className="conferences-container">
+          {pastConferences
+            .filter((conference) => {
+              const lowerCaseSearchTerm = searchTerm.toLowerCase();
+              return (
+                conference.conference_name.toLowerCase().includes(lowerCaseSearchTerm) ||
+                conference.type.toLowerCase().includes(lowerCaseSearchTerm) ||
+                conference.date.includes(searchTerm) ||
+                conference.description.toLowerCase().includes(lowerCaseSearchTerm)
+              );
+            })
+            .map((conference, index) => (
+              <div key={index} className="conference-card" onClick={() => openPopup(conference)}>
+                <img className="img-in-thee-slide" src={conference.img} alt={conference.conference_name} />
+                <div className="dddt">
+                  <h2 className="header-in-thee-slide">{conference.conference_name}</h2>
+                  <p className="text-in-thee-slide">{conference.type}</p>
+                  <p className="textt-in-thee-slide">{conference.description}</p>
+                  <p className="textt-in-thee-slide">Date: {conference.date}</p>
+                  <p className="header-in-thee-slide">{conference.price}</p>
                 </div>
-              ))}
-          </div>
+              </div>
+            ))}
         </div>
       </div>
 
@@ -166,7 +144,7 @@ const Conferences = () => {
                   onChange={(e) => setNewConference({ ...newConference, conference_name: e.target.value })}
                 />
               </label>
-              <label>
+               <label>
                 Type:
                 <input
                   type="text"
@@ -220,23 +198,7 @@ const Conferences = () => {
               </label>
               <button onClick={handleAddConference}>Add Conference</button>
               <button onClick={closePopup}>Cancel</button>
-            </div>
-          </div>
-        </div>
-      )}
-       {showDeletePopup && (
-        <div className="Confoverlay">
-          <div className="Conferencepopup">
-            <div className="Conferencepopup-content">
-              <p>Are you sure you want to delete?</p>
-              <div className="buttonsOfConfPopup">
-                <button className="left-side-of-header-button" onClick={confirmDelete}>
-                  Yes
-                </button>
-                <button className="left-side-of-header-button" onClick={cancelDelete}>
-                  Close
-                </button>
-              </div>
+        
             </div>
           </div>
         </div>
