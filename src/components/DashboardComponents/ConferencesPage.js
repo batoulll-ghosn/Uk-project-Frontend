@@ -27,7 +27,7 @@ const Conferences = () => {
 <>
 
 <div className='main-container-conference'>
-<h2 className='the-heading-in-conferences'>Upcoming Conferences</h2>
+<h2 className='the-heading-in-conferences'>  Upcoming Conferences</h2>
  <div className="conferences-container">
  
   {upcomingConferences.map((conference, index) => (
