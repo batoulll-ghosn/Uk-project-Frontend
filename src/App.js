@@ -31,7 +31,7 @@ function App() {
   <Router>
     
    <Routes>
-        <Route exact  path="/" element={<><Navbar /><Header /> <Slice /><Test/><MiddleSection /><WorkshopSection/><Testimonial/><Faq/><Footer/></>}/>
+        <Route exact  path="/" element={<><Navbar /><Header /> <Slice /><MiddleSection /><WorkshopSection/><Testimonial/><Faq/><Footer/></>}/>
        <Route path="/Login" element={ <Login />}/>
        <Route path="/batoul" element={ <Test />}/>
        <Route path="/SignUp" element={ <Register />}/>
