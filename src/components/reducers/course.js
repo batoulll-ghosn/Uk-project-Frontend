@@ -2,6 +2,8 @@ const courseReducer = (state = [], action) => {
     switch (action.type) {
       case "getAllCourses":
         return action.payload;
+        case "getSchedule":
+          return action.payload;
       case "getCourseByLanguageName":
         return action.payload;
       case "getCourseBytype":
@@ -12,10 +14,13 @@ const courseReducer = (state = [], action) => {
           return action.payload;
       case "getScheduleOfCourse":
          return action.payload;
-      case "deleteUser":
+         case "deleteSchedule":
+          return state.filter((schedule) => schedule.id !== action.payload);
+      case "deleteCourse":
           return state.filter((course) => course.id !== action.payload);
      case 'ADD_COURSE':
           return action.payload;
+          
      case 'updateCourse':
            return action.payload;
       default:

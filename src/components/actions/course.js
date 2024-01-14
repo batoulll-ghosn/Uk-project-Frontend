@@ -18,8 +18,6 @@ export const getAllCourses = () => {
 };
 export const engageToCourse = (course_id,user_id) => {
   return (dispatch) => {
-    console.log(course_id);
-    console.log(user_id);
     axios
       .post('https://ukbackendproject.onrender.com/courses/EngageToCourse', {
         course_id: course_id, 
