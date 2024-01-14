@@ -61,7 +61,7 @@ const handleCloseWorkshopPopup = () => {
     Array.from({ length: hours.length }, () => [])
   );
 
-  // Fill in the schedule table based on the schedule data
+
   scheduleArray.forEach((event) => {
     const eventDayIndex = days.indexOf(event.day);
     const eventHourIndex = hours.indexOf(event.hour);
@@ -103,7 +103,7 @@ const handleCloseWorkshopPopup = () => {
   const handleProfileInputChange = (e) => {
     const { name, value, type, files } = e.target;
 
-    // Check if the input is a file type
+  
     const inputValue = type === 'file' ? files[0] : value;
 
     setProfileFormData({
