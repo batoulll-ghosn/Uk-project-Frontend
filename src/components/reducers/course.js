@@ -2,6 +2,8 @@ const courseReducer = (state = [], action) => {
     switch (action.type) {
       case "getAllCourses":
         return action.payload;
+        case "getAllCoursesWh":
+          return action.payload;
         case "getSchedule":
           return action.payload;
       case "getCourseByLanguageName":
@@ -14,15 +16,18 @@ const courseReducer = (state = [], action) => {
           return action.payload;
       case "getScheduleOfCourse":
          return action.payload;
-         case "deleteSchedule":
-          return state.filter((schedule) => schedule.id !== action.payload);
+      case "deleteSchedule":
+        return state.filter((schedule) => schedule.id !== action.payload);
       case "deleteCourse":
-          return state.filter((course) => course.id !== action.payload);
+        return state.filter((course) => course.id !== action.payload);
      case 'ADD_COURSE':
-          return action.payload;
-          
+        return action.payload;
      case 'updateCourse':
-           return action.payload;
+        return action.payload;
+     case 'updateCourseToPaid':
+        return action.payload;
+        case 'updateCourseToNotPaid':
+        return action.payload;
       default:
        return state;
     }

@@ -85,11 +85,13 @@
 }
 .logout-in-dashboard{
     font-size: 25px;
-    padding-top: 25px;
+    color: white;
+    display: flex;
+    justify-content:flex-end;
+    margin-left: 300%;
 }
 .logout-in-dashboard:hover{
     font-size: 25px;
-    padding-top: 25px;
     color: #D9D9D9;
 }
 .the-users-table{
@@ -230,6 +232,13 @@
     flex-direction: row;
     column-gap: 2%;
 }
+.row-in-Add-Popuppp{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    column-gap: 1%;
+}
 .buttonsOfUpdatePopupp{
     display: flex;
     flex-direction: row;
@@ -240,6 +249,18 @@
     flex-direction: row;
     column-gap: 2%;
     margin-left: 27%;
+}
+.roww-in-Add-Popupp{
+    display: flex;
+    flex-direction: row;
+    column-gap: 1%;
+    margin-left: 27%;
+}
+.row-in-add-Popupp{
+    display: flex;
+    flex-direction: row;
+    column-gap: 2%;
+    margin-left: 17%;
 }
 .Conferencepopup-contenttt{
     display: flex;
@@ -322,3 +343,12 @@
     align-items: flex-end;
     justify-content: right;
 }
+.input-of-popup{
+padding-left: 3%;
+border-radius: 30px;
+}
+.input-of-popupp{
+    padding-left: 3%;
+    border-radius: 30px;
+    width:400px;
+    }

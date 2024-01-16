@@ -26,6 +26,10 @@ const Courses = () => {
     const file = e.target.files[0];
     setNewCourse({ ...newCourse, img: file });
   };
+  const handleImageChangee = (e) => {
+    const file = e.target.files[0];
+    setSelectedCourse({ ...selectedCourse, img: file });
+  };
   useEffect(() => {
     const filtered = courses.filter((course) =>
       course.languageName.toLowerCase().includes(searchTerm.toLowerCase()) ||
@@ -67,7 +71,7 @@ const Courses = () => {
     setShowUpdateCoursePopup(true);
     setSelectedId(course.id);
   };
-
+ 
   const handleUpdateCourse = () => {
     const Id = selectedId;
     const { languageName, level, zoom_link, type, price, img } = selectedCourse;
@@ -141,52 +145,48 @@ const Courses = () => {
           <div className="Conferencepopup">
             <div className="Conferencepopup-contenttt">
               <h2>Add Course</h2>
-              <label>
-                Language Name:
+              <div className='row-in-Add-Popuppp'>
+                
                 <input
                   type="text"
                   value={newCourse.languageName}
                   onChange={(e) => setNewCourse({ ...newCourse, languageName: e.target.value })}
+                  className='input-of-popup'
+                  placeholder='Language Name'
                 />
-              </label>
-              <label>
-                Level:
-                <input
+                <input  className='input-of-popup'
                   type="text"
                   value={newCourse.level}
                   onChange={(e) => setNewCourse({ ...newCourse, level: e.target.value })}
+                  placeholder='Level'
                 />
-              </label>
-              <label>
-                Zoom Link:
+              </div>
+              <div className='row-in-Add-Popuppp'>
                 <input
-                  type="text"
+                  type="text"  className='input-of-popup'
                   value={newCourse.zoom_link}
                   onChange={(e) => setNewCourse({ ...newCourse, zoom_link: e.target.value })}
+                  placeholder='Zoom Link'
                 />
-              </label>
-              <label>
-                Type:
                 <input
-                  type="text"
+                  type="text"  className='input-of-popup'
                   value={newCourse.type}
                   onChange={(e) => setNewCourse({ ...newCourse, type: e.target.value })}
+                  placeholder='Type'
                 />
-              </label>
-              <label>
-                Price:
+              </div>
+              <div className='row-in-add-Popupp'>
                 <input
-                  type="text"
+                  type="text"  className='input-of-popup'
                   value={newCourse.price}
                   onChange={(e) => setNewCourse({ ...newCourse, price: e.target.value })}
+                  placeholder='Price'
                 />
-              </label>
-              <label>
-                Image:
-                <input type="file" onChange={handleImageChange} />
-              </label>
-              <button onClick={handleAddCourse}>Add Course</button>
-              <button onClick={() => setShowAddCoursePopup(false)}>Cancel</button>
+                <input type="file" onChange={handleImageChange}  className='input-of-popup' />
+              </div>
+              <div className="buttonsOfUpdatePopupp">
+              <button className="left-side-of-header-button" onClick={handleAddCourse}>Add Course</button>
+              <button className="left-side-of-header-button" onClick={() => setShowAddCoursePopup(false)}>Cancel</button></div>
             </div>
           </div>
         </div>
@@ -197,62 +197,60 @@ const Courses = () => {
           <div className="Conferencepopup">
             <div className="Conferencepopup-contenttt">
               <h2>Update Course</h2>
-              <label>
-                Language Name:
-                <input
+              <div className='row-in-Add-Popup'> <input
                   type="text"
                   value={selectedCourse.languageName}
                   onChange={(e) =>
                     setSelectedCourse({ ...selectedCourse, languageName: e.target.value })
                   }
+                  className='input-of-popup'
+                  placeholder='Language Name'
                 />
-              </label>
-              <label>
-                Level:
                 <input
                   type="text"
                   value={selectedCourse.level}
                   onChange={(e) =>
                     setSelectedCourse({ ...selectedCourse, level: e.target.value })
                   }
-                />
-              </label>
-              <label>
-                Zoom Link:
+                  className='input-of-popup'
+                  placeholder='Level'
+                /></div>
+               
+               <div className='row-in-Add-Popup'>
                 <input
                   type="text"
                   value={selectedCourse.zoom_link}
                   onChange={(e) =>
                     setSelectedCourse({ ...selectedCourse, zoom_link: e.target.value })
                   }
+                  className='input-of-popup'
+                  placeholder='Zoom Link'
                 />
-              </label>
-              <label>
-                Type:
+              
                 <input
+                 className='input-of-popup'
                   type="text"
                   value={selectedCourse.type}
                   onChange={(e) =>
                     setSelectedCourse({ ...selectedCourse, type: e.target.value })
                   }
+                  placeholder='Type'
                 />
-              </label>
-              <label>
-                Price:
-                <input
+               </div>
+               <div className='roww-in-Add-Popupp'><input  className='input-of-popup'
                   type="text"
                   value={selectedCourse.price}
                   onChange={(e) =>
                     setSelectedCourse({ ...selectedCourse, price: e.target.value })
                   }
                 />
-              </label>
-              <label>
-                Image:
-                <input type="file" onChange={handleImageChange} />
-              </label>
-              <button onClick={handleUpdateCourse}>Update Course</button>
-              <button onClick={() => setShowUpdateCoursePopup(false)}>Cancel</button>
+              
+                
+                <input type="file" onChange={handleImageChangee}  className='input-of-popup'/></div>
+                
+                <div className="buttonsOfUpdatePopupp">
+              <button onClick={handleUpdateCourse} className="left-side-of-header-button">Update Course</button>
+              <button onClick={() => setShowUpdateCoursePopup(false)} className="left-side-of-header-button">Cancel</button></div>
             </div>
           </div>
         </div>

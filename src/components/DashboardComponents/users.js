@@ -320,6 +320,7 @@ const Users = () => {
                 value={addUserFormData.email}
                 onChange={handleAddUserFormChange}
                 placeholder="Enter Email"
+                className='input-of-popup'
               />
               <input
                 type="text"
@@ -327,6 +328,7 @@ const Users = () => {
                 value={addUserFormData.fullName}
                 onChange={handleAddUserFormChange}
                 placeholder="Enter Full Name"
+                className='input-of-popup'
               /></div>
                 <div className='row-in-Add-Popup'>
               <input
@@ -335,6 +337,7 @@ const Users = () => {
                 value={addUserFormData.phone}
                 onChange={handleAddUserFormChange}
                 placeholder="Enter Phone"
+                className='input-of-popup'
               />
               <input
                 type="password"
@@ -342,6 +345,7 @@ const Users = () => {
                 value={addUserFormData.password}
                 onChange={handleAddUserFormChange}
                 placeholder="Enter Password"
+                className='input-of-popup'
               /></div>
                 <div className='row-in-Add-Popupp'>
               <input
@@ -350,6 +354,7 @@ const Users = () => {
                 value={addUserFormData.role}
                 onChange={handleAddUserFormChange}
                 placeholder="Enter Role"
+                className='input-of-popup'
               />
               <input type="file" name="img" onChange={handleAddUserImageChange} /></div>
               <div className="buttonsOfUpdatePopupp">

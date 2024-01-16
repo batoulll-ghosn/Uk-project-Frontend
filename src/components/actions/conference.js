@@ -106,4 +106,55 @@ export const updateConf = (Id, conference_name, type, date, price, description, 
       });
   };
  };
- 
+export const getAllConfsWh = () => {
+  return (dispatch) => {
+    axios
+      .get(`https://ukbackendproject.onrender.com/confrences/getAllWh`)
+      .then((response) => {
+        const conferences = response.data.data;
+        dispatch({
+          type: "getAllConfWh",
+          payload: conferences,
+        });
+      })
+      .catch((error) => {
+        console.error("Error fetching data:", error);
+      });
+  };
+};
+export const updateConftoPaid = (email) => {
+  return (dispatch) => {
+    axios
+      .put(`https://ukbackendproject.onrender.com/confrences/UpdateToPaid/${email}`)
+      .then((response) => {
+      
+        const conferences = response.data.user;
+
+        dispatch({
+          type: "updateConfToPaid", 
+      
+        });
+      })
+      .catch((error) => {
+        console.error("Error fetching data:", error);
+      });
+  };
+};
+export const updateConftoNotPaid = (email) => {
+  return (dispatch) => {
+    axios
+      .put(`https://ukbackendproject.onrender.com/confrences/UpdateToNotPaid/${email}`)
+      .then((response) => {
+      
+        const conferences = response.data.user;
+
+        dispatch({
+          type: "updateConfToNotPaid", 
+      
+        });
+      })
+      .catch((error) => {
+        console.error("Error fetching data:", error);
+      });
+  };
+};
