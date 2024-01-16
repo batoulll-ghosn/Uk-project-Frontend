@@ -101,18 +101,14 @@ const Login = () => {
   const handleSubmit = async (event) => {
     event.preventDefault();
       const response = await dispatch(login(email, password));
+      localStorage.setItem('token', response.token);
       const response1 = await dispatch(getUsersByEmail(email));
-      console.log('Login response:', response1);
       const userId = response1[0].id;
       const userEmail = response1[0].email;
       const fullName=response1[0].fullName;
       const Role=response1[0].role;
       const img=response1[0].img;
-      console.log(response1);
       if (response.success===true) {
-       
-        console.log('Email:', userEmail);
-  
         localStorage.setItem('userId', userId);
         localStorage.setItem('email', userEmail);
         localStorage.setItem('fullName',fullName);
