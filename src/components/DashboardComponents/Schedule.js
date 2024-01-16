@@ -1,12 +1,13 @@
 import React, { useEffect, useState } from 'react';
+import axios from 'axios';
 import { useSelector, useDispatch } from 'react-redux';
-import { getSchedule, AddSchedule,deleteSchedule } from '../actions/schedule';
-import { getAllCourses } from '../actions/course';
-import { toast } from 'react-toastify'; 
+import { getSchedule, deleteSchedule } from '../actions/schedule';
+import { toast } from 'react-toastify';
+
 const Schedule = () => {
   const dispatch = useDispatch();
+  const [deleted, setDeleted] = useState(false);
   const schedule = useSelector((state) => state.schedules);
-  const courses = useSelector((state) => state.courses); 
   const scheduleArray = Array.isArray(schedule) ? schedule : [];
   const [selectedCourse, setSelectedCourse] = useState('');
   const [selectedDay, setSelectedDay] = useState('');
@@ -15,7 +16,7 @@ const Schedule = () => {
   const [showDeletePopup, setShowDeletePopup] = useState(false);
   const [searchTerm, setSearchTerm] = useState('');
   const [selectedId, setSelectedId] = useState('');
-
+  const [courses, setCourses] = useState([]);
   const days = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'];
   const hours = [
     '9:00', '10:00', '11:00', '12:00', '13:00', '14:00',
@@ -25,32 +26,35 @@ const Schedule = () => {
   const confirmDelete = () => {
     dispatch(deleteSchedule(selectedId));
     setShowDeletePopup(false);
+    setDeleted((prev) => !prev);
     setSelectedId('');
-    toast.success('The session has been deleted successfully!')
+    toast.success('The session has been deleted successfully!');
   };
 
-  const handleAddSchedule = () => {
+  const handleAddSchedule = async () => {
     const course_id = selectedCourse;
-
+    
     try {
-            if (course_id) {
-                 dispatch(AddSchedule(course_id, selectedDay, selectedHour));
-                 toast.success('Session Added Successfully!');
-                setShowAddSchedulePopup(false);
-            } else {
-                console.error('Selected course not found.');
-            }
-        } catch (error) {
-            console.error('Failed to add schedule:', error);
-             toast.error('This Session is served , Add another session Please!');
-        }
-
-    setShowAddSchedulePopup(false);
+      if (course_id) {
+        await axios.post(`https://ukbackendproject.onrender.com/courses/AddSchedule/${course_id}/${selectedDay}/${selectedHour}`);
+        toast.success('Session Added Successfully!');
+        setShowAddSchedulePopup(false);
+      } else {
+        console.error('Selected course not found.');
+      }
+    } catch (error) {
+      console.error('Failed to add schedule:', error);
+      toast.error('This Session is served, Add another session Please!');
+    }
   };
+
   const handleCancelAddSchedule = () => {
     setShowAddSchedulePopup(false);
   };
-  const filteredScheduleArray = schedule.filter((event) =>
+  
+ 
+
+  const filteredScheduleArray = schedule?.filter((event) =>
     event.languageName.toLowerCase().includes(searchTerm.toLowerCase())
   );
 
@@ -65,7 +69,9 @@ const Schedule = () => {
     if (eventDayIndex >= 0 && eventHourIndex >= 0) {
       scheduleTable[eventDayIndex][eventHourIndex].push(
         <div key={event.id}>
-             <button onClick={() => handleDeleteSchedule(event.id)}><img className='bin-in-tables' src='./images/bin.svg'/></button>
+          <button onClick={() => handleDeleteSchedule(event.id)}>
+            <img className='bin-in-tables' src='./images/bin.svg' />
+          </button>
           <p>
             {event.languageName} {event.level}
           </p>
@@ -80,17 +86,29 @@ const Schedule = () => {
       );
     }
   });
+
   const handleDeleteSchedule = (id) => {
     setSelectedId(id);
     setShowDeletePopup(true);
   };
+
   const cancelDelete = () => {
     setShowDeletePopup(false);
   };
   useEffect(() => {
     dispatch(getSchedule());
-    dispatch(getAllCourses()); 
-  }, [handleAddSchedule,confirmDelete,getAllCourses]);
+    const handleGetAllCourses = async () => {
+      try {
+        const response = await axios.get('https://ukbackendproject.onrender.com/courses/getAll');
+        const coursesData = response.data.data;
+        setCourses(coursesData);
+      } catch (error) {
+        console.error('Error fetching courses:', error);
+      }
+    };
+   
+    handleGetAllCourses();
+  }, [dispatch,handleAddSchedule,handleDeleteSchedule]);
   return (
     <>
       <div className="first-div-in-users">
@@ -136,7 +154,7 @@ const Schedule = () => {
           </div>
         </>
       )}
-       {showAddSchedulePopup && (
+      {showAddSchedulePopup && (
         <div className="Confoverlay">
           <div className="Conferencepopup">
             <div className="Conferencepopup-contenttt">
@@ -183,12 +201,12 @@ const Schedule = () => {
                 </select>
               </label>
               <button onClick={handleAddSchedule}>Add Schedule</button>
-              <btton onClick={handleCancelAddSchedule} >Cancel</btton>
+              <button onClick={handleCancelAddSchedule} >Cancel</button>
             </div>
           </div>
         </div>
       )}
-     {showDeletePopup && (
+      {showDeletePopup && (
         <div className="Confoverlay">
           <div className="Conferencepopup">
             <div className="Conferencepopup-content">
