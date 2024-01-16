@@ -16,6 +16,22 @@ export const getAllCourses = () => {
       });
   };
 };
+export const getAllCoursesWh = () => {
+  return (dispatch) => {
+    axios
+      .get(`https://ukbackendproject.onrender.com/courses/getAllWh`)
+      .then((response) => {
+        const courses = response.data.data;
+        dispatch({
+          type: "getAllCoursesWh",
+          payload: courses,
+        });
+      })
+      .catch((error) => {
+        console.error("Error fetching data:", error);
+      });
+  };
+};
 export const engageToCourse = (course_id,user_id) => {
   return (dispatch) => {
     axios
@@ -34,7 +50,6 @@ export const engageToCourse = (course_id,user_id) => {
       });
   };
 }; 
-
 export const getCourseByLanguageName = (languageName) => {
   return async (dispatch) => {
     try {
@@ -98,7 +113,7 @@ export const AddCourse = (formData) => {
       });
   };
  };
- export const updateCoursee = (
+export const updateCoursee = (
   Id,
   languageName, level, zoom_link,type,price,img
 ) => {
@@ -131,6 +146,43 @@ export const deleteCourse = (Id) => {
         dispatch({
           type: "deleteCourse",
           payload: Id,
+        });
+      })
+      .catch((error) => {
+        console.error("Error fetching data:", error);
+      });
+  };
+};
+
+export const updateCourseetoPaid = (email) => {
+  return (dispatch) => {
+    axios
+      .put(`https://ukbackendproject.onrender.com/courses/UpdateToPaid/${email}`)
+      .then((response) => {
+      
+        const course = response.data.user;
+
+        dispatch({
+          type: "updateCourseToPaid", 
+      
+        });
+      })
+      .catch((error) => {
+        console.error("Error fetching data:", error);
+      });
+  };
+};
+export const updateCourseetoNotPaid = (email) => {
+  return (dispatch) => {
+    axios
+      .put(`https://ukbackendproject.onrender.com/courses/UpdateToNotPaid/${email}`)
+      .then((response) => {
+      
+        const course = response.data.user;
+
+        dispatch({
+          type: "updateCourseToNotPaid", 
+      
         });
       })
       .catch((error) => {

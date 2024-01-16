@@ -8,6 +8,9 @@ import Workshops from './workshopsPage';
 import Conferences from './ConferencesPage';
 import Schedule from './Schedule';
 import Payment from './Payment';
+import Attendance  from './Attendance';
+import Reviews from './reviews';
+import { toast } from 'react-toastify';
 function Dashboard() {
     const [activePage, setActivePage] = useState('users');
 
@@ -20,7 +23,9 @@ function Dashboard() {
         localStorage.removeItem('fullName');
         localStorage.removeItem('userrole');
         localStorage.removeItem('userImage');
+        localStorage.removeItem('email');
         navigate('/');
+        toast.success('Logout was done successfully!')
     }
 
 
@@ -51,15 +56,22 @@ function Dashboard() {
                     <div className="menu-item">
                         <a href="#payment" onClick={() => handleMenuClick('payment')}>Payment</a>
                     </div>
-                    <div className="button-logout-31">
-                        <button className='logout-in-dashboard' onClick={handleLogout}>Logout</button>
+                    <div className="menu-item">
+                        <a href="#attendance" onClick={() => handleMenuClick('attendance')}>Attendance</a>
                     </div>
+                    <div className="menu-item">
+                        <a href="#reviews" onClick={() => handleMenuClick('reviews')}>Reviews</a>
+                    </div>
+                    
                 </div>
             </div>
             <div id="content" style={{ flex: 1}}>
             <div className='the-header-in-conferences'>
                
                 <div className='the-Our-Conferencess'><h2>Welcome Super Admin!</h2></div>
+                <div className="button-logout-31">
+                        <button className='logout-in-dashboard' onClick={handleLogout}>Logout</button>
+                </div>
                 </div>
                 {activePage === 'users' && <Users />}
                 {activePage === 'courses' && <Courses />}
@@ -67,6 +79,8 @@ function Dashboard() {
                 {activePage === 'conf' && <Conferences />}
                 {activePage === 'schedule' && <Schedule />}
                 {activePage === 'payment' && <Payment />}
+                {activePage === 'attendance' && <Attendance />}
+                {activePage === 'reviews' && <Reviews/>}
             </div>
         </div>
     );

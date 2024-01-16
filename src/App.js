@@ -21,7 +21,8 @@ import AdminDashboard from './components/DashboardComponents/sideBar';
 import EmailSender from './components/sendingEmail';
 import UserDashboard from './components/UserDashboard/userDashboard';
 import ProtectedRoute from './components/protectedRoute';
-import MainDash from './components/mainDashboard'
+import MainDash from './components/mainDashboard';
+import Servicess from './components/ServicesSection';
 function App() {
   return (
  
@@ -31,7 +32,7 @@ function App() {
   <Router>
     
    <Routes>
-        <Route exact  path="/" element={<><Navbar /><Header /> <Slice /><MiddleSection /><WorkshopSection/><Testimonial/><Faq/><Footer/></>}/>
+        <Route exact  path="/" element={<><Header /> <Slice /><Servicess/><MiddleSection /><WorkshopSection/><Testimonial/><Faq/><Footer/></>}/>
        <Route path="/Login" element={ <Login />}/>
        <Route path="/batoul" element={ <Test />}/>
        <Route path="/SignUp" element={ <Register />}/>

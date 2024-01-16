@@ -204,68 +204,72 @@ const Conferences = () => {
           <div className="Conferencepopup">
             <div className="Conferencepopup-contenttt">
               <h2>Add Conference</h2>
-              <label>
-                Conference Name:
+              <div className='row-in-Add-Popuppp'>
                 <input
                   type="text"
                   value={newConference.conference_name}
                   onChange={(e) => setNewConference({ ...newConference, conference_name: e.target.value })}
+                  className='input-of-popup'
+                  placeholder='Conference Name'
                 />
-              </label>
-              <label>
-                Type:
+              
                 <input
                   type="text"
                   value={newConference.type}
                   onChange={(e) => setNewConference({ ...newConference, type: e.target.value })}
+                  className='input-of-popup'
+                  placeholder='Type'
                 />
-              </label>
-              <label>
-                Date:
+               </div>
+               <div className='row-in-Add-Popuppp'>
                 <input
                   type="text"
                   value={newConference.date}
                   onChange={(e) => setNewConference({ ...newConference, date: e.target.value })}
+                  className='input-of-popup'
+                  placeholder='Date'
                 />
-              </label>
-              <label>
-                Price:
+              
                 <input
                   type="text"
                   value={newConference.price}
                   onChange={(e) => setNewConference({ ...newConference, price: e.target.value })}
+                  className='input-of-popup'
+                  placeholder='Price'
                 />
-              </label>
-              <label>
-                Description:
+               </div>
+               <div className='row-in-Add-Popuppp'>
                 <input
                   type="text"
                   value={newConference.description}
                   onChange={(e) => setNewConference({ ...newConference, description: e.target.value })}
+                  className='input-of-popup'
+                  placeholder='Description'
                 />
-              </label>
-              <label>
-                Zoom Link:
+              
+              
+                
                 <input
                   type="text"
                   value={newConference.zoom_link}
                   onChange={(e) => setNewConference({ ...newConference, zoom_link: e.target.value })}
+                  className='input-of-popup'
+                  placeholder='Zoom Link'
                 />
-              </label>
-              <label>
-                Resources:
+              </div>
+              <div className='row-in-add-Popupp'>
                 <input
                   type="text"
                   value={newConference.resources}
                   onChange={(e) => setNewConference({ ...newConference, resources: e.target.value })}
+                  className='input-of-popup'
+                  placeholder='Resources'
                 />
-              </label>
-              <label>
-                Image:
                 <input type="file" name="img" onChange={handleImageChange} />
-              </label>
-              <button onClick={handleAddConference}>Add Conference</button>
-              <button onClick={closePopup}>Cancel</button>
+              </div>
+              <div className="buttonsOfUpdatePopupp">
+              <button  className="left-side-of-header-button" onClick={handleAddConference}>Add Conference</button>
+              <button  className="left-side-of-header-button" onClick={closePopup}>Cancel</button></div>
             </div>
           </div>
         </div>
@@ -275,68 +279,71 @@ const Conferences = () => {
           <div className="Conferencepopup">
             <div className="Conferencepopup-contenttt">
               <h2>Update Conference</h2>
-              <label>
-                Conference Name:
+              
+              <div className='row-in-Add-Popup'>
                 <input
                   type="text"
                   value={newConference.conference_name}
                   onChange={(e) => setNewConference({ ...newConference, conference_name: e.target.value })}
+                  className='input-of-popup'
                 />
-              </label>
-              <label>
-                Type:
                 <input
                   type="text"
                   value={newConference.type}
                   onChange={(e) => setNewConference({ ...newConference, type: e.target.value })}
+                  className='input-of-popup'
                 />
-              </label>
-              <label>
-                Date:
+              </div>
+              <div className='row-in-Add-Popup'>
+                
                 <input
                   type="text"
                   value={newConference.date}
                   onChange={(e) => setNewConference({ ...newConference, date: e.target.value })}
+                  className='input-of-popup'
                 />
-              </label>
-              <label>
-                Price:
+              
+              
                 <input
                   type="text"
                   value={newConference.price}
                   onChange={(e) => setNewConference({ ...newConference, price: e.target.value })}
+                  className='input-of-popup'
                 />
-              </label>
-              <label>
-                Description:
+               </div>
+               <div className='row-in-Add-Popup'>
+              
                 <input
                   type="text"
                   value={newConference.description}
                   onChange={(e) => setNewConference({ ...newConference, description: e.target.value })}
+                  className='input-of-popup'
                 />
-              </label>
-              <label>
-                Zoom Link:
+              
+              
+              
                 <input
                   type="text"
                   value={newConference.zoom_link}
                   onChange={(e) => setNewConference({ ...newConference, zoom_link: e.target.value })}
+                  className='input-of-popup'
                 />
-              </label>
-              <label>
-                Resources:
+              </div>
+              <div className='roww-in-Add-Popupp'>
+               
                 <input
                   type="text"
                   value={newConference.resources}
                   onChange={(e) => setNewConference({ ...newConference, resources: e.target.value })}
+                  className='input-of-popup'
                 />
-              </label>
-              <label>
-                Image:
+              
+              
                 <input type="file" name="img" onChange={handleImageChange} />
-              </label>
-              <button onClick={handleUpdateConference}>Update</button>
-              <button onClick={closePopupOfEdit}>Cancel</button>
+              </div>
+              <div className="buttonsOfUpdatePopupp">
+              <button onClick={handleUpdateConference} className="left-side-of-header-button">Update</button>
+              <button onClick={closePopupOfEdit} className="left-side-of-header-button">Cancel</button></div>
             </div>
           </div>
         </div>

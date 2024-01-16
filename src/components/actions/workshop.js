@@ -1,5 +1,4 @@
 import axios from "axios";
-
 export const getAllWorkshops = () => {
   return (dispatch) => {
     axios
@@ -41,6 +40,59 @@ export const getAllEngagedWorkshops = (user_id) => {
         const workshops = response.data.data;
         dispatch({
           type: "getEngagedWorkshops",
+        });
+      })
+      .catch((error) => {
+        console.error("Error fetching data:", error);
+      });
+  };
+};
+export const AddWorkshop = (formData) => {
+  console.log(formData)
+  return (dispatch) => {
+    axios
+      .post(`https://ukbackendproject.onrender.com/workshops/AddWorkshop`, formData, {
+        headers: {
+          'Content-Type': 'multipart/form-data',
+        },
+      })
+      .then((response) => {
+        dispatch({ 
+          type: 'addWorkshop',
+       });
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
+ };
+export const deleteWorkshop = (Id) => {
+  return (dispatch) => {
+    axios
+      .delete(`https://ukbackendproject.onrender.com/workshops/deleteWorkshop/${Id}`)
+      .then((response) => {
+        dispatch({
+          type: "deleteWorkshop",
+          payload: Id,
+        });
+      })
+      .catch((error) => {
+        console.error("Error fetching data:", error);
+      });
+  };
+};
+export const updateWorkshop = (Id,newWorkshop) => {
+  return (dispatch) => {
+    axios
+      .put(`https://ukbackendproject.onrender.com/workshops/EditWorkshop/${Id}`, newWorkshop, {
+        headers: {
+          'Content-Type': 'multipart/form-data',
+        },
+      })
+      .then((response) => {
+        const workshop = response.data.user;
+        dispatch({
+          type: "updateWorkshop",
         });
       })
       .catch((error) => {

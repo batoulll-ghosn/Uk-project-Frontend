@@ -1,10 +1,13 @@
 .header-back{
     display: flex;
     flex-direction: row;
-    background-color: #f0eef0;
+   
 }
-.hero-header{
-    background-color: #f0eef0;
+.header-main{
+    background-image: url(./ddd.jpeg);
+    height: 100vh;
+    background-size: cover;
+    background-repeat: no-repeat;
 }
 .left-side-of-header{
     width:60%;
@@ -32,7 +35,9 @@
     font-style: normal;
     font-weight: 400;
     line-height: normal;
-    width: 65%;
+    width: 50%;
+    padding-top: 6%;
+    padding-bottom: 6%;
 }
 .right-side-of-header{
     width: 50%;
@@ -40,7 +45,7 @@
 }
 .right-side-of-header-img{
     width:100%;
-    transform: scaleX(-1);
+   
     height: 420px;
 }
 .left-side-of-header-button{
@@ -150,8 +155,16 @@
     .header-back{
         display: flex;
         flex-direction: column;
-        background-color: #f0eef0;
     }
+    .services-mini-one{
+     display: flex;
+     flex-direction: column;
+    }
+    .header-main{
+        background-image: none;
+        height: auto;
+        background-color: #F0EEF0;
+       }
     .left-side-of-header{
         width:100%;
         display: flex;
@@ -198,11 +211,21 @@
         width:80%;
     }
 }
+/* Responsive for Phone*/
 @media (max-width: 766px) {
+    .header-main{
+        background-image: none;
+        height: auto;
+        background-color: #F0EEF0;
+       }
+       .services-mini-one{
+        display: flex;
+        flex-direction: column;
+       }
     .header-back{
         display: flex;
         flex-direction: column;
-        background-color: #f0eef0;
+       
     }
     .left-side-of-servicess{
         width:0%;

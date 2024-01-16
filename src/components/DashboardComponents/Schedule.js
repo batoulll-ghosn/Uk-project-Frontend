@@ -90,7 +90,7 @@ const Schedule = () => {
   useEffect(() => {
     dispatch(getSchedule());
     dispatch(getAllCourses()); 
-  }, [dispatch,handleAddSchedule,confirmDelete]);
+  }, [handleAddSchedule,confirmDelete,getAllCourses]);
   return (
     <>
       <div className="first-div-in-users">
