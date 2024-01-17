@@ -64,7 +64,7 @@ line-height: 45px;
 .the-ul-in-the-footer{
     display: flex;
     flex-direction: column;
-    row-gap: 28px;
+    row-gap: 13px;
     color: #FFF;
     font-family: Poppins;
 font-size: 25px;
@@ -114,11 +114,21 @@ font-weight: 700;
         flex-direction: column;
         row-gap: 30px;
     }
+    .the-subscribe-button{
+        font-size: 20px;
+    }
 }
 @media (max-width: 766px) {
     .the-main-div-in-footer{
         display: flex;
         flex-direction: column;
         row-gap: 30px;
+    }
+    .the-subscribe-button{
+        font-size: 20px;
+    }
+    .div-of-logo-in-footer img{
+        width: 45px;
+        height: 45px;
     }
 }

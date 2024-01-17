@@ -80,3 +80,149 @@ justify-content: center;
 padding: 15px;
 text-align: center;
 }
+/* Responsive for iPad*/
+@media screen and (min-width:767px) and (max-width:1123px){
+    .header-back{
+        display: flex;
+        flex-direction: column;
+    }
+    .services-mini-one{
+     display: flex;
+     flex-direction: column;
+    }
+    .header-main{
+        background-image: none;
+        height: auto;
+        background-color: #F0EEF0;
+       }
+    .left-side-of-header{
+        width:100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: flex-start;
+        margin: 1%;
+    }
+    .left-side-of-header h1{
+        color: #2E3480;
+        font-family: Poppins;
+        font-size: 80px;
+        font-style: normal;
+        font-weight: 700;
+        line-height: normal;
+        margin: 0px;
+    }
+    .left-side-of-header p{
+        color: #7576C6;
+        font-family: Poppins;
+        font-size: 22px;
+        font-style: normal;
+        font-weight: 400;
+        line-height: normal;
+        width: 100%;
+    }
+    .right-side-of-header{
+        width: 100%;
+        margin-top: 9%;
+    }
+    .right-side-of-header-img{
+        width:100%;
+        transform: scaleX(1);
+    }
+    .left-side-of-servicess{
+        width:0%;
+        display: none;
+        margin:12px;
+    }
+    .main-div-of-servicess{
+        margin:2%;
+    }
+    .right-side-of-servicess p{
+        width:80%;
+    }
+}
+
+
+
+/* Responsive for Phone*/
+@media (max-width: 766px) {
+    .header-main{
+        background-image: none;
+        height: auto;
+        background-color: #F0EEF0;
+       }
+       .services-mini-one{
+        display: flex;
+        flex-direction: column;
+       }
+    .header-back{
+        display: flex;
+        flex-direction: column;
+       
+    }
+    .left-side-of-servicess{
+        width:0%;
+        display: none;
+        margin:12px;
+    }
+    .main-div-of-servicess{
+        margin:2%;
+    }
+    .left-side-of-header{
+        width:100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: flex-start;
+        margin: 1%;
+    }
+    .left-side-of-header h1{
+        color: #2E3480;
+        font-family: Poppins;
+        font-size: 54px;
+        font-style: normal;
+        font-weight: 700;
+        line-height: normal;
+        margin: 0px;
+    }
+    .left-side-of-header p{
+        color: #7576C6;
+        font-family: Poppins;
+        font-size: 22px;
+        font-style: normal;
+        font-weight: 400;
+        line-height: normal;
+        width: 100%;
+    }
+    .right-side-of-header{
+        width: 100%;
+        margin-top: 9%;
+    }
+    .right-side-of-header-img{
+        width:100%;
+        transform: scaleX(1);
+    }
+    .the-Our-Conferencess {
+        font-size: 15px;
+        padding: 3px;
+        width:100px;
+    }
+    .div-of-logo-in-footer img{
+        width: 45px;
+        height: 45px;
+    }
+    .the-header-in-conferences {
+        column-gap: 41px;
+        padding: 7px;
+        width: 300px;
+    }
+    .the-heading-in-conferences {
+        font-size: 24px;
+    }
+    .conference-cardd{
+        width: 200px;
+    }
+    .img-in-thee-slide{
+        height: 230px;
+    }
+}

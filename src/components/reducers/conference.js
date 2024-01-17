@@ -4,6 +4,7 @@ const conferenceReducer = (state = [], action) => {
         return action.payload;
         case "getAllConfWh":
           return action.payload;
+          
       case "getEngagedConferences":
         return action.payload;
       case "engageToConference":
@@ -18,6 +19,7 @@ const conferenceReducer = (state = [], action) => {
         return action.payload;
         case 'updateConfToNotPaid':
         return action.payload;
+    
       default:
        return state;
     }

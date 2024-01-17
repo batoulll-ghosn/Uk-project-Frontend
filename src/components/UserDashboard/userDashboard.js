@@ -4,9 +4,12 @@ import { useDispatch } from 'react-redux';
 import { getAllEnngagedConferences } from '../actions/conference';
 import { getAllEngagedWorkshops } from '../actions/workshop';
 import { getScheduleOfCourse } from '../actions/schedule';
+import { AddReview } from '../actions/review';
 import { Link } from 'react-router-dom';
+import { toast } from 'react-toastify'; 
 import { updateUserInfo } from '../actions/user';
 import { useNavigate } from 'react-router-dom';
+import '../styles/header.css';
 const UserDashboard = () => {
   const navigate = useNavigate();
  const conferences = useSelector((state) => state.conferences);
@@ -19,11 +22,40 @@ const UserDashboard = () => {
  const emailFromLocalStorage = localStorage.getItem('email');
  const nameFromLocalStorage = localStorage.getItem('fullName');
  const img= localStorage.getItem('userImage');
- useEffect(() => {
-  dispatch(getScheduleOfCourse(userId));
-  dispatch(getAllEnngagedConferences(userId));
-  dispatch(getAllEngagedWorkshops(userId));
- }, [userId, dispatch]);
+ 
+ const [isAddReviewPopupOpen, setAddReviewPopupOpen] = useState(false);
+  const [reviewFormData, setReviewFormData] = useState({
+    nameOftestemoniated: localStorage.getItem('fullName') || '', 
+    description: '',
+  });
+
+  const handleAddReviewClick = () => {
+    setAddReviewPopupOpen(true);
+  };
+
+  const handleCloseAddReviewPopup = () => {
+    setAddReviewPopupOpen(false);
+    setReviewFormData({
+      nameOftestemoniated: localStorage.getItem('fullName') || '', 
+      description: '',
+    });
+  };
+  
+
+  const handleReviewInputChange = (e) => {
+    const { name, value } = e.target;
+    setReviewFormData({
+      ...reviewFormData,
+      [name]: value,
+    });
+  };
+
+  const handleAddReviewSubmit = (e) => {
+    e.preventDefault();
+    dispatch(AddReview(userId, reviewFormData));
+    toast.success('Thank you for Review Submission!!')
+    handleCloseAddReviewPopup();
+  };
 
  const handleWorkshopClick = (workshop) => {
   setSelectedWorkshop(workshop);
@@ -131,7 +163,11 @@ const handleCloseWorkshopPopup = () => {
         localStorage.removeItem('userImage');
         navigate('/');
   };
-   
+  useEffect(() => {
+    dispatch(getScheduleOfCourse(userId));
+    dispatch(getAllEnngagedConferences(userId));
+    dispatch(getAllEngagedWorkshops(userId));
+   }, [userId, dispatch]);
  return (
   <>
    <div className="the-header-in-conferences">
@@ -147,8 +183,13 @@ const handleCloseWorkshopPopup = () => {
      </div>
      <div>
       <div className='afterEdit'>
+
+      <button  onClick={handleAddReviewClick} className='left-side-of-header-buttonnnRRR'>
+          + Add Review
+        </button>
         <>{upcomingConferences.length > 0 && (
   <div className="main-container-conferencee">
+  
     <div>
       <h2 className="the-heading-in-conferences">Upcoming Conferences</h2>
       <div className="conferences-containerr">
@@ -338,7 +379,30 @@ const handleCloseWorkshopPopup = () => {
               </div>
               <div className='buttons-in-edit-user'> <button className='saveButton' onClick={handleSaveProfile}>Save</button>
               <button className='saveButton' onClick={handleLogoutProfile}>Logout</button></div>
-             
+            </div>
+          </div>
+        </div>
+      )}
+       {isAddReviewPopupOpen && (
+        <div className="Confoverlay">
+          <div className="Conferencepopup">
+            <div className="Conferencepopup-content">
+              <span className="close" onClick={handleCloseAddReviewPopup}>
+                &times;
+              </span>
+              <h2>Add Review</h2>
+              <form onSubmit={handleAddReviewSubmit}>
+                <div className='inputs-in-user-info'>
+                  <label>Description: </label>
+                  <textarea
+                    name="description"
+                    value={reviewFormData.description}
+                    onChange={handleReviewInputChange}
+                  />
+                </div>
+                
+                <button type="submit" className='saveButton'>Submit</button>
+              </form>
             </div>
           </div>
         </div>
