@@ -23,8 +23,7 @@ const MiddleSection = () => {
   const [showPopup, setShowPopup] = useState(false);
   const [selectedConference, setSelectedConference] = useState(null);
   const parseDate = (input) => {
-    const [day, month, year] = input.split("/");
-    return new Date(`${month}/${day}/${year}`);
+
    };
    const compareDates = (a, b) => parseDate(a.date) - parseDate(b.date);
  conferences.sort(compareDates);
