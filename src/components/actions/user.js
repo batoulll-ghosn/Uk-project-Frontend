@@ -33,6 +33,23 @@ export const login = (Email, password) => {
         });
     };
    };
+export const loginGoogle = (Email) => {
+    return (dispatch) => {
+      return axios
+        .post(`https://ukbackendproject.onrender.com/users/loginGoogle`, { Email})
+        .then((response) => {
+          dispatch({
+            type: "login",
+            payload: response.data
+          });
+          return response.data;
+        })
+        .catch((error) => {
+          console.error("Error fetching data:", error);
+          throw error;
+        });
+    };
+   };
 export const getUsersByEmail = (email) => {
     return async (dispatch) => {
       try {
@@ -64,39 +81,40 @@ export const getUsersByFullName = (fullName) => {
     };
    };
 export const register = (formData) => {
-    
     return (dispatch) => {
       axios
- .post(`https://ukbackendproject.onrender.com/users/register`, formData,{
-  headers: {
-  'Content-Type': 'multipart/form-data',
-},})
- 
- .then((response) => {
- })
- .catch((error) => {
-   if (error.response) {
-     // The request was made and the server responded with a status code outside of the range of 2xx
-     console.log(error.response.data);
-     console.log(error.response.status);
-     console.log(error.response.headers);
-   } else if (error.request) {
-     // The request was made but no response was received
-     console.log(error.request);
-   } else {
-     // Something happened in setting up the request that triggered an Error
-     console.log('Error', error.message);
-   }
-   console.log(error.config);
- });
-    }
-   };
+        .post(`https://ukbackendproject.onrender.com/users/register`, JSON.stringify(formData), {
+          headers: {
+            'Content-Type': 'application/json',
+          },
+        })
+        .then((response) => {
+          // Handle successful response if needed
+        })
+        .catch((error) => {
+          if (error.response) {
+            // The request was made and the server responded with a status code outside of the range of 2xx
+            console.log(error.response.data);
+            console.log(error.response.status);
+            console.log(error.response.headers);
+          } else if (error.request) {
+            // The request was made but no response was received
+            console.log(error.request);
+          } else {
+            // Something happened in setting up the request that triggered an Error
+            console.log('Error', error.message);
+          }
+          console.log(error.config);
+        });
+    };
+  };
+  
 export const AddUser = (formData) => {
     return (dispatch) => {
       axios
-        .post(`https://ukbackendproject.onrender.com/users/addUser`, formData, {
+        .post(`https://ukbackendproject.onrender.com/users/addUser`, JSON.stringify(formData), {
           headers: {
-            'Content-Type': 'multipart/form-data',
+            'Content-Type': 'application/json',
           },
         })
         .then((response) => {

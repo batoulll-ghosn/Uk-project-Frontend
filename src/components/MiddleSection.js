@@ -203,7 +203,7 @@ const closePopup = () => {
   return (
     <div className="middle-section">
       <div className="first-div-in-middle-section">
-        <h1 className="header-in-middle-section">We provide Courses, Conferences & Workshops</h1>
+        <h1 className="header-in-middle-section">We provide Courses,<br/> Conferences & Workshops</h1>
         <p className="text-in-the-middle-section">
           Find the best online and On-site Courses, and Conferences.
           <br />

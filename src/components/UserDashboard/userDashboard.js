@@ -151,7 +151,7 @@ const handleCloseWorkshopPopup = () => {
         profileFormData.email,
         profileFormData.oldPassword,
         profileFormData.newPassword,
-        profileFormData.img
+      
       )
     );
     handleCloseProfilePopup();
@@ -161,6 +161,8 @@ const handleCloseWorkshopPopup = () => {
         localStorage.removeItem('fullName');
         localStorage.removeItem('userrole');
         localStorage.removeItem('userImage');
+        localStorage.removeItem('email');
+        localStorage.removeItem('token');
         navigate('/');
   };
   useEffect(() => {
@@ -179,7 +181,7 @@ const handleCloseWorkshopPopup = () => {
        <div>
          <h2 className="the-Our-Conferencess">Welcome to your dashboard!</h2>
        </div>
-       <div className="person-icon" onClick={handlePersonIconClick}> <img src={img}/></div>
+       <div className="person-icon" onClick={handlePersonIconClick}> <img src='./images/pen.svg'/></div>
      </div>
      <div>
       <div className='afterEdit'>
@@ -369,14 +371,7 @@ const handleCloseWorkshopPopup = () => {
                   onChange={handleProfileInputChange}
                 />
               </div>
-              <div  className='inputs-in-user-info'>
-                <label>Image URL: </label>
-                <input
-                  type="file"
-                  name="img"
-                  onChange={handleProfileInputChange}
-                />
-              </div>
+             
               <div className='buttons-in-edit-user'> <button className='saveButton' onClick={handleSaveProfile}>Save</button>
               <button className='saveButton' onClick={handleLogoutProfile}>Logout</button></div>
             </div>

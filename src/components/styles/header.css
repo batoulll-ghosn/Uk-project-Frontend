@@ -10,7 +10,7 @@
     background-repeat: no-repeat;
 }
 .left-side-of-header{
-    width:60%;
+    width:40%;
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
