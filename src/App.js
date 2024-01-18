@@ -23,7 +23,7 @@ import UserDashboard from './components/UserDashboard/userDashboard';
 import ProtectedRoute from './components/protectedRoute';
 import MainDash from './components/mainDashboard';
 import Servicess from './components/ServicesSection';
-import Donate from './components/Donate';
+import OurTeam from './components/ourTeam';
 function App() {
   return (
  
@@ -42,7 +42,7 @@ function App() {
        <Route path="/dashboard" element={<AdminDashboard/>} />
        <Route path="/userdashboard" element={<UserDashboard/>} />
        <Route path="/.email" element={<EmailSender/>} />
-       <Route path="/donate" element={<Donate/>} />
+      <Route path="/theTeam" element={<OurTeam/>}/>
        <Route
             path="/dash/*"
             element={

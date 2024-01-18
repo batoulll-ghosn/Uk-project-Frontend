@@ -54,7 +54,7 @@ course include audio and video</p>
         <li><Link to='/workshops'>Workshops</Link></li>
         <li><Link to='/conferences'>Conferences</Link></li>
         <li><Link to='/courses'>Courses</Link></li>
-        <li><Link to='/donate'>Donate</Link></li>
+        
         </ul>
       </div>
       <div className='third-div-in-footer'><h2 className='the-follow-us'>Let's Keep in Touch!</h2>

@@ -178,7 +178,6 @@ const Users = () => {
     <div>
       <div className='first-div-in-users'>
         <button onClick={handleAddUser} className="left-side-of-header-button">+ Add User</button>
-        <input type="file" accept=".xls,.xlsx" onChange={handleFileUpload} />
         <div>
           <input
             type="text"

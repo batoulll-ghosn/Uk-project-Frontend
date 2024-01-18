@@ -42,8 +42,8 @@ const Reviews = () => {
               
               <th>Provider</th>
               <th>Description</th>
-              <th>Selected</th>
-              <th>Action</th>
+              <th>Selected </th>
+              <th> Action</th>
             </tr>
           </thead>
           <tbody>
