@@ -16,6 +16,57 @@ export const getAllReviews = () => {
         });
     };
   };
+  export const getAllReviewsSelected = () => {
+    return (dispatch) => {
+      axios
+        .get('https://ukbackendproject.onrender.com/EngaConference/getAllTestimonialSelected')
+        .then((response) => {
+          const reviews = response.data.data;
+          dispatch({
+             type: 'getAllReviewsSelected', 
+             payload:reviews,
+         });
+        })
+        .catch((error) => {
+          console.error(error.toString()); 
+          console.log(error.toString())
+        });
+    };
+  };
+  export const UpdateToSelected = (id) => {
+    return (dispatch) => {
+      axios
+        .put(`https://ukbackendproject.onrender.com/EngaConference/updateToSelected/${id}`)
+        .then((response) => {
+          const reviews = response.data.data;
+          dispatch({
+             type: 'updateToSelected', 
+             
+         });
+        })
+        .catch((error) => {
+          console.error(error.toString()); 
+          console.log(error.toString())
+        });
+    };
+  };
+export const UpdateToNOTSelected = (id) => {
+    return (dispatch) => {
+      axios
+        .put(`https://ukbackendproject.onrender.com/EngaConference/updateToNOTSelected/${id}`)
+        .then((response) => {
+          const reviews = response.data.data;
+          dispatch({
+             type: 'updateToSelected', 
+           
+         });
+        })
+        .catch((error) => {
+          console.error(error.toString()); 
+          console.log(error.toString())
+        });
+    };
+  };
 export const deleteReview = (Id) => {
     return (dispatch) => {
       axios

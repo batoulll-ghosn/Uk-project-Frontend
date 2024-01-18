@@ -14,7 +14,7 @@ const clientId = '865161690861-6nk4hq8qj0df5jmm543ma4mpvje02kft.apps.googleuserc
 function Loginn({ onClick }) {
   const onSuccess = (res) => {
     const decodedToken = jwtDecode(res.credential);
-    console.log('LOGIN SUCCESS! User email:', decodedToken.email);
+ 
     onClick(decodedToken.email);
   };
 
@@ -67,14 +67,17 @@ const Login = () => {
   const handleClick = async (googleEmail) => {
     try {
       const response1 = await dispatch(loginGoogle(googleEmail));
-      sessionStorage.setItem('token', response1.token);
+      localStorage.setItem('token', response1.token);
+      const token=response1.token;
+      console.log(token)
+      
       const response = await dispatch(getUsersByEmail(googleEmail));
       if (response.length === 1) {
         const userId = response[0].id;
         const email = response[0].email;
         const fullName = response[0].fullName;
         const Role = response[0].role;
-        const img = response[0].img;
+       
   
         toast.success('Login Successful');
         navigate('/');
@@ -82,7 +85,7 @@ const Login = () => {
         sessionStorage.setItem('email', email);
         sessionStorage.setItem('fullName', fullName);
         sessionStorage.setItem('userrole', Role);
-        sessionStorage.setItem('userImage', img);
+      
       } else {
         toast.error('Login Failed');
       }
@@ -106,13 +109,13 @@ const Login = () => {
       const userEmail = response1[0].email;
       const fullName=response1[0].fullName;
       const Role=response1[0].role;
-      const img=response1[0].img;
+    
       if (response.success===true) {
-        localStorage.setItem('userId', userId);
-        localStorage.setItem('email', userEmail);
-        localStorage.setItem('fullName',fullName);
-        localStorage.setItem('userrole',Role);
-        localStorage.setItem('userImage',img);
+        sessionStorage.setItem('userId', userId);
+        sessionStorage.setItem('email', userEmail);
+        sessionStorage.setItem('fullName',fullName);
+        sessionStorage.setItem('userrole',Role);
+     
         toast.success(response.message);
         navigate('/dash');
       } else {

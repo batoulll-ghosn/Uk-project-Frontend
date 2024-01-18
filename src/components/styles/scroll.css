@@ -214,7 +214,7 @@ text-align: center;
     .the-header-in-conferences {
         column-gap: 41px;
         padding: 7px;
-        width: 300px;
+        width: 100%;
     }
     .the-heading-in-conferences {
         font-size: 24px;
@@ -224,5 +224,9 @@ text-align: center;
     }
     .img-in-thee-slide{
         height: 230px;
+    }
+
+    .the-Our-Conferences{
+        font-size: 18px;
     }
 }

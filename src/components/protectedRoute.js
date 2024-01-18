@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import { Route, Outlet, useNavigate } from 'react-router-dom';
 
 const isAuthenticated = () => {
-    return localStorage.getItem("userId") !== null;
+    return sessionStorage.getItem("userId") !== null;
 };
 
 const ProtectedRoute = ({ children }) => {
