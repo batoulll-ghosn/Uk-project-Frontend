@@ -35,7 +35,6 @@ const Users = () => {
     phone: '',
     password: '',
     role: '',
-    image: null,
   });
 
 
@@ -121,13 +120,7 @@ const Users = () => {
     });
   };
 
-  const handleAddUserImageChange = (e) => {
-    const imageFile = e.target.files[0];
-    setAddUserFormData({
-      ...addUserFormData,
-      img: imageFile,
-    });
-  };
+  
 
   const confirmAddUser = () => {
     dispatch(AddUser(addUserFormData));
@@ -138,7 +131,6 @@ const Users = () => {
       phone: '',
       password: '',
       role: '',
-      img: null,
     });
     toast.success('User Added Successfully!');
   };
@@ -151,7 +143,6 @@ const Users = () => {
       phone: '',
       password: '',
       role: '',
-      img: null,
     });
   };
 
@@ -312,7 +303,7 @@ const Users = () => {
       {showAddUserPopup && (
         <div className="Confoverlay">
           <div className="Conferencepopup">
-            <div className="Conferencepopup-contenttt">
+            <div className="Conferencepopup-contentttt">
               <p>Add New User:</p>
               <div className='row-in-Add-Popup'>  <input
                 type="text"
@@ -356,7 +347,7 @@ const Users = () => {
                 placeholder="Enter Role"
                 className='input-of-popup'
               />
-              <input type="file" name="img" onChange={handleAddUserImageChange} /></div>
+              </div>
               <div className="buttonsOfUpdatePopupp">
                 <button className="left-side-of-header-button" onClick={confirmAddUser}>
                   Add User

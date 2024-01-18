@@ -3,7 +3,7 @@ import { GoogleLogin, GoogleOAuthProvider } from '@react-oauth/google';
 import { jwtDecode } from 'jwt-decode';
 import './styles/header.css';
 import { Link } from 'react-router-dom';
-import { login, getUsersByEmail } from './actions/user';
+import { login, getUsersByEmail,loginGoogle } from './actions/user';
 import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify'; 
 import { gapi } from 'gapi-script';
@@ -66,25 +66,23 @@ const Login = () => {
 
   const handleClick = async (googleEmail) => {
     try {
+      const response1 = await dispatch(loginGoogle(googleEmail));
+      sessionStorage.setItem('token', response1.token);
       const response = await dispatch(getUsersByEmail(googleEmail));
       if (response.length === 1) {
         const userId = response[0].id;
         const email = response[0].email;
-        const fullName=response[0].fullName;
-        const Role=response[0].role;
-        const img=response[0].img;
-        localStorage.setItem('userId', userId);
-        localStorage.setItem('email', email);
-        localStorage.setItem('fullName',fullName);
-        localStorage.setItem('userrole',Role);
-        localStorage.setItem('userImage',img);
+        const fullName = response[0].fullName;
+        const Role = response[0].role;
+        const img = response[0].img;
+  
         toast.success('Login Successful');
         navigate('/');
-        localStorage.setItem('userId', userId);
-        localStorage.setItem('email', email);
-        localStorage.setItem('fullName',fullName);
-        localStorage.setItem('userrole',Role);
-        localStorage.setItem('userImage',img);
+        sessionStorage.setItem('userId', userId);
+        sessionStorage.setItem('email', email);
+        sessionStorage.setItem('fullName', fullName);
+        sessionStorage.setItem('userrole', Role);
+        sessionStorage.setItem('userImage', img);
       } else {
         toast.error('Login Failed');
       }
@@ -92,7 +90,8 @@ const Login = () => {
       console.error('Error:', error);
       toast.error('An error occurred during login');
     }
-   };
+  };
+  
 
   const togglePasswordVisibility = () => {
     setShowPassword(!showPassword);

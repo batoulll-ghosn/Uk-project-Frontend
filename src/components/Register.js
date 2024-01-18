@@ -60,26 +60,53 @@ const Login = () => {
       );
     }
   }
-  const handleRegister = (e) => {
+  const handleRegister = async (e) => {
     e.preventDefault();
-    if (password !== confirmpassword) {
-      setPasswordError("Passwords do not match");
+  
+    const passwordPattern = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}$/;
+  
+    // Check for errors
+    if (!passwordPattern.test(password)) {
+      toast.error("Password must be strong");
       return;
     }
-    const formData = new FormData();
-   
   
-    formData.append('fullName', fullName);
-    formData.append('email', email);
-    formData.append('password', password);
-    formData.append('phone', phoneNumber);
-   
+    if (password !== confirmpassword) {
+      toast.error("Passwords don't match");
+      return;
+    }
   
-    formData.append('img', img);
-    dispatch(register(formData));
-    onSignup();
-    setPasswordError("");
-   };
+    // If no errors, proceed with signup
+    const formData = {
+      fullName: fullName,
+      email: email,
+      password: password,
+      phone: phoneNumber,
+    };
+  
+    try {
+      // Dispatch the action and await its completion
+      await dispatch(register(formData));
+  
+      // Handle successful registration if needed
+      toast.success("Registration successful!");
+  
+      // Trigger OTP verification
+      onSignup();
+  
+      // Reset password error if any
+      setPasswordError("");
+    } catch (error) {
+      if (error.response && error.response.data) {
+        toast.error(error.response.data);
+      } else {
+        toast.error("Error during registration");
+      }
+    }
+  };
+  
+  
+  
    
    
   function onSignup() {
@@ -284,17 +311,7 @@ const Login = () => {
                 onChange={(e) => setFullName(e.target.value)}
               />
             </div>
-            <div className="mb-8">
-              <input
-                type="file"
-                id="img"
-                name="img"
-                className="rounded-full p-2 py-2 border border-black bg-gray-100 italic text-l w-80"
-                onChange={(e) => {
-                  const file = e.target.files[0];
-                  setImg(file);}}
-              />
-            </div>
+            
             <button className='loginButton' type="submit" >Register
             </button>
           </form>
