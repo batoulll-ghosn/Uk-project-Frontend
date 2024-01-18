@@ -1,0 +1,20 @@
+const jwt = require('jsonwebtoken');
+
+// Assuming you have received the token from the backend
+const receivedToken = response1.token;
+
+try {
+  const decodedToken = jwt.verify(receivedToken, 'batoul@#123456789');
+  const userId = decodedToken.id;
+  const userRole = decodedToken.role;
+
+  console.log('User ID:', userId);
+  console.log('User Role:', userRole);
+
+  // Now you can use userId and userRole in your frontend logic
+} catch (error) {
+  console.error('Error decoding token:', error.message);
+}
+
+Hello Hello ! I'm Jessy going to express English content on my page , so we can all learn English language easily! This is my first video i hope you support me.
+Thank you .

@@ -105,6 +105,24 @@
     background-color: #F0EEF0;
     font-size: 18px;
 }
+.meet-team-button{
+    border-radius: 23px;
+    color: #2E3480;
+    border-color: #2E3480;
+    background-color: #F0EEF0;
+    font-size: 20px;
+    padding: 3%;
+    margin-top: 4%;
+}
+.meet-team-button:hover{
+    border-radius: 23px;
+    color: #F0EEF0;
+    border-color: #2E3480;
+    background-color: #2E3480;
+    font-size: 20px;
+    padding: 3%;
+    margin-top: 4%;
+}
 .first-one-in-slide{
     display: flex;
     flex-direction: column;

@@ -16,16 +16,16 @@ const UserDashboard = () => {
  const workshops = useSelector((state) => state.workshops);
  const schedule= useSelector((state) => state.schedules);
  const dispatch = useDispatch();
- const userId = localStorage.getItem('userId');
+ const userId = sessionStorage.getItem('userId');
  const [selectedConference, setSelectedConference] = useState(null);
  const [selectedWorkshop, setSelectedWorkshop] = useState(null);
- const emailFromLocalStorage = localStorage.getItem('email');
- const nameFromLocalStorage = localStorage.getItem('fullName');
- const img= localStorage.getItem('userImage');
+ const emailFromLocalStorage = sessionStorage.getItem('email');
+ const nameFromLocalStorage = sessionStorage.getItem('fullName');
+ 
  
  const [isAddReviewPopupOpen, setAddReviewPopupOpen] = useState(false);
   const [reviewFormData, setReviewFormData] = useState({
-    nameOftestemoniated: localStorage.getItem('fullName') || '', 
+    nameOftestemoniated: sessionStorage.getItem('fullName') || '', 
     description: '',
   });
 
@@ -36,7 +36,7 @@ const UserDashboard = () => {
   const handleCloseAddReviewPopup = () => {
     setAddReviewPopupOpen(false);
     setReviewFormData({
-      nameOftestemoniated: localStorage.getItem('fullName') || '', 
+      nameOftestemoniated: sessionStorage.getItem('fullName') || '', 
       description: '',
     });
   };
@@ -157,12 +157,12 @@ const handleCloseWorkshopPopup = () => {
     handleCloseProfilePopup();
    };
    const handleLogoutProfile = () => {
-        localStorage.removeItem('userId');
-        localStorage.removeItem('fullName');
-        localStorage.removeItem('userrole');
-        localStorage.removeItem('userImage');
-        localStorage.removeItem('email');
-        localStorage.removeItem('token');
+        sessionStorage.removeItem('userId');
+        sessionStorage.removeItem('fullName');
+        sessionStorage.removeItem('userrole');
+        sessionStorage.removeItem('userImage');
+        sessionStorage.removeItem('email');
+        sessionStorage.removeItem('token');
         navigate('/');
   };
   useEffect(() => {

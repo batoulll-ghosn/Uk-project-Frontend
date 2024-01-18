@@ -186,6 +186,7 @@
     width:25%;
     justify-content:center ;  
     color: white;
+    align-items: flex-start;
 }
 .leftSide-services-mini-one img{
    width: 100%;

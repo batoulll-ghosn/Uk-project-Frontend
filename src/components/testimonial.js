@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import './styles/testimonial.css';
-import { getAllReviews } from './actions/review';
+import { getAllReviewsSelected } from './actions/review';
 
 const TestimonialItem = ({ review }) => {
   return (
@@ -22,11 +22,11 @@ const TestimonialComponent = () => {
   console.log(reviews);
 
   useEffect(() => {
-    dispatch(getAllReviews());
+    dispatch(getAllReviewsSelected());
   }, [dispatch]);
 
   return (
-    <div className='main-in-testimlonial'>
+    <div id='testimonial' className='main-in-testimlonial'>
       <div className='left-in-testimlonial'>
         <h1 className='header-in-testimonial'>People Say About Us</h1>
         <div className='container'>

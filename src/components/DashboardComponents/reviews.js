@@ -1,6 +1,6 @@
 import React, { useEffect,useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { getAllReviews,deleteReview } from '../actions/review'; 
+import { getAllReviews,deleteReview ,UpdateToNOTSelected,UpdateToSelected} from '../actions/review'; 
 import { toast } from 'react-toastify';
 const Reviews = () => {
   const dispatch = useDispatch();
@@ -19,10 +19,18 @@ const Reviews = () => {
   const cancelDelete = () => {
     setShowDeletePopup(false);
   };
-
+  const handleCheckboxClick = (review) => {
+    if (review.selected !== 1) {
+        dispatch(UpdateToSelected(review.id));
+        toast.success('Updated Review For Selected!');
+    } else {
+      dispatch(UpdateToNOTSelected(review.id));
+        toast.success('Updated Review For Selected!');
+    }
+  };
   useEffect(() => {
     dispatch(getAllReviews());
-  }, [dispatch],confirmDelete);
+  }, [dispatch],confirmDelete,handleCheckboxClick);
 
   return (
     <>
@@ -34,6 +42,7 @@ const Reviews = () => {
               
               <th>Provider</th>
               <th>Description</th>
+              <th>Selected</th>
               <th>Action</th>
             </tr>
           </thead>
@@ -44,6 +53,15 @@ const Reviews = () => {
                 
                 <td>{review.nameOftestemoniated}</td>
                 <td>{review.description}</td>
+                <td>
+                  <input
+                    type="checkbox"
+                    checked={review.selected === 1}
+                    readOnly
+                    onClick={() => handleCheckboxClick(review)}
+                  />
+                  {review.selected === 1 ? 'Yes' : 'No'}
+                </td>
                 <button onClick={() => handleDelete(review.id)}><img className='bin-in-tables' src='./images/bin.svg'/></button>
               </tr>
             ))}

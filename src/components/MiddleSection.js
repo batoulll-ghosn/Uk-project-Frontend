@@ -109,7 +109,7 @@ const MiddleSection = () => {
     
     console.log(`Selected Conference: ${JSON.stringify(content)}`);
     
-    let userId = localStorage.getItem('userId');
+    let userId = sessionStorage.getItem('userId');
     if (userId && userId.length >= 1) {
         setShowPopup(true);
         console.log("Setting showPopup to true");
@@ -201,7 +201,7 @@ const closePopup = () => {
   };
 
   return (
-    <div className="middle-section">
+    <div  id="middle-section" className="middle-section">
       <div className="first-div-in-middle-section">
         <h1 className="header-in-middle-section">We provide Courses,<br/> Conferences & Workshops</h1>
         <p className="text-in-the-middle-section">

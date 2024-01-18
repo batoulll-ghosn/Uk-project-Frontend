@@ -19,7 +19,7 @@ const Header=()=> {
 
   const GoToLogin = (event) => {
     event.preventDefault();
-    const userId = localStorage.getItem('userId');
+    const userId = sessionStorage.getItem('userId');
     if (userId) {
       navigate('/dash');
     } else {
@@ -43,7 +43,7 @@ const Header=()=> {
               <li><Link to='/courses'>Courses</Link></li>
             </ul>
             <button className='join-us-button' onClick={GoToLogin}>
-              {localStorage.getItem('userId') ? 'Profile' : 'Join Us'}
+              {sessionStorage.getItem('userId') ? 'Profile' : 'Join Us'}
             </button>
           </div>
         </div>

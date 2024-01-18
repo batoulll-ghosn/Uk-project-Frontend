@@ -11,7 +11,7 @@ import TeacherComponent from "./UserDashboard/userDashboard";
 import Dashboard from "./DashboardComponents/sideBar";
 
 const Dash = () => {
-    const userRole = localStorage.getItem("userrole");
+    const userRole = sessionStorage.getItem("userrole");
     const navigate = useNavigate();
 
     return (

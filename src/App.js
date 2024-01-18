@@ -33,16 +33,15 @@ function App() {
   <Router>
     
    <Routes>
-        <Route exact  path="/" element={<><Header /> <Slice /><Servicess/><MiddleSection /><WorkshopSection/><Testimonial/><Faq/><Footer/></>}/>
+       <Route exact  path="/" element={<><Header /> <Slice /><Servicess/><MiddleSection /><WorkshopSection/><Testimonial/><Faq/><Footer/></>}/>
        <Route path="/Login" element={ <Login />}/>
-       <Route path="/batoul" element={ <Test />}/>
        <Route path="/SignUp" element={ <Register />}/>
        <Route path="/workshops" element={<Workshops/>} />
        <Route path="/conferences" element={<ConferencesPage/>} />
        <Route path="/courses" element={<CoursesPage/>} />
        <Route path="/dashboard" element={<AdminDashboard/>} />
        <Route path="/userdashboard" element={<UserDashboard/>} />
-       <Route path="/email" element={<EmailSender/>} />
+       <Route path="/.email" element={<EmailSender/>} />
        <Route path="/donate" element={<Donate/>} />
        <Route
             path="/dash/*"
