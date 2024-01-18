@@ -18,7 +18,7 @@ const TestimonialItem = ({ review }) => {
 const TestimonialComponent = () => {
   const [activePosition, setActivePosition] = useState(0);
   const dispatch = useDispatch();
-  const reviews = useSelector((state) => state.reviews.slice(0, 4));
+  const reviews = useSelector((state) => state.reviews);
   console.log(reviews);
 
   useEffect(() => {
