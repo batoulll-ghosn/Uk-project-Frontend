@@ -18,12 +18,12 @@ function Dashboard() {
     };
     const navigate = useNavigate();
     const handleLogout = () => {
-        sessionStorage.removeItem('userId');
+        
         sessionStorage.removeItem('fullName');
         sessionStorage.removeItem('userrole');
-        sessionStorage.removeItem('userImage');
+     
         sessionStorage.removeItem('email');
-        localStorage.removeItem('token');
+        
         navigate('/');
         toast.success('Logout was done successfully!')
     }
