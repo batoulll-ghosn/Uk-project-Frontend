@@ -68,8 +68,6 @@ const Login = () => {
     try {
       const response1 = await dispatch(loginGoogle(googleEmail));
       localStorage.setItem('token', response1.token);
-      const token=response1.token;
-      console.log(token)
       
       const response = await dispatch(getUsersByEmail(googleEmail));
       if (response.length === 1) {
@@ -81,11 +79,8 @@ const Login = () => {
   
         toast.success('Login Successful');
         navigate('/');
-        sessionStorage.setItem('userId', userId);
         sessionStorage.setItem('email', email);
         sessionStorage.setItem('fullName', fullName);
-        sessionStorage.setItem('userrole', Role);
-      
       } else {
         toast.error('Login Failed');
       }
@@ -103,19 +98,13 @@ const Login = () => {
   const handleSubmit = async (event) => {
     event.preventDefault();
       const response = await dispatch(login(email, password));
-      localStorage.setItem('token', response.token);
+      localStorage.setItem('token',response.token);
       const response1 = await dispatch(getUsersByEmail(email));
-      const userId = response1[0].id;
       const userEmail = response1[0].email;
       const fullName=response1[0].fullName;
-      const Role=response1[0].role;
-    
       if (response.success===true) {
-        sessionStorage.setItem('userId', userId);
         sessionStorage.setItem('email', userEmail);
         sessionStorage.setItem('fullName',fullName);
-        sessionStorage.setItem('userrole',Role);
-     
         toast.success(response.message);
         navigate('/dash');
       } else {

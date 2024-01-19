@@ -1,8 +1,10 @@
 import { useEffect, useState } from 'react';
 import { Route, Outlet, useNavigate } from 'react-router-dom';
-
+import {getUserID } from '../Data/getData';
 const isAuthenticated = () => {
-    return sessionStorage.getItem("userId") !== null;
+
+    const id = getUserID();
+    return    id !== null;
 };
 
 const ProtectedRoute = ({ children }) => {

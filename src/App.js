@@ -24,9 +24,12 @@ import ProtectedRoute from './components/protectedRoute';
 import MainDash from './components/mainDashboard';
 import Servicess from './components/ServicesSection';
 import OurTeam from './components/ourTeam';
+import {getUserID,getUserRole } from './Data/getData';
+
 function App() {
+  const id = getUserID();
+  const role = getUserRole();
   return (
- 
   <div className="App">
      <ToastContainer />
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins&display=swap" />
