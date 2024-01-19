@@ -9,6 +9,7 @@ import {engageToCourse} from './actions/course'
 import { getAllWorkshops,engageToWorkshop } from './actions/workshop';
 import { toast } from 'react-toastify';
 import { useNavigate } from 'react-router-dom';
+import {getUserID,getUserRole } from '../Data/getData';
 const MiddleSection = () => {
   const navigate = useNavigate();
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -22,8 +23,9 @@ const MiddleSection = () => {
   const dispatch = useDispatch();
   const [showPopup, setShowPopup] = useState(false);
   const [selectedConference, setSelectedConference] = useState(null);
-  const parseDate = (input) => {
 
+  const role = getUserRole();
+  const parseDate = (input) => {
    };
    const compareDates = (a, b) => parseDate(a.date) - parseDate(b.date);
  conferences.sort(compareDates);
@@ -109,8 +111,9 @@ const MiddleSection = () => {
     
     console.log(`Selected Conference: ${JSON.stringify(content)}`);
     
-    let userId = sessionStorage.getItem('userId');
-    if (userId && userId.length >= 1) {
+    const userId = getUserID();
+    console.log(userId);
+    if (userId >= 1) {
         setShowPopup(true);
         console.log("Setting showPopup to true");
     } else {
@@ -120,8 +123,8 @@ const MiddleSection = () => {
  
  const handleRegisterYes = async () => {
   if (selectedConference) {
-    const userId = localStorage.getItem('userId');
-    const userMail = localStorage.getItem('email');
+   
+    const userMail = sessionStorage.getItem('email');
     const emailData = {
       email: userMail,
       content: `Registration for ${selectedConference.name} - ${selectedConference.description}. Price: ${selectedConference.price}`,
@@ -129,26 +132,35 @@ const MiddleSection = () => {
     switch (selectedConference.abv) {
       case "con":
         try {
+          const userId = getUserID();
           dispatch(engageToConference(selectedConference.id, userId));
           toast.success("Successfully registered to the Conference!");
+          setShowPopup(false);
         } catch (error) {
           toast.error("Failed to register to the Conference!");
+          setShowPopup(false);
         }
         break;
       case "co":
         try {
+          const userId = getUserID();
           dispatch(engageToCourse(selectedConference.id, userId));
           toast.success("Successfully registered to the Course!");
+          setShowPopup(false);
         } catch (error) {
           toast.error("Failed to register to the Course!");
+          setShowPopup(false);
         }
         break;
         case "w":
         try {
+          const userId = getUserID();
           dispatch(engageToWorkshop(selectedConference.id, userId));
           toast.success("Successfully registered to the Workshop!");
+          setShowPopup(false);
         } catch (error) {
           toast.error("Failed to register to the Workshop!");
+          setShowPopup(false);
         }
         break;
       default:

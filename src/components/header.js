@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import './styles/navbar.css';
 import './styles/header.css';
 import { useNavigate } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -31,20 +32,30 @@ const Header=()=> {
     <div className={`header-main ${isMenuOpen ? 'menu-open' : ''}`}>
       <div className='first-row'>
         <img className='header-first-row-logo' src='./images/logo.png' alt='Logo' />
-        <div className='first-row-second-part'>
-          <button className='burger-menu' onClick={toggleMenu}>
-            {isMenuOpen ? <FontAwesomeIcon icon={faTimes} /> : <FontAwesomeIcon icon={faBars} />}
-          </button>
-          <div className={`navbar ${isMenuOpen ? 'show-menu' : ''}`}>
-            <ul className='ul-in-the-navbar'>
-              <li><Link to='/'>Home</Link></li>
-              <li><Link to='/workshops'>Workshops</Link></li>
-              <li><Link to='/conferences'>Conferences</Link></li>
-              <li><Link to='/courses'>Courses</Link></li>
+        <div className='first-row-second-part'>  
+        <div className='ninFullscreen'> <ul className='ul-in-the-navbarr'>
+              <li className='text-nnn'><Link to='/'>Home</Link></li>
+              <li className='text-nnn'><Link to='/workshops'>Workshops</Link></li>
+              <li className='text-nnn'><Link to='/conferences'>Conferences</Link></li>
+              <li className='text-nnn'><Link to='/courses'>Courses</Link></li>
             </ul>
             <button className='join-us-button' onClick={GoToLogin}>
               {sessionStorage.getItem('userId') ? 'Profile' : 'Join Us'}
-            </button>
+            </button></div>
+          <button className='burger-menu' onClick={toggleMenu}>
+            {isMenuOpen ? <FontAwesomeIcon icon={faTimes} /> : <FontAwesomeIcon icon={faBars} />}
+          </button>
+          <div  style={{ display: isMenuOpen ? 'flex' : 'none' }}>
+            <div className='n'> <ul className='ul-in-the-navbarr'>
+              <li className='text-nnn'><Link to='/'>Home</Link></li>
+              <li className='text-nnn'><Link to='/workshops'>Workshops</Link></li>
+              <li className='text-nnn'><Link to='/conferences'>Conferences</Link></li>
+              <li className='text-nnn'><Link to='/courses'>Courses</Link></li>
+            </ul>
+            <button className='join-us-button' onClick={GoToLogin}>
+              {sessionStorage.getItem('userId') ? 'Profile' : 'Join Us'}
+            </button></div>
+           
           </div>
         </div>
       </div>

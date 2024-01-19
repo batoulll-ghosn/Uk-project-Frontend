@@ -24,6 +24,7 @@
     align-items: center;
     cursor: pointer;
     width: 800px;
+    margin-top: -10px;
   }
 
   .question-text {
@@ -70,6 +71,7 @@
   
   .answer-text.active {
     display: block;
+    margin-top:0px;
   }
   @media (max-width: 766px) {
     .question-header {

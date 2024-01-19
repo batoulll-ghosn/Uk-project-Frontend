@@ -50,10 +50,10 @@ course include audio and video</p>
         </div>
       </div>
       <div className='second-div-in-footer'>
-        <ul className='the-ul-in-the-footer'><li><Link to='/'>Home</Link></li>
-        <li><Link to='/workshops'>Workshops</Link></li>
-        <li><Link to='/conferences'>Conferences</Link></li>
-        <li><Link to='/courses'>Courses</Link></li>
+        <ul className='the-ul-in-the-footer'>  <li className='text-nnnf'><Link to='/'>Home</Link></li>
+        <li className='text-nnnf'><Link to='/workshops'>Workshops</Link></li>
+        <li className='text-nnnf'><Link to='/conferences'>Conferences</Link></li>
+        <li className='text-nnnf'><Link to='/courses'>Courses</Link></li>
         
         </ul>
       </div>

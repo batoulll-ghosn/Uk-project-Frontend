@@ -9,9 +9,9 @@ import {
 import StudentComponent from "./UserDashboard/userDashboard";
 import TeacherComponent from "./UserDashboard/userDashboard";
 import Dashboard from "./DashboardComponents/sideBar";
-
+import {getUserRole } from '../Data/getData';
 const Dash = () => {
-    const userRole = sessionStorage.getItem("userrole");
+    const userRole = getUserRole();
     const navigate = useNavigate();
 
     return (

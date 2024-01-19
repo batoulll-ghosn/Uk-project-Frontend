@@ -19,7 +19,7 @@ export const getAllUsers = () => {
 export const login = (Email, password) => {
     return (dispatch) => {
       return axios
-        .post(`https://ukbackendproject.onrender.com/users/login`, { Email, password })
+        .post(`https://ukbackendproject.onrender.com/users/login`, { "Email":Email,"password":password })
         .then((response) => {
           dispatch({
             type: "login",
