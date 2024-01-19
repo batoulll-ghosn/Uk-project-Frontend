@@ -9,6 +9,8 @@ const conferenceReducer = (state = [], action) => {
         return action.payload;
       case "engageToConference":
         return action.payload;
+        case "engageToConferenceAsSpeaker":
+          return action.payload;
         case 'addConf':
           return action.payload;
           case "deleteConf":

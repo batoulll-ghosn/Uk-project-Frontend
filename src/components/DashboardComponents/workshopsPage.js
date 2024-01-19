@@ -1,11 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { getAllWorkshops, AddWorkshop,deleteWorkshop,updateWorkshop } from '../actions/workshop';
+import { getAllWorkshops, AddWorkshop,deleteWorkshop,updateWorkshop,engageToWorkshop } from '../actions/workshop';
+import { getAllUsersByRole } from '../actions/user';
 import { useSelector } from 'react-redux';
 import { useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { toast } from 'react-toastify'; 
 const Workshops = () => {
+  const users = useSelector((state) => state.users);
   const [showAddCoursePopup, setShowAddCoursePopup] = useState(false);
   const [searchTerm, setSearchTerm] = useState('');
   const [showDeletePopup, setShowDeletePopup] = useState(false);
@@ -13,6 +15,9 @@ const Workshops = () => {
   const [selectedId, setSelectedId] = useState('');
   const [selectedWorkshop, setSelectedWorkshop] = useState(null);
   const [showUpdateCoursePopup, setShowUpdateCoursePopup] = useState(false);
+  const [showAddTrainerPopup, setShowAddTrainerPopup] = useState(false);
+  const [selectedUser, setSelectedUser] = useState('');
+const [selectedCourseForTrainer, setSelectedCourseForTrainer] = useState('');
   const [newWorkshop, setNewWorkshop] = useState({
     workshopname: '',
     type: '',
@@ -61,6 +66,18 @@ const Workshops = () => {
     });
     setSearchTerm('');
   };
+  const handleAddTrainerCourse = async () => {
+    try {
+      await dispatch(engageToWorkshop(selectedCourseForTrainer, selectedUser));
+      toast.success('Adding a Trainer for the workshop was Succesfull');
+      setShowAddTrainerPopup(false);
+    } catch (error) {
+      toast.error('Failed in adding a trainer for the workshop!');
+    } 
+      setSelectedUser('');
+      setSelectedCourseForTrainer('');
+    
+  };
   const confirmDelete = () => {
     dispatch(deleteWorkshop(selectedId));
     toast.success("The Deletion was done successfully!")
@@ -72,6 +89,7 @@ const Workshops = () => {
   };
   useEffect(() => {
     dispatch(getAllWorkshops());
+    dispatch(getAllUsersByRole());
   }, [handleAddCourse,confirmDelete]);
 
   const filteredWorkshops = workshops.filter(
@@ -88,6 +106,8 @@ const Workshops = () => {
         <button onClick={() => setShowAddCoursePopup(true)} className='left-side-of-header-button'>
           + Add Workshop
         </button>
+        <button onClick={() => setShowAddTrainerPopup(true)} className="left-side-of-header-button">+ Add Trainer</button>
+       
         <input
           type='text'
           placeholder='Search...'
@@ -267,6 +287,55 @@ const Workshops = () => {
                 <div className="buttonsOfUpdatePopupp">
               <button onClick={handleUpdateWorkshop} className="left-side-of-header-button">Update Course</button>
               <button onClick={() => setShowUpdateCoursePopup(false)} className="left-side-of-header-button">Cancel</button></div>
+            </div>
+          </div>
+        </div>
+      )}
+      {showAddTrainerPopup && (
+        <div className="Confoverlay">
+          <div className="Conferencepopup">
+            <div className="Conferencepopup-contenttt">
+              <h2>Add Trainer Workshop</h2>
+              <div className="row-in-Add-Popuppp">
+                <select
+                  value={selectedUser}
+                  onChange={(e) => setSelectedUser(e.target.value)}
+                  className="input-of-popup"
+                >
+                  <option value="">Select Trainer</option>
+                  {users.map((user) => (
+                    <option key={user.id} value={user.id}>
+                      {user.email}
+                    </option>
+                  ))}
+                </select>
+                <select
+                  value={selectedCourseForTrainer}
+                  onChange={(e) => setSelectedCourseForTrainer(e.target.value)}
+                  className="input-of-popup"
+                >
+                  <option value="">Select Workshop</option>
+                  {workshops.map((workshop) => (
+                    <option key={workshop.id} value={workshop.id}>
+                      {workshop.workshopname}
+                    </option>
+                  ))}
+                </select>
+              </div>
+              <div className="buttonsOfUpdatePopupp">
+                <button
+                  className="left-side-of-header-button"
+                  onClick={handleAddTrainerCourse}
+                >
+                  Add Workshop Trainer
+                </button>
+                <button
+                  className="left-side-of-header-button"
+                  onClick={() => setShowAddTrainerPopup(false)}
+                >
+                  Cancel
+                </button>
+              </div>
             </div>
           </div>
         </div>

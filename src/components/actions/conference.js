@@ -50,6 +50,24 @@ export const engageToConference = (conference_id, user_id) => {
       });
   };
 }; 
+export const engageToConferenceAsSpeaker = (conference_id, user_id) => {
+  return (dispatch) => {
+    axios
+      .post('https://ukbackendproject.onrender.com/EngaConference/engageToConferenceAsSpeaker', {
+        confrence_id: conference_id, 
+        user_id: user_id,
+      })
+      .then((response) => {
+        dispatch({
+           type: 'engageToConferenceAsSpeaker', 
+       });
+      })
+      .catch((error) => {
+        console.error(error.toString()); 
+        console.log(error.toString())
+      });
+  };
+}; 
 export const AddConf = (formData) => {
   return (dispatch) => {
     axios

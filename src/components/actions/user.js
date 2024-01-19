@@ -16,6 +16,23 @@ export const getAllUsers = () => {
       });
   };
 };
+export const getAllUsersByRole = () => {
+  const role='trainer';
+  return (dispatch) => {
+    axios
+      .get(`https://ukbackendproject.onrender.com/users/getUsersByRole/${role}`)
+      .then((response) => {
+        const users = response.data.data;
+        dispatch({
+          type: "getAllByRole",
+          payload: users,
+        });
+      })
+      .catch((error) => {
+        console.error("Error fetching data:", error);
+      });
+  };
+};
 export const login = (Email, password) => {
     return (dispatch) => {
       return axios
