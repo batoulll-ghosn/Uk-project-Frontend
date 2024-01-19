@@ -1,17 +1,23 @@
 import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { getAllCourses, updateCoursee, AddCourse, deleteCourse } from '../actions/course';
+import { getAllCourses, updateCoursee, AddCourse, deleteCourse ,engageTeacherCourse} from '../actions/course';
+import { getAllUsersByRole } from '../actions/user';
 import { Link } from 'react-router-dom';
-
+import {toast} from 'react-toastify';
 const Courses = () => {
   const [searchTerm, setSearchTerm] = useState('');
   const [filteredCourses, setFilteredCourses] = useState([]);
   const courses = useSelector((state) => state.courses);
+  const users = useSelector((state) => state.users);
   const dispatch = useDispatch();
   const [showAddCoursePopup, setShowAddCoursePopup] = useState(false);
   const [showUpdateCoursePopup, setShowUpdateCoursePopup] = useState(false);
   const [showDeletePopup, setShowDeletePopup] = useState(false);
   const [selectedCourse, setSelectedCourse] = useState(null);
+  const [showAddTrainerPopup, setShowAddTrainerPopup] = useState(false);
+  const [selectedUser, setSelectedUser] = useState('');
+const [selectedCourseForTrainer, setSelectedCourseForTrainer] = useState('');
+
   const [selectedId, setSelectedId] = useState('');
   const [newCourse, setNewCourse] = useState({
     languageName: '',
@@ -96,13 +102,29 @@ const Courses = () => {
   const cancelDelete = () => {
     setShowDeletePopup(false);
   };
+  const handleAddTrainerCourse = async () => {
+    try {
+      await dispatch(engageTeacherCourse(selectedCourseForTrainer, selectedUser));
+      toast.success('Adding a Trainer for the course was Succesfull');
+      setShowAddTrainerPopup(false);
+    } catch (error) {
+      toast.error('Failed to engage trainer to course. Please try again.');
+    } 
+      setSelectedUser('');
+      setSelectedCourseForTrainer('');
+    
+  };
+  
   useEffect(() => {
     dispatch(getAllCourses());
+    dispatch(getAllUsersByRole());
   }, [dispatch,confirmDelete,handleUpdateCourse]);
   return (
     <>
       <div className='first-div-in-users'>
         <button onClick={() => setShowAddCoursePopup(true)} className="left-side-of-header-button">+ Add Course</button>
+        <button onClick={() => setShowAddTrainerPopup(true)} className="left-side-of-header-button">+ Add Trainer Course</button>
+       
         <input
           type="text"
           placeholder="Search..."
@@ -273,6 +295,56 @@ const Courses = () => {
           </div>
         </div>
       )}
+       {showAddTrainerPopup && (
+        <div className="Confoverlay">
+          <div className="Conferencepopup">
+            <div className="Conferencepopup-contenttt">
+              <h2>Add Trainer Course</h2>
+              <div className="row-in-Add-Popuppp">
+                <select
+                  value={selectedUser}
+                  onChange={(e) => setSelectedUser(e.target.value)}
+                  className="input-of-popup"
+                >
+                  <option value="">Select Trainer</option>
+                  {users.map((user) => (
+                    <option key={user.id} value={user.id}>
+                      {user.email}
+                    </option>
+                  ))}
+                </select>
+                <select
+                  value={selectedCourseForTrainer}
+                  onChange={(e) => setSelectedCourseForTrainer(e.target.value)}
+                  className="input-of-popup"
+                >
+                  <option value="">Select Course</option>
+                  {courses.map((course) => (
+                    <option key={course.id} value={course.id}>
+                      {course.languageName}{course.level}
+                    </option>
+                  ))}
+                </select>
+              </div>
+              <div className="buttonsOfUpdatePopupp">
+                <button
+                  className="left-side-of-header-button"
+                  onClick={handleAddTrainerCourse}
+                >
+                  Add Trainer Course
+                </button>
+                <button
+                  className="left-side-of-header-button"
+                  onClick={() => setShowAddTrainerPopup(false)}
+                >
+                  Cancel
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
+
     </>
   );
 };

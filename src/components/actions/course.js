@@ -50,6 +50,24 @@ export const engageToCourse = (course_id,user_id) => {
       });
   };
 }; 
+export const engageTeacherCourse = (course_id,user_id) => {
+  return (dispatch) => {
+    axios
+      .post('https://ukbackendproject.onrender.com/courses/EngageTeacherCourse', {
+        course_id: course_id, 
+        user_id: user_id,
+      })
+      .then((response) => {
+        dispatch({ 
+          type: 'engageToCourse', 
+       });
+      })
+      .catch((error) => {
+        console.error(error.toString()); 
+        console.log(error.toString())
+      });
+  };
+};
 export const getCourseByLanguageName = (languageName) => {
   return async (dispatch) => {
     try {

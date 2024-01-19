@@ -24,7 +24,7 @@ export const engageToWorkshop = (workshop_id, user_id) => {
         user_id: user_id,
       })
       .then((response) => {
-        dispatch({ type: 'engageToWorkshop', payload: response.data });
+        dispatch({ type: 'engageToWorkshop', });
       })
       .catch((error) => {
         console.error(error.toString()); 

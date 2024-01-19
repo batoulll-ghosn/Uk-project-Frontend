@@ -1,14 +1,18 @@
 
 import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { getAllConferences, engageToConference, AddConf,deleteCon, updateConf } from '../actions/conference';
+import { getAllConferences, engageToConference, AddConf,deleteCon, updateConf,engageToConferenceAsSpeaker } from '../actions/conference';
 import { toast } from 'react-toastify';
-
+import { getAllUsersByRole } from '../actions/user';
 const Conferences = () => {
   const conferences = useSelector((state) => state.conferences);
+  const users = useSelector((state) => state.users);
   const dispatch = useDispatch();
   const [showDeletePopup, setShowDeletePopup] = useState(false);
   const [showUpdatePopup, setShowUpdatePopup] = useState(false);
+  const [showAddTrainerPopup, setShowAddTrainerPopup] = useState(false);
+  const [selectedUser, setSelectedUser] = useState('');
+const [selectedCourseForTrainer, setSelectedCourseForTrainer] = useState('');
   const [selectedId, setSelectedId] = useState('');
   const parseDate = (input) => {
     const [day, month, year] = input.split('/');
@@ -115,13 +119,28 @@ const Conferences = () => {
       img: null,
     });
   };
+  const handleAddTrainerCourse = async () => {
+    try {
+      await dispatch(engageToConferenceAsSpeaker(selectedCourseForTrainer, selectedUser));
+      toast.success('Adding a Speaker For Conference was Succesfull');
+      setShowAddTrainerPopup(false);
+    } catch (error) {
+      toast.error('Failed to add a Speaker For Conference. Please try again.');
+    } 
+      setSelectedUser('');
+      setSelectedCourseForTrainer('');
+    
+  };
   useEffect(() => {
     dispatch(getAllConferences());
+    dispatch(getAllUsersByRole());
   }, [dispatch,handleAddConference,confirmDelete,handleUpdateConference]);
   return (
     <>
       <div className='first-div-in-users'>
         <button onClick={() => setShowAddConfPopup(true)} className="left-side-of-header-button"> + Add Conference</button>
+        <button onClick={() => setShowAddTrainerPopup(true)} className="left-side-of-header-button">+ Add Trainer Course</button>
+       
         <input
           type="text"
           placeholder="Search..."
@@ -359,6 +378,55 @@ const Conferences = () => {
                 </button>
                 <button className="left-side-of-header-button" onClick={cancelDelete}>
                   Close
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
+       {showAddTrainerPopup && (
+        <div className="Confoverlay">
+          <div className="Conferencepopup">
+            <div className="Conferencepopup-contenttt">
+              <h2>Add Trainer Course</h2>
+              <div className="row-in-Add-Popuppp">
+                <select
+                  value={selectedUser}
+                  onChange={(e) => setSelectedUser(e.target.value)}
+                  className="input-of-popup"
+                >
+                  <option value="">Select Trainer</option>
+                  {users.map((user) => (
+                    <option key={user.id} value={user.id}>
+                      {user.email}
+                    </option>
+                  ))}
+                </select>
+                <select
+                  value={selectedCourseForTrainer}
+                  onChange={(e) => setSelectedCourseForTrainer(e.target.value)}
+                  className="input-of-popup"
+                >
+                  <option value="">Select Conference</option>
+                  {conferences.map((conference) => (
+                    <option key={conference.id} value={conference.id}>
+                      {conference.conference_name}
+                    </option>
+                  ))}
+                </select>
+              </div>
+              <div className="buttonsOfUpdatePopupp">
+                <button
+                  className="left-side-of-header-button"
+                  onClick={handleAddTrainerCourse}
+                >
+                  Add Conference Speaker
+                </button>
+                <button
+                  className="left-side-of-header-button"
+                  onClick={() => setShowAddTrainerPopup(false)}
+                >
+                  Cancel
                 </button>
               </div>
             </div>
