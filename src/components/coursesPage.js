@@ -50,7 +50,7 @@ const handleRegisterYes = async () => {
     const userMail = sessionStorage.getItem('email');
     const emailData = {
       email: userMail,
-      content: `Registration for ${selectedConference.name} - ${selectedConference.description}. Price: ${selectedConference.price}`,
+      content: `Registration for ${selectedConference.course_name} - ${selectedConference.languageName}${selectedConference.level}. Price: ${selectedConference.price}`,
     };
     switch (selectedConference.abv) {
       case "co":
@@ -141,8 +141,8 @@ const handleRegisterYes = async () => {
        <div className="Conferencepopup">
          <div className="Conferencepopup-content">
          <div className="titleandclose">   <p>{`Do you want to Register?`}</p> <button  onClick={closePopup}>&#10005;</button></div>
-           <h2>{selectedConference.name}</h2>
-           <p>{selectedConference.description}</p>
+           <h2>{selectedConference.course_name}</h2>
+           <p>{selectedConference.level}</p>
            <p>{selectedConference.price}</p>
            
            <div className='buttonsOfConfPopup'><button className='left-side-of-header-button' onClick={handleRegisterYes}>Yes</button>

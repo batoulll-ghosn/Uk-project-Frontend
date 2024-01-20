@@ -443,4 +443,16 @@
     .Conferencepopup{
         position:relative;
     }
+
+    .text-in-workshop-popup{
+        font-size: 18px;
+    }
+    .buttonsOfConfPopup{
+        column-gap: 0px;
+    }
+    .left-side-of-header-button{
+        font-size: 15px;
+        width:150px;
+        height:33px;
+    }
 }

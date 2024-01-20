@@ -122,8 +122,7 @@ const Conferences = () => {
               <img className="img-in-thee-slide" src={conference.img} alt={conference.conference_name} />
               <div className="dddt">
                 <h2 className="header-in-thee-slide">{conference.conference_name}</h2>
-                <p className="text-in-thee-slide">{conference.type}</p>
-                <p className="textt-in-thee-slide">{conference.description}</p>
+                
                 <p className="textt-in-thee-slide">Date: {conference.date}</p>
                 <p className="header-in-thee-slide">{conference.price}</p>
               </div>
@@ -137,8 +136,7 @@ const Conferences = () => {
               <img className="img-in-thee-slide" src={conference.img} alt={conference.conference_name} />
               <div className="dddt">
                 <h2 className="header-in-thee-slide">{conference.conference_name}</h2>
-                <p className="text-in-thee-slide">{conference.type}</p>
-                <p className="textt-in-thee-slide">{conference.description}</p>
+             
                 <p className="textt-in-thee-slide">Date: {conference.date}</p>
                 <p className="header-in-thee-slide">{conference.price}</p>
               </div>
