@@ -215,8 +215,7 @@ const closePopup = () => {
             <div className="dddt">
               <h2 className="header-in-thee-slide">{contents[i].name}</h2>
               <p className="text-in-thee-slide">{contents[i].type}</p>
-              <p className="textt-in-thee-slide">{contents[i].description}</p>
-              <p className="header-in-thee-slide">{contents[i].price}</p>
+              
             </div>
           </div>
         </div>

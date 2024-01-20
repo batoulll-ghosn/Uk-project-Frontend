@@ -1,24 +1,22 @@
-import React, { useState ,useRef ,useEffect} from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import './styles/style.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Link } from 'react-router-dom';
 
-const TeamMember = ({ image, name, role, about, flip }) => {
+const TeamMember = ({ image, name, role, about,flip, videoSrc }) => {
   const [showPopup, setShowPopup] = useState(false);
   const videoRef = useRef(null);
+
   const togglePopup = () => {
     setShowPopup(!showPopup);
-    if (videoRef.current) {
-      if (!showPopup) {
-        videoRef.current.pause();
-      }
-    }
   };
+
   useEffect(() => {
     if (showPopup && videoRef.current) {
       videoRef.current.play();
     }
   }, [showPopup]);
+
   return (
     <div className="col-xs-12 col-sm-6 col-md-4">
       <div className="image-flip" onTouchStart={() => {}}>
@@ -32,7 +30,7 @@ const TeamMember = ({ image, name, role, about, flip }) => {
                 <h4 className="card-title">{name}</h4>
                 <h4 className="card-title">{role}</h4>
                 <p className="card-text">{about}</p>
-                <button onClick={togglePopup} className="btn btn-primary">
+                <button onClick={togglePopup} className="meetMeInTeam">
                   Meet ME
                 </button>
               </div>
@@ -41,12 +39,12 @@ const TeamMember = ({ image, name, role, about, flip }) => {
           <div className="backside">
             <div className="card">
               <div className="card-body text-center mt-4">
-                <h4 className="card-title">{name}</h4>
+               
                 <h4 className="card-title">{role}</h4>
-                <p className="card-text">{about}</p>
+              
                 <p className="card-text">{flip}</p>
-                <button onClick={togglePopup} className="btn btn-primary">
-                 Meet ME
+                <button onClick={togglePopup} className="meetMeInTeam">
+                  Meet ME
                 </button>
               </div>
             </div>
@@ -54,16 +52,22 @@ const TeamMember = ({ image, name, role, about, flip }) => {
         </div>
       </div>
       {showPopup && (
-        <div className="overlayTeam">
-          <div className="popup">
-            <button type="button" className="close" onClick={togglePopup} aria-label="Close">
-              <span aria-hidden="true" className='close-in-our-team'>&times;</span>
-            </button>
-        
-            <video className="video-in-our-team" ref={videoRef} height="auto" controls>
-              <source src="images/JosetteVideo.mp4" type="video/mp4" />
-              Your browser does not support the video tag.
-            </video>
+        <div  onClick={togglePopup}>
+           <div className="Confoverlay" role="document">
+          <div className="Conferencepopup">
+            <div className="Conferencepopup-content">
+                <h5 className="modal-title" id={`${name}ModalLabel`}>{name}'s Video</h5>
+                <button type="button" className="close" data-dismiss="modal" aria-label="Close" onClick={togglePopup}>
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div className="modal-body">
+                <video className="video-in-our-team" ref={videoRef} height="auto" controls>
+                  <source src={videoSrc} type="video/mp4" />
+                  Your browser does not support the video tag.
+                </video>
+              </div>
+            </div>
           </div>
         </div>
       )}
@@ -87,14 +91,25 @@ const Team = () => (
     <section id="team" className="pb-5">
       <div className="container">
         <div className="row">
-          
           <TeamMember
             image="images/jjj.jpeg"
             name="Josette"
             role="English Teacher"
             about="Level 1"
-            flip="Josette, an enthusiastic and dedicated English teacher with a passion for unlocking the beauty of language and literature."
+            videoSrc="images/JosetteVideo.mp4"
+            flip="John, an enthusiastic and dedicated English teacher with a passion for unlocking the beauty of language and literature."
+    
           />
+          <TeamMember
+            image="images/jjj.jpeg"
+            name="John"
+            role="Legal Translation Trainer"
+            about="Level 2"
+            videoSrc="images/JohnVideo.mp4"
+            flip="John, an enthusiastic and dedicated English teacher with a passion for unlocking the beauty of language and literature."
+    
+          />
+          
         </div>
       </div>
     </section>

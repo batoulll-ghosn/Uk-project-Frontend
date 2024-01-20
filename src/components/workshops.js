@@ -5,10 +5,12 @@ import { useNavigate, Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { getAllWorkshops, engageToWorkshop } from './actions/workshop';
 import { toast } from 'react-toastify';
-
+import {getUserID} from '../Data/getData';
+import "./styles/header.css";
 const Workshops = () => {
   const workshops = useSelector((state) => state.workshops);
   const [showPopup, setShowPopup] = useState(false);
+  const [selectedConference, setSelectedConference] = useState(null);
   const [selectedWorkshop, setSelectedWorkshop] = useState(null);
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -18,18 +20,30 @@ const Workshops = () => {
   }, [dispatch]);
 
   const handleRegisterYes = async () => {
-    try {
-      const userId = localStorage.getItem('userId');
-      await dispatch(engageToWorkshop(selectedWorkshop.id, userId));
-
-      toast.success('Successfully registered for the Workshop!');
-
-      const userMail = localStorage.getItem('email');
+    const userId = getUserID();
+    if (userId >= 1) {
+    if (selectedConference) {
+     
+      const userMail = sessionStorage.getItem('email');
       const emailData = {
         email: userMail,
-        content: `Registration for ${selectedWorkshop.workshopname}. Price: ${selectedWorkshop.price}`,
+        content: `Registration for ${selectedConference.workshopname} - launched at ${selectedConference.date}. Price: ${selectedConference.price}`,
       };
-
+      switch (selectedConference.abv) {
+        case "co":
+          try {
+            const userId = getUserID();
+            dispatch(engageToWorkshop(selectedConference.id, userId));
+            toast.success("Successfully registered to the Workshop!");
+            setShowPopup(false);
+          } catch (error) {
+            toast.error("Failed to register to the Workshop!");
+            setShowPopup(false);
+          }
+          break;
+        default:
+          break;
+      }
       const response = await fetch('https://ukbackendproject.onrender.com/email/registerToConf', {
         method: 'POST',
         headers: {
@@ -37,20 +51,35 @@ const Workshops = () => {
         },
         body: JSON.stringify(emailData),
       });
-
       if (!response.ok) {
         throw new Error('HTTP error ' + response.status);
       }
-    } catch (error) {
-      console.error(error);
-      toast.error('Failed to register for the Workshop!');
+    }} else {
+      navigate('/Login'); 
+      toast.error('You need to login first!')
+  }
+    setShowPopup(false);
+   };
+  const handleViewDetails = () => {
+    if (selectedConference) {
+      switch (selectedConference.abv) {
+        case "con":
+         navigate(`/conference/${selectedConference.id}`)
+          break;
+        case "co":
+          navigate(`/course/${selectedConference.id}`)
+          break;
+          case "w":
+            navigate(`/conference/${selectedConference.id}`)
+          break;
+        default:
+          break;
+      }
+      
     }
-
-    closePopup();
   };
-
   const openPopup = (workshop) => {
-    setSelectedWorkshop(workshop);
+    setSelectedConference(workshop);
     setShowPopup(true);
   };
 
@@ -85,26 +114,22 @@ const Workshops = () => {
           </div>
         </div>
       </div>
-      {showPopup && selectedWorkshop && (
-        <div className="Confoverlay">
-          <div className="Conferencepopup">
-            <div className="Conferencepopup-content">
-              <p>{`Do you want to Register?`}</p>
-              <h2>{selectedWorkshop.workshopname}</h2>
-              <p>{selectedWorkshop.description}</p>
-              <p>{selectedWorkshop.price}</p>
-              <div className="buttonsOfConfPopup">
-                <button className="left-side-of-header-button" onClick={handleRegisterYes}>
-                  Yes
-                </button>
-                <button className="left-side-of-header-button" onClick={closePopup}>
-                  Close
-                </button>
-              </div>
-            </div>
-          </div>
-        </div>
-      )}
+      {showPopup && selectedConference && (
+     <div className="Confoverlay">
+       <div className="Conferencepopup">
+         <div className="Conferencepopup-content">
+         <div className="titleandclose">   <p>{`Do you want to Register?`}</p> <button  onClick={closePopup}>&#10005;</button></div>
+           <h2 className='text-in-workshop-popup'>{selectedConference.workshopname}</h2>
+          
+           <p>{selectedConference.price}</p>
+           
+           <div className='buttonsOfConfPopup'><button className='left-side-of-header-button' onClick={handleRegisterYes}>Yes</button>
+           <button className='left-side-of-header-button' onClick={handleViewDetails} >View More Details</button></div>
+           
+         </div>
+       </div>
+     </div>
+   )}
     </>
   );
 };

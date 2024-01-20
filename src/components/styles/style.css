@@ -315,3 +315,12 @@
   width:fit-content;
   height: 400px;
 }
+.meetMeInTeam{
+  color: white;
+  background-color: #2e3480;
+  font-size: 20px;
+  border-radius: 30px;
+  width: 120px;
+  padding-top: 1%;
+  padding-bottom: 1%;
+}
