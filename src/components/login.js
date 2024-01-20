@@ -19,7 +19,7 @@ function Loginn({ onClick }) {
   };
 
   const onFailure = (error) => {
-    console.error('LOGIN failed!!', error);
+
     toast.error(`Login failed: ${error.message}`);
   };
   const customStyle = {
@@ -94,20 +94,29 @@ const Login = () => {
   };
 
   const handleSubmit = async (event) => {
-    event.preventDefault();
+    try {
+      event.preventDefault();
+    
       const response = await dispatch(login(email, password));
-      localStorage.setItem('token',response.token);
+      localStorage.setItem('token', response.token);
+    
       const response1 = await dispatch(getUsersByEmail(email));
       const userEmail = response1[0].email;
-      const fullName=response1[0].fullName;
-      if (response.success===true) {
+      const fullName = response1[0].fullName;
+    
+      if (response.success === true) {
         sessionStorage.setItem('email', userEmail);
-        sessionStorage.setItem('fullName',fullName);
+        sessionStorage.setItem('fullName', fullName);
         toast.success(response.message);
-        navigate('/dash');
+        navigate('/');
       } else {
         toast.error(response.message);
       }
+    } catch (error) {
+      toast.error("An error occurred. Please try again later.");
+      console.error("Error during login:", error);
+    }
+    
   };
   
 
