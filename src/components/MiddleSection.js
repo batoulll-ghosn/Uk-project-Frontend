@@ -109,7 +109,7 @@ const MiddleSection = () => {
           navigate(`/course/${selectedConference.id}`)
           break;
           case "w":
-            navigate(`/workshop/${selectedConference.id}`)
+            navigate(`/conference/${selectedConference.id}`)
           break;
         default:
           break;
