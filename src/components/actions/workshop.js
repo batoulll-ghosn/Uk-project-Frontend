@@ -16,6 +16,24 @@ export const getAllWorkshops = () => {
       });
   };
 };
+export const getWorkshopId = (id) => {
+  
+  return (dispatch) => {
+    axios
+      .get(`https://ukbackendproject.onrender.com/workshops/getWorkshopById/${id}`)
+      .then((response) => {
+    
+        const workshops = response.data.data[0];
+        dispatch({
+          type: "getWorkshopById",
+          payload: workshops,
+        });
+      })
+      .catch((error) => {
+        console.error("Error fetching data:", error);
+      });
+  };
+};
 export const engageToWorkshop = (workshop_id, user_id) => {
   return (dispatch) => {
     axios

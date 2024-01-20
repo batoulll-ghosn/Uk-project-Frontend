@@ -2,6 +2,8 @@ const workshopReducer = (state = [], action) => {
     switch (action.type) {
       case "getAllWorkshops":
         return action.payload;
+        case "getWorkshopById":
+        return action.payload;
         case "getEngagedWorkshops":
         return action.payload;
         case "engageToWorkshop":

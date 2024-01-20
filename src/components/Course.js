@@ -121,22 +121,22 @@ const Conferences = () => {
                 </div>
               </div>
          
-              <div className='the-main-div-in-footer'>
-      <div className='first-div-in-footer'>
-        <div className='div-of-logo-in-footer'><img src='../images/logo.jpeg'/></div>
-        <p className='the-text-in-footer'>include audio and video for each 
-course include audio and video</p>
-        <div className='the-follow-us-div'><h2 className='the-follow-us'>Follow Us</h2><div className='social-media'>
-  <a href='https://facebook.com' target='_blank' rel='noopener noreferrer'>
-    <img className="icons-in-footer" src='../images/fb.svg' alt='Facebook' />
-  </a>
-  <a href='https://linkedin.com' target='_blank' rel='noopener noreferrer'>
-    <img className="icons-in-footer" src='../images/linkedin.svg' alt='LinkedIn' />
-  </a>
-  <a href='https://web.telegram.org/' target='_blank' rel='noopener noreferrer'>
-    <img className="icons-in-footer" src='../images/telegram.svg' alt='Telegram' />
-  </a>
-</div>
+                    <div className='the-main-div-in-footer'>
+                  <div className='first-div-in-footer'>
+                <div className='div-of-logo-in-footer'><img src='../images/logo.jpeg'/></div>
+                <p className='the-text-in-footer'>include audio and video for each 
+                                  course include audio and video</p>
+              <div className='the-follow-us-div'><h2 className='the-follow-us'>Follow Us</h2><div className='social-media'>
+                    <a href='https://facebook.com' target='_blank' rel='noopener noreferrer'>
+                <img className="icons-in-footer" src='../images/fb.svg' alt='Facebook' />
+              </a>
+              <a href='https://linkedin.com' target='_blank' rel='noopener noreferrer'>
+                <img className="icons-in-footer" src='../images/linkedin.svg' alt='LinkedIn' />
+              </a>
+              <a href='https://web.telegram.org/' target='_blank' rel='noopener noreferrer'>
+                <img className="icons-in-footer" src='../images/telegram.svg' alt='Telegram' />
+              </a>
+            </div>
 
         </div>
       </div>
