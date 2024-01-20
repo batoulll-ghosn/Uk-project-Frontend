@@ -2,11 +2,13 @@ const courseReducer = (state = [], action) => {
     switch (action.type) {
       case "getAllCourses":
         return action.payload;
-        case "getAllCoursesWh":
+      case "getAllCoursesWh":
           return action.payload;
-          case "getConferenceById":
+      case "getCourseById":
+            return action.payload;
+      case "getConferenceById":
           return action.payload;
-        case "getSchedule":
+      case "getSchedule":
           return action.payload;
       case "getCourseByLanguageName":
         return action.payload;
