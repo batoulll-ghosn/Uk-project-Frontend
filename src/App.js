@@ -10,7 +10,7 @@ import Workshops from './components/workshops';
 import Testimonial from './components/testimonial'
 import Slice from './components/slice';
 import Login from './components/login';
-
+import ContactUs from './components/ContactUs';
 import Register from './components/Register';
 import Footer from './components/footer';
 import ConferencesPage from './components/conferencesPage';
@@ -52,6 +52,7 @@ function App() {
        <Route path="/course/:id" element={<Course/>}/>
        <Route path="/workshop/:id" element={<Workshop/>}/>
       <Route path="/theTeam" element={<OurTeam/>}/>
+      <Route path="/contactUs" element={<ContactUs/>}/>
        <Route
             path="/dash/*"
             element={
