@@ -58,13 +58,13 @@ const MiddleSection = () => {
       abv: course.abv
     })),
     conferences: upcomingConferences
-      ? upcomingConferences.map((conference) => ({
+      ? conferences.map((conference) => ({
           id: conference.id,
           name: conference.conference_name,
           img: conference.img,
           type: conference.type,
           price: conference.price,
-          description: conference.description,
+         
           abv: conference.abv
         }))
       : [],
@@ -75,7 +75,7 @@ const MiddleSection = () => {
           img: workshop.img,
           type: workshop.type,
           price: workshop.price,
-          description: workshop.description,
+       
           abv: workshop.abv
         }))
       : [],
@@ -92,19 +92,31 @@ const MiddleSection = () => {
       : [],
   };
 
-  const handleMouseEnter = (event) => {
-    if (event.nativeEvent.offsetX < window.innerWidth / 3) {
-      setCurrentIndex((prevIndex) => (prevIndex > 0 ? prevIndex - 1 : 0));
-    } else {
-      setCurrentIndex((prevIndex) => (prevIndex < 6 ? prevIndex + 1 : 0));
-    }
-  };
+  
 
   const handleButtonClick = (newCategory) => {
     setCurrentIndex(0);
     setCategory(newCategory);
   };
 
+  const handleViewDetails = () => {
+    if (selectedConference) {
+      switch (selectedConference.abv) {
+        case "con":
+         navigate(`/conference/${selectedConference.id}`)
+          break;
+        case "co":
+          navigate(`/course/${selectedConference.id}`)
+          break;
+          case "w":
+            navigate(`/workshop/${selectedConference.id}`)
+          break;
+        default:
+          break;
+      }
+      
+    }
+  };
   const handleSlideClick = (content) => {
     console.log("Slide clicked");
     setSelectedConference(content);
@@ -113,15 +125,13 @@ const MiddleSection = () => {
     
     const userId = getUserID();
     console.log(userId);
-    if (userId >= 1) {
-        setShowPopup(true);
-        console.log("Setting showPopup to true");
-    } else {
-        navigate('/Login'); 
-    }
+    setShowPopup(true);
+    
  };
  
  const handleRegisterYes = async () => {
+  const userId = getUserID();
+  if (userId >= 1) {
   if (selectedConference) {
    
     const userMail = sessionStorage.getItem('email');
@@ -176,7 +186,10 @@ const MiddleSection = () => {
     if (!response.ok) {
       throw new Error('HTTP error ' + response.status);
     }
-  }
+  }} else {
+    navigate('/Login'); 
+    toast.error('You need to login first!')
+}
   setShowPopup(false);
  };
  
@@ -234,7 +247,7 @@ const closePopup = () => {
        
       </div>
       <div id="the-div-in-middle-section">
-        <div id="slider" onMouseEnter={handleMouseEnter}>
+        <div id="slider" >
           {renderSlides()}
         </div>
       </div>
@@ -242,13 +255,13 @@ const closePopup = () => {
      <div className="Confoverlay">
        <div className="Conferencepopup">
          <div className="Conferencepopup-content">
-            <p>{`Do you want to Register?`}</p>
+         <div className="titleandclose">   <p>{`Do you want to Register?`}</p> <button  onClick={closePopup}>&#10005;</button></div>
            <h2>{selectedConference.name}</h2>
            <p>{selectedConference.description}</p>
            <p>{selectedConference.price}</p>
            
            <div className='buttonsOfConfPopup'><button className='left-side-of-header-button' onClick={handleRegisterYes}>Yes</button>
-           <button className='left-side-of-header-button' onClick={closePopup}>Close</button></div>
+           <button className='left-side-of-header-button' onClick={handleViewDetails} >View More Details</button></div>
            
          </div>
        </div>

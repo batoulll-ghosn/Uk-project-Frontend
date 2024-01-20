@@ -71,12 +71,10 @@ const Login = () => {
       
       const response = await dispatch(getUsersByEmail(googleEmail));
       if (response.length === 1) {
-        const userId = response[0].id;
         const email = response[0].email;
         const fullName = response[0].fullName;
-        const Role = response[0].role;
-       
-  
+        sessionStorage.setItem('email', email);
+        sessionStorage.setItem('fullName', fullName);
         toast.success('Login Successful');
         navigate('/');
         sessionStorage.setItem('email', email);

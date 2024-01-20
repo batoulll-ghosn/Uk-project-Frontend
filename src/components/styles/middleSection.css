@@ -8,7 +8,11 @@
     width: calc(100% / 3); 
     display: none; 
   }
-  
+  .titleandclose{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
   .slide.active {
     display: block; 
   }

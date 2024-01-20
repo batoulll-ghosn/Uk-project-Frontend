@@ -4,6 +4,8 @@ const courseReducer = (state = [], action) => {
         return action.payload;
         case "getAllCoursesWh":
           return action.payload;
+          case "getConferenceById":
+          return action.payload;
         case "getSchedule":
           return action.payload;
       case "getCourseByLanguageName":

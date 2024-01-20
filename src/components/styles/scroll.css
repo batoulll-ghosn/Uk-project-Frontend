@@ -69,7 +69,7 @@ line-height: 30px; /* 23.438% */
 }
 .the-Our-Conferencess{
     color: #FFF;
-font-family: Poppins;
+
 font-size: 58px;
 font-style: normal;
 font-weight: 600;
@@ -79,6 +79,65 @@ align-items: center;
 justify-content: center;
 padding: 15px;
 text-align: center;
+}
+
+  
+  .table-container {
+    max-width: 98%;
+    overflow-y: hidden; 
+    max-height: 400px; 
+  }
+  
+ .the-div-of-userss-schedule{
+    width:100%;
+    padding: 25px 0px 50px 8%;
+ } 
+
+ .the-users-table{
+    color: #2E3480;
+ }
+ .the-users-table td{
+    border:1px solid #7576C6;
+    width:fit-content
+ }
+
+ .the-header-in-conferences {
+    align-items: center;
+    background-color: #2e3480;
+    -webkit-column-gap: 20px;
+    column-gap: 20px;
+    display: flex;
+    flex-direction: row;
+    height: -webkit-fit-content;
+    height: -moz-fit-content;
+    height: fit-content;
+    padding: 20px;
+    width: 100%;
+}
+ .schedule-in-student-dashboard{
+    width: 100%;
+    display:flex;
+    justify-content: center;
+    align-items: center;
+ }
+.ConferencePage{
+    width:100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    column-gap: 0px;
+}
+.ConferencePageimg{
+ width:50%;
+ height: fit-content;
+}
+.ConferencePageimg img{
+    width:100%;
+    height: fit-content;
+   }
+.conference-side{
+    width: 50%;
+    padding: 2%;
 }
 /* Responsive for iPad*/
 @media screen and (min-width:767px) and (max-width:1123px){
@@ -140,6 +199,27 @@ text-align: center;
     .right-side-of-servicess p{
         width:80%;
     }
+    .the-Our-Conferencess{
+        font-size: 33px;
+        padding: 0px;
+    }
+    .the-div-of-userss-schedule {
+        overflow-x: auto; /* Horizontal scroll if needed */
+      }
+      
+      .table-container {
+        max-width: 100%;
+        overflow-y: auto; /* Vertical scroll if needed */
+        max-height: 400px; /* Set a max height for the container */
+      }
+      
+      .the-users-table {
+        width: 100%;
+        border-collapse: collapse;
+      }
+      
+      /* Add any other styles as needed */
+      
 }
 
 
@@ -203,9 +283,9 @@ text-align: center;
         transform: scaleX(1);
     }
     .the-Our-Conferencess {
-        font-size: 15px;
+        font-size: 25px;
         padding: 3px;
-        width:100px;
+     
     }
     .div-of-logo-in-footer img{
         width: 45px;
@@ -229,4 +309,22 @@ text-align: center;
     .the-Our-Conferences{
         font-size: 18px;
     }
+
+    .the-div-of-userss-schedule {
+        overflow-x: auto; 
+      }
+      
+      .table-container {
+        max-width: 98%;
+        overflow-y: auto; 
+        max-height: 400px; 
+      }
+      
+      .the-users-table {
+        width: 100%;
+        border-collapse: collapse;
+      }
+      
+   
+      
 }

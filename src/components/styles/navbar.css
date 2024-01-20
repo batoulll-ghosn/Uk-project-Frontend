@@ -53,6 +53,7 @@ body {
     font-style: normal;
     font-weight: 400;
     line-height: normal;
+ 
   }
   .join-us-button {
     color: #f0eef0;
@@ -182,6 +183,9 @@ body {
       .ninFullscreen{
         display: none;
       }
+      .header-first-row-logo{
+        margin: 0px;
+      }
   }
   @media (max-width: 766px) {
     .navbarr {
@@ -240,10 +244,14 @@ body {
         background: none;
         border: none;
         cursor: pointer;
-        margin-left:60%;
+        margin-left:-76%;
+        margin-bottom: 122%;
     }
     .ninFullscreen{
       display: none;
+    }
+    .header-first-row-logo{
+      margin: 0px;
     }
   }
   

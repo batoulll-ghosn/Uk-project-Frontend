@@ -20,8 +20,8 @@ const Header=()=> {
 
   const GoToLogin = (event) => {
     event.preventDefault();
-    const userId = sessionStorage.getItem('userId');
-    if (userId) {
+   const token=localStorage.getItem('token');
+    if (token) {
       navigate('/dash');
     } else {
       navigate('/login');
@@ -40,7 +40,7 @@ const Header=()=> {
               <li className='text-nnn'><Link to='/courses'>Courses</Link></li>
             </ul>
             <button className='join-us-button' onClick={GoToLogin}>
-              {sessionStorage.getItem('userId') ? 'Profile' : 'Join Us'}
+            {localStorage.getItem('token') ? 'Profile' : 'Join Us'}
             </button></div>
           <button className='burger-menu' onClick={toggleMenu}>
             {isMenuOpen ? <FontAwesomeIcon icon={faTimes} /> : <FontAwesomeIcon icon={faBars} />}
@@ -53,7 +53,7 @@ const Header=()=> {
               <li className='text-nnn'><Link to='/courses'>Courses</Link></li>
             </ul>
             <button className='join-us-button' onClick={GoToLogin}>
-              {sessionStorage.getItem('userId') ? 'Profile' : 'Join Us'}
+              {localStorage.getItem('token') ? 'Profile' : 'Join Us'}
             </button></div>
            
           </div>
