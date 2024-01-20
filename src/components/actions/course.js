@@ -68,16 +68,16 @@ export const engageTeacherCourse = (course_id,user_id) => {
       });
   };
 };
-export const getConferenceById = (id) => {
+export const getCourseById = (id) => {
 
   return (dispatch) => {
     axios
-      .get(`https://ukbackendproject.onrender.com/confrences/getConferenceById/${id}`)
+      .get(`https://ukbackendproject.onrender.com/courses/getCourseById/${id}`)
       .then((response) => {
         const course = response.data.data[0];
         console.log(course);
         dispatch({
-          type: "getConferenceById",
+          type: "getCourseById",
           payload: course,
         });
       })
