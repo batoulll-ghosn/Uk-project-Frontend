@@ -4,7 +4,8 @@ const conferenceReducer = (state = [], action) => {
         return action.payload;
         case "getAllConfWh":
           return action.payload;
-          
+          case "getConferenceById":
+            return action.payload;  
       case "getEngagedConferences":
         return action.payload;
       case "engageToConference":

@@ -361,6 +361,7 @@
     .right-side-of-servicess p{
         width:80%;
     }
+    
 }
 
 
@@ -433,15 +434,12 @@
     }
     .Conferencepopup-content{
         font-size: 16px;
-        padding: 3px;
+        padding: 13px;
     }
     .inputs-in-user-info input{
         margin-bottom: 0px;
     }
-    .Confoverlay{
-       right:41%;
-       bottom: 30%;
-    }
+    
     .Conferencepopup{
         position:relative;
     }

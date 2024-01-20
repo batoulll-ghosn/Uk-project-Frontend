@@ -68,6 +68,24 @@ export const engageTeacherCourse = (course_id,user_id) => {
       });
   };
 };
+export const getConferenceById = (id) => {
+
+  return (dispatch) => {
+    axios
+      .get(`https://ukbackendproject.onrender.com/confrences/getConferenceById/${id}`)
+      .then((response) => {
+        const course = response.data.data[0];
+        console.log(course);
+        dispatch({
+          type: "getConferenceById",
+          payload: course,
+        });
+      })
+      .catch((error) => {
+        console.error("Error fetching data:", error);
+      });
+  };
+};
 export const getCourseByLanguageName = (languageName) => {
   return async (dispatch) => {
     try {

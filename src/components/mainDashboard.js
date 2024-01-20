@@ -6,8 +6,8 @@ import {
     useNavigate,
 } from "react-router-dom";
 
-import StudentComponent from "./UserDashboard/userDashboard";
-import TeacherComponent from "./UserDashboard/userDashboard";
+import StudentComponent from "./userDashboard";
+import TeacherComponent from "./userDashboard";
 import Dashboard from "./DashboardComponents/sideBar";
 import {getUserRole } from '../Data/getData';
 const Dash = () => {

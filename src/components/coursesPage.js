@@ -3,7 +3,7 @@ import { useSelector } from 'react-redux';
 import { useDispatch } from 'react-redux';
 import { getAllCourses } from './actions/course';
 import { Link } from 'react-router-dom';
-
+import './styles/scroll.css';
 const Courses = () => {
   const courses = useSelector((state) => state.courses);
   const dispatch = useDispatch();

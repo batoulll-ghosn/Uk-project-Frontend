@@ -16,6 +16,24 @@ export const getAllConferences = () => {
       });
   };
 };
+export const getConferenceById = (id) => {
+
+   return (dispatch) => {
+     axios
+       .get(`https://ukbackendproject.onrender.com/confrences/getConferenceById/${id}`)
+       .then((response) => {
+         const conferences = response.data.data[0];
+        
+         dispatch({
+           type: "getConferenceById",
+           payload: conferences,
+         });
+       })
+       .catch((error) => {
+         console.error("Error fetching data:", error);
+       });
+   };
+ };
 export const getAllEnngagedConferences = (user_id) => {
   return (dispatch) => {
     axios

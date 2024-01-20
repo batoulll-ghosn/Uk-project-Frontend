@@ -3,8 +3,12 @@ import { useSelector, useDispatch } from 'react-redux';
 import { getAllConferences, engageToConference } from './actions/conference';
 import { Link } from 'react-router-dom';
 import { toast } from 'react-toastify';
-
+import {getUserID} from '../Data/getData';
+import { useNavigate } from 'react-router-dom';
+import './styles/header.css';
+import './styles/scroll.css';
 const Conferences = () => {
+  const navigate = useNavigate();
   const conferences = useSelector((state) => state.conferences);
   const dispatch = useDispatch();
 
@@ -37,20 +41,32 @@ const Conferences = () => {
     setSelectedConference(null);
   };
 
-  const handleRegisterYes = async (event) => {
-    event.preventDefault();
-    try {
-      const userId = localStorage.getItem('userId');
-      await dispatch(engageToConference(selectedConference.id, userId));
-
-      toast.success('Successfully registered for the Conference!');
-
-      const userMail = localStorage.getItem('email');
+  const handleRegisterYes = async () => {
+    const userId = getUserID();
+    if (userId >= 1) {
+    if (selectedConference) {
+     
+      const userMail = sessionStorage.getItem('email');
       const emailData = {
         email: userMail,
-        content: `Registration for ${selectedConference.conference_name} - ${selectedConference.description}. Price: ${selectedConference.price}`,
+        content: `Registration for ${selectedConference.name} - ${selectedConference.description}. Price: ${selectedConference.price}`,
       };
-
+      switch (selectedConference.abv) {
+        case "con":
+          try {
+            const userId = getUserID();
+            dispatch(engageToConference(selectedConference.id, userId));
+            toast.success("Successfully registered to the Conference!");
+            setShowPopup(false);
+          } catch (error) {
+            toast.error("Failed to register to the Conference!");
+            setShowPopup(false);
+          }
+          break;
+          
+        default:
+          break;
+      }
       const response = await fetch('https://ukbackendproject.onrender.com/email/registerToConf', {
         method: 'POST',
         headers: {
@@ -58,17 +74,33 @@ const Conferences = () => {
         },
         body: JSON.stringify(emailData),
       });
-
       if (!response.ok) {
         throw new Error('HTTP error ' + response.status);
       }
-    } catch (error) {
-      console.error(error);
-      toast.error('Failed to register for the Workshop!');
+    }} else {
+      navigate('/Login'); 
+      toast.error('You need to login first!')
+  }
+    setShowPopup(false);
+   };
+   const handleViewDetails = () => {
+    if (selectedConference) {
+      switch (selectedConference.abv) {
+        case "con":
+         navigate(`/conference/${selectedConference.id}`)
+          break;
+        case "co":
+          navigate(`/course/${selectedConference.id}`)
+          break;
+          case "w":
+            navigate(`/workshop/${selectedConference.id}`)
+          break;
+        default:
+          break;
+      }
+      
     }
-
-    closePopup();
-  };
+  };  
 
   return (
     <>
@@ -118,17 +150,16 @@ const Conferences = () => {
         <div className="Confoverlay">
           <div className="Conferencepopup">
             <div className="Conferencepopup-content">
-              <p>{`Do you want to Register?`}</p>
-              <h2>{selectedConference.conference_name}</h2>
+            <div className="titleandclose">   <p>{`Do you want to Register?`}</p> <button  onClick={closePopup}>&#10005;</button></div>
+            <h2>{selectedConference.conference_name}</h2>
               <p>{selectedConference.description}</p>
               <p>{selectedConference.price}</p>
               <div className="buttonsOfConfPopup">
                 <button className="left-side-of-header-button" onClick={handleRegisterYes}>
                   Yes
                 </button>
-                <button className="left-side-of-header-button" onClick={closePopup}>
-                  Close
-                </button>
+                <button className='left-side-of-header-button' onClick={handleViewDetails} >View More Details</button>
+           
               </div>
             </div>
           </div>

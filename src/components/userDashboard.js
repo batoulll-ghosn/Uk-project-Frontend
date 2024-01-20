@@ -1,22 +1,23 @@
 import React, { useState, useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { useDispatch } from 'react-redux';
-import { getAllEnngagedConferences } from '../actions/conference';
-import { getAllEngagedWorkshops } from '../actions/workshop';
-import { getScheduleOfCourse } from '../actions/schedule';
-import { AddReview } from '../actions/review';
+import { getAllEnngagedConferences } from './actions/conference';
+import { getAllEngagedWorkshops } from './actions/workshop';
+import { getScheduleOfCourse } from './actions/schedule';
+import { AddReview } from './actions/review';
 import { Link } from 'react-router-dom';
 import { toast } from 'react-toastify'; 
-import { updateUserInfo } from '../actions/user';
+import { updateUserInfo } from './actions/user';
 import { useNavigate } from 'react-router-dom';
-import '../styles/header.css';
+import './styles/header.css';
+import {getUserID} from '../Data/getData';
 const UserDashboard = () => {
   const navigate = useNavigate();
  const conferences = useSelector((state) => state.conferences);
  const workshops = useSelector((state) => state.workshops);
  const schedule= useSelector((state) => state.schedules);
  const dispatch = useDispatch();
- const userId = sessionStorage.getItem('userId');
+ const userId = getUserID();
  const [selectedConference, setSelectedConference] = useState(null);
  const [selectedWorkshop, setSelectedWorkshop] = useState(null);
  const emailFromLocalStorage = sessionStorage.getItem('email');
@@ -157,12 +158,9 @@ const handleCloseWorkshopPopup = () => {
     handleCloseProfilePopup();
    };
    const handleLogoutProfile = () => {
-        sessionStorage.removeItem('userId');
         sessionStorage.removeItem('fullName');
-        sessionStorage.removeItem('userrole');
-        sessionStorage.removeItem('userImage');
         sessionStorage.removeItem('email');
-        sessionStorage.removeItem('token');
+        localStorage.removeItem('token');
         navigate('/');
   };
   useEffect(() => {
@@ -201,9 +199,7 @@ const handleCloseWorkshopPopup = () => {
             <div className="dddt">
               <h2 className="header-in-thee-slide">{conference.conference_name}</h2>
               <p className="text-in-thee-slide">{conference.type}</p>
-              <p className="textt-in-thee-slide">{conference.description}</p>
               <p className="textt-in-thee-slide">Date: {conference.date}</p>
-              <p className="header-in-thee-slide">{conference.price}</p>
               <p className="registered-in-green">Registered</p>
             </div>
           </div>
@@ -282,35 +278,41 @@ const handleCloseWorkshopPopup = () => {
         </div>
       </div>
     </div>
+    
   </>
 )}
 
 {scheduleArray.length > 0 && (
-  <>
-    <h2 className="the-heading-in-conferences">Schedule Of Your Courses</h2>
-    <div className="the-div-of-userss">
-      <table className="the-users-table">
-        <thead>
-          <tr>
-            <th></th>
-            {hours.map((hour, index) => (
-              <th key={index}>{hour}</th>
-            ))}
-          </tr>
-        </thead>
-        <tbody>
-          {days.map((day, dayIndex) => (
-            <tr key={dayIndex}>
-              <td>{day}</td>
-              {hours.map((hour, hourIndex) => (
-                <td key={hourIndex}>{scheduleTable[dayIndex][hourIndex]}</td>
-              ))}
-            </tr>
-          ))}
-        </tbody>
-      </table>
-    </div>
-  </>
+ <>
+ <h2 className="the-heading-in-conferences">Schedule Of Your Courses</h2>
+ <div className='schedule-in-student-dashboard'>
+ <div className="the-div-of-userss-schedule">
+   <div className="table-container">
+     <table className="the-users-table">
+       <thead>
+         <tr>
+           <th></th>
+           {hours.map((hour, index) => (
+             <th key={index}>{hour}</th>
+           ))}
+         </tr>
+       </thead>
+       <tbody>
+         {days.map((day, dayIndex) => (
+           <tr key={dayIndex}>
+             <td>{day}</td>
+             {hours.map((hour, hourIndex) => (
+               <td key={hourIndex}>{scheduleTable[dayIndex][hourIndex]}</td>
+             ))}
+           </tr>
+         ))}
+       </tbody>
+     </table>
+   </div>
+ </div>
+ </div>
+</>
+
 )}
 {selectedWorkshop && (
         <div className="Confoverlay">

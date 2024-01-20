@@ -10,7 +10,7 @@ import Workshops from './components/workshops';
 import Testimonial from './components/testimonial'
 import Slice from './components/slice';
 import Login from './components/login';
-import Test from './components/test';
+
 import Register from './components/Register';
 import Footer from './components/footer';
 import ConferencesPage from './components/conferencesPage';
@@ -19,11 +19,14 @@ import WorkshopSection from './components/workshopSection';
 import Faq from './components/FAQ';
 import AdminDashboard from './components/DashboardComponents/sideBar';
 import EmailSender from './components/sendingEmail';
-import UserDashboard from './components/UserDashboard/userDashboard';
+import UserDashboard from './components/userDashboard';
 import ProtectedRoute from './components/protectedRoute';
 import MainDash from './components/mainDashboard';
 import Servicess from './components/ServicesSection';
 import OurTeam from './components/ourTeam';
+import Conference from './components/Conference';
+import Course from './components/Course';
+import Workshop from './components/Workshop';
 import {getUserID,getUserRole } from './Data/getData';
 
 function App() {
@@ -45,6 +48,9 @@ function App() {
        <Route path="/dashboard" element={<AdminDashboard/>} />
        <Route path="/userdashboard" element={<UserDashboard/>} />
        <Route path="/.email" element={<EmailSender/>} />
+       <Route path="/conference/:id" element={<Conference/>}/>
+       <Route path="/course/:id" element={<Course/>}/>
+       <Route path="/workshop/:id" element={<Workshop/>}/>
       <Route path="/theTeam" element={<OurTeam/>}/>
        <Route
             path="/dash/*"
