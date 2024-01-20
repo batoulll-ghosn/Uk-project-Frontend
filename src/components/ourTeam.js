@@ -94,14 +94,14 @@ const Team = () => (
           <TeamMember
             image="images/jjj.jpeg"
             name="Josette"
-            role="English Teacher"
+            role="English Langauge Teacher"
             about="Level 1"
             videoSrc="images/JosetteVideo.mp4"
             flip="Josette, an enthusiastic and dedicated English teacher with a passion for unlocking the beauty of language and literature."
     
           />
           <TeamMember
-            image="images/jjj.jpeg"
+            image="images/JohnPhoto.PNG"
             name="John"
             role="Legal Translation Trainer"
             about="Level 2"
@@ -109,7 +109,24 @@ const Team = () => (
             flip="John, an enthusiastic and dedicated translator with a passion for unlocking the beauty of language and literature."
     
           />
-          
+           <TeamMember
+            image="images/Jana.PNG"
+            name="Jana"
+            role="French Language Teacher"
+            about="Level 4"
+            videoSrc="images/JanaVideo.mp4"
+            flip="Jana, an enthusiastic and dedicated translator with a passion for unlocking the beauty of language and literature."
+    
+          />
+            <TeamMember
+            image="images/Sanchez.PNG"
+            name="Sanchez"
+            role="IELTS Trainer"
+            about=""
+            videoSrc="images/SanchezVideo.mp4"
+            flip="Sanchez, an enthusiastic and dedicated translator with a passion for unlocking the beauty of language and literature."
+    
+          />
         </div>
       </div>
     </section>
