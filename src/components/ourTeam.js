@@ -97,7 +97,7 @@ const Team = () => (
             role="English Teacher"
             about="Level 1"
             videoSrc="images/JosetteVideo.mp4"
-            flip="John, an enthusiastic and dedicated English teacher with a passion for unlocking the beauty of language and literature."
+            flip="Josette, an enthusiastic and dedicated English teacher with a passion for unlocking the beauty of language and literature."
     
           />
           <TeamMember
@@ -106,7 +106,7 @@ const Team = () => (
             role="Legal Translation Trainer"
             about="Level 2"
             videoSrc="images/JohnVideo.mp4"
-            flip="John, an enthusiastic and dedicated English teacher with a passion for unlocking the beauty of language and literature."
+            flip="John, an enthusiastic and dedicated translator with a passion for unlocking the beauty of language and literature."
     
           />
           

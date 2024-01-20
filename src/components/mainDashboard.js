@@ -7,7 +7,7 @@ import {
 } from "react-router-dom";
 
 import StudentComponent from "./userDashboard";
-import TeacherComponent from "./userDashboard";
+import TeacherComponent from "./teacherDashboard";
 import Dashboard from "./DashboardComponents/sideBar";
 import {getUserRole } from '../Data/getData';
 const Dash = () => {

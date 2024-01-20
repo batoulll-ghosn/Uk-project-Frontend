@@ -177,16 +177,12 @@ const handleCloseWorkshopPopup = () => {
          </Link>
        </div>
        <div>
-         <h2 className="the-Our-Conferencess">Welcome to your dashboard!</h2>
+         <h2 className="the-Our-Conferencess">Welcome Trainer dashboard!</h2>
        </div>
        <div className="person-icon" onClick={handlePersonIconClick}> <img src='./images/settings.svg'/></div>
      </div>
      <div>
       <div className='afterEdit'>
-
-      <button  onClick={handleAddReviewClick} className='left-side-of-header-buttonnnRRR'>
-          + Add Review
-        </button>
         <>{upcomingConferences.length > 0 && (
   <div className="main-container-conferencee">
   
@@ -380,30 +376,7 @@ const handleCloseWorkshopPopup = () => {
           </div>
         </div>
       )}
-       {isAddReviewPopupOpen && (
-        <div className="Confoverlay">
-          <div className="Conferencepopup">
-            <div className="Conferencepopup-content">
-              <span className="close" onClick={handleCloseAddReviewPopup}>
-                &times;
-              </span>
-              <h2>Add Review</h2>
-              <form onSubmit={handleAddReviewSubmit}>
-                <div className='inputs-in-user-info'>
-                  <label>Description: </label>
-                  <textarea
-                    name="description"
-                    value={reviewFormData.description}
-                    onChange={handleReviewInputChange}
-                  />
-                </div>
-                
-                <button type="submit" className='saveButton'>Submit</button>
-              </form>
-            </div>
-          </div>
-        </div>
-      )}
+       
   </>
  );
 };

@@ -65,7 +65,6 @@ const Login = () => {
   
     const passwordPattern = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}$/;
   
-    // Check for errors
     if (!passwordPattern.test(password)) {
       toast.error("Password must be strong");
       return;
@@ -85,16 +84,15 @@ const Login = () => {
     };
   
     try {
-      // Dispatch the action and await its completion
+      
       await dispatch(register(formData));
   
-      // Handle successful registration if needed
+ 
       toast.success("Registration successful!");
   
-      // Trigger OTP verification
+    
       onSignup();
-  
-      // Reset password error if any
+
       setPasswordError("");
     } catch (error) {
       if (error.response && error.response.data) {
