@@ -296,6 +296,9 @@
    .inputs-in-user-info{
     display: flex;
     flex-direction: row;
+    align-items: center;
+    margin-bottom: 1%;
+    column-gap: 10px;
    }
 
    .inputs-in-user-info textarea{
