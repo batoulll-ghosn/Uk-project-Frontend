@@ -1,0 +1,107 @@
+.contactUsMainSection{
+    display: flex;
+    width: 100%;
+}
+.header-in-contact-us{
+    font-family: poppins;
+    font-size: 70px;
+    color: #2E3480;
+    font-weight:900;
+   letter-spacing: 10px;
+    
+}.sideOfImg{
+    width: 40%;
+}
+.sideOfText{
+    background-color: #d4d5e3;
+    width: 60%;
+    padding: 4%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+.title-in-contact{
+    font-size: 30px;
+    color: #2E3480;
+    font-weight: 700;
+    letter-spacing: 5px;
+}
+.text-in-contact{
+    font-size: 25px;
+    font-weight:900;
+    padding: 0px;
+    margin-bottom: 0px;
+    letter-spacing: 3px;
+}
+.columnOfContent{
+   display: flex;
+   flex-direction: column;
+   row-gap: 30px;
+   margin-top: 40px;
+}
+.text-in-contact a{
+    color: black;
+}
+/*iPad */
+@media screen and (min-width:767px) and (max-width:1123px){
+    .sideOfImg{
+        display: none;
+    }
+    .sideOfText{
+        background-color: #d4d5e3;
+        width: 100%;
+        padding: 4%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    }
+    .title-in-contact{
+        font-size: 18px;
+        color: #2E3480;
+        font-weight: 700;
+        letter-spacing: 3px;
+    }
+    .text-in-contact{
+        font-size: 15px;
+        font-weight:900;
+        padding: 0px;
+        margin-bottom: 0px;
+        letter-spacing: 2px;
+    }
+    .header-in-contact-us{
+        font-size: 50px;
+        letter-spacing: 5px;
+      }
+}
+/* Responsive for Phone*/
+@media (max-width: 766px) {
+    .sideOfImg{
+        display: none;
+    }
+    .sideOfText{
+        background-color: #d4d5e3;
+        width: 100%;
+        padding: 4%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    }
+
+    .title-in-contact{
+        font-size: 18px;
+        color: #2E3480;
+        font-weight: 700;
+        letter-spacing: 3px;
+    }
+    .text-in-contact{
+        font-size: 15px;
+        font-weight:900;
+        padding: 0px;
+        margin-bottom: 0px;
+        letter-spacing: 2px;
+    }
+    .header-in-contact-us{
+      font-size: 50px;
+      letter-spacing: 5px;
+    }
+}

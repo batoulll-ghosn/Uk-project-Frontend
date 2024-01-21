@@ -64,7 +64,7 @@ line-height: 45px;
 .the-ul-in-the-footer{
     display: flex;
     flex-direction: column;
-    row-gap: 22px;
+    row-gap: 15px;
     color: #FFF;
     font-family: Poppins;
 font-size: 25px;
