@@ -9,6 +9,7 @@ import Conferences from './ConferencesPage';
 import Schedule from './Schedule';
 import Payment from './Payment';
 import Reviews from './reviews';
+import OverView from './overView';
 import { toast } from 'react-toastify';
 function Dashboard() {
     const [activePage, setActivePage] = useState('users');
@@ -59,6 +60,9 @@ function Dashboard() {
                     <div className="menu-item">
                         <a href="#reviews" onClick={() => handleMenuClick('reviews')}>Reviews</a>
                     </div>
+                    <div className="menu-item">
+                        <a href="#analytics" onClick={() => handleMenuClick('analytics')}>Analytics</a>
+                    </div>
                     
                 </div>
             </div>
@@ -77,6 +81,7 @@ function Dashboard() {
                 {activePage === 'schedule' && <Schedule />}
                 {activePage === 'payment' && <Payment />}
                 {activePage === 'reviews' && <Reviews/>}
+                {activePage === 'analytics' && <OverView/>}
             </div>
         </div>
     );

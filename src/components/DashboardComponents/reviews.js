@@ -62,8 +62,9 @@ const Reviews = () => {
                   />
                   {review.selected === 1 ? 'Yes' : 'No'}
                 </td>
+                <td>
                 <button onClick={() => handleDelete(review.id)}><img className='bin-in-tables' src='./images/bin.svg'/></button>
-              </tr>
+             </td> </tr>
             ))}
           </tbody>
         </table>
