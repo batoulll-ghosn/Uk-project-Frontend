@@ -127,6 +127,15 @@ const Team = () => (
             flip="Sanchez, an enthusiastic and dedicated translator with a passion for unlocking the beauty of language and literature."
     
           />
+           <TeamMember
+            image="images/Gehan.PNG"
+            name="Gehan"
+            role="CAT Tools Trainer"
+            about=""
+            videoSrc="images/GehanVideo.mp4"
+            flip="Gehan, an enthusiastic and dedicated translator with a passion for unlocking the beauty of language and literature."
+    
+          />
         </div>
       </div>
     </section>
