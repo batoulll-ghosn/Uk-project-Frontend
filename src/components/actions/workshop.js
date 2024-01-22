@@ -56,6 +56,7 @@ export const getAllEngagedWorkshops = (user_id) => {
       .get(`https://ukbackendproject.onrender.com/workshops/getEngagedWorkshops/${user_id}`)
       .then((response) => {
         const workshops = response.data.data;
+        console.log(workshops)
         dispatch({
           type: "getEngagedWorkshops",
         });

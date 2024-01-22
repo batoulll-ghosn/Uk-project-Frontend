@@ -2,9 +2,8 @@ import React, { useState, useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { useDispatch } from 'react-redux';
 import { getAllEnngagedConferences } from './actions/conference';
-import { getAllEngagedWorkshops } from './actions/workshop';
 import { getScheduleOfCourse } from './actions/schedule';
-import { AddReview } from './actions/review';
+import axios from 'axios';
 import { Link } from 'react-router-dom';
 import { toast } from 'react-toastify'; 
 import { updateUserInfo } from './actions/user';
@@ -14,8 +13,8 @@ import {getUserID} from '../Data/getData';
 const UserDashboard = () => {
   const navigate = useNavigate();
  const conferences = useSelector((state) => state.conferences);
- const workshops = useSelector((state) => state.workshops);
- const schedule= useSelector((state) => state.schedules);
+ const [workshops,setWorkshops]=useState([])
+  const schedule= useSelector((state) => state.schedules);
  const dispatch = useDispatch();
  const userId = getUserID();
  const [selectedConference, setSelectedConference] = useState(null);
@@ -51,12 +50,7 @@ const UserDashboard = () => {
     });
   };
 
-  const handleAddReviewSubmit = (e) => {
-    e.preventDefault();
-    dispatch(AddReview(userId, reviewFormData));
-    toast.success('Thank you for Review Submission!!')
-    handleCloseAddReviewPopup();
-  };
+
 
  const handleWorkshopClick = (workshop) => {
   setSelectedWorkshop(workshop);
@@ -163,11 +157,22 @@ const handleCloseWorkshopPopup = () => {
         localStorage.removeItem('token');
         navigate('/');
   };
+  const fetchWorkshops = async () => {
+    try {
+      const response = await axios.get(`https://ukbackendproject.onrender.com/workshops/getEngagedWorkshops/${userId}`);
+   
+      setWorkshops(response.data.data);
+    } catch (error) {
+      console.error('Error fetching workshops:', error);
+      toast.error('Error fetching workshops');
+    }
+  };
   useEffect(() => {
     dispatch(getScheduleOfCourse(userId));
     dispatch(getAllEnngagedConferences(userId));
-    dispatch(getAllEngagedWorkshops(userId));
+    fetchWorkshops();
    }, [userId, dispatch]);
+   console.log(workshops)
  return (
   <>
    <div className="the-header-in-conferences">
@@ -177,31 +182,39 @@ const handleCloseWorkshopPopup = () => {
          </Link>
        </div>
        <div>
-         <h2 className="the-Our-Conferencess">Welcome Trainer dashboard!</h2>
+       <h2 className="the-Our-Conferencess">Welcome Teacher {nameFromLocalStorage}!</h2>
+
        </div>
        <div className="person-icon" onClick={handlePersonIconClick}> <img src='./images/settings.svg'/></div>
      </div>
      <div>
       <div className='afterEdit'>
         <>{upcomingConferences.length > 0 && (
-  <div className="main-container-conferencee">
   
     <div>
-      <h2 className="the-heading-in-conferences">Upcoming Conferences</h2>
-      <div className="conferences-containerr">
+      <h2  className="the-heading-in-conferences">Upcoming Conferences you're a speaker in :</h2>
+      <div className="co-teacher-view">
         {upcomingConferences.map((conference, index) => (
-          <div key={index} className="conference-cardd" onClick={() => handleConferenceClick(conference, false)}>
-            <img className="img-in-thee-slide" src={conference.img} alt={conference.conference_name} />
+          <div key={index} className="teacher-view" onClick={() => handleConferenceClick(conference, false)}>
+            <img className="teacher-view-img" src={conference.img} alt={conference.conference_name} />
             <div className="dddt">
               <h2 className="header-in-thee-slide">{conference.conference_name}</h2>
               <p className="text-in-thee-slide">{conference.type}</p>
-              <p className="textt-in-thee-slide">Date: {conference.date}</p>
-              <p className="registered-in-green">Registered</p>
+              <p>Type: {conference.type}</p>
+           <p>Description: {conference.description}</p>
+           <p>Date: {conference.date}</p>
+           <p>Price: {conference.price}</p>
+           {conference.isPast ? (
+             <p>Resources: {conference.resources}</p>
+           ) : (
+             <p>Zoom Link: {conference.zoom_link}</p>
+           )}
+              
             </div>
           </div>
         ))}
       </div>
-    </div>
+    
   </div>
 )}
 </>
@@ -243,9 +256,9 @@ const handleCloseWorkshopPopup = () => {
            <p>Date: {selectedConference.date}</p>
            <p>Price: {selectedConference.price}</p>
            {selectedConference.isPast ? (
-             <p>Resources: {selectedConference.resources}</p>
+             <p>Resources:<a className="not-blue-in-teacher" href={selectedConference.resources}>{selectedConference.resources}</a> </p>
            ) : (
-             <p>Zoom Link: {selectedConference.zoom_link}</p>
+             <p>Zoom Link:<a className="not-blue-in-teacher" href={selectedConference.zoom_link}>{selectedConference.zoom_link}</a> </p>
            )}</div>
            
          </div>
@@ -253,27 +266,28 @@ const handleCloseWorkshopPopup = () => {
      )}
      {upcomingWorkshops.length > 0 && (
   <>
-    <h2 className="the-heading-in-conferences">Workshops</h2>
-    <div className="conferences-container">
-      <div className="main-container-conference">
-        <div className="conferences-container">
+    <h2 className="the-heading-in-conferences">Workshops You're Giving:</h2>
+    <div className="co-teacher-view">
           {upcomingWorkshops.map((workshop, index) => (
             <div
               key={index}
-              className="conference-cardd"
+              className="teacher-view"
               onClick={() => handleWorkshopClick(workshop)}
             >
-              <img className="img-in-thee-slide" src={workshop.img} alt={workshop.workshopname} />
+              <img className="teacher-view-img"  src={workshop.img} alt={workshop.workshopname} />
               <div className="dddt">
                 <h2 className="header-in-thee-slidee">{workshop.workshopname}</h2>
-                <p className="text-in-thee-slidee">Date: {workshop.date}</p>
-                <p className="registered-in-green">Registered</p>
+                <p>Type: {workshop.type}</p>
+                <p>Date: {workshop.date}</p>
+                <p>Zoom Link:<a className="not-blue-in-teacher" href={workshop.zoom_link}> {workshop.zoom_link}</a> </p>
+                <p>Price: {workshop.price}</p>
+       
+
               </div>
             </div>
           ))}
         </div>
-      </div>
-    </div>
+      
     
   </>
 )}
@@ -281,6 +295,7 @@ const handleCloseWorkshopPopup = () => {
 {scheduleArray.length > 0 && (
  <>
  <h2 className="the-heading-in-conferences">Schedule Of Your Courses</h2>
+ <p style={{paddingLeft:"1%"}}>  Remember to Enter your session with passion and a giant smile!</p>
  <div className='schedule-in-student-dashboard'>
  <div className="the-div-of-userss-schedule">
    <div className="table-container">
