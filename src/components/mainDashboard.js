@@ -21,9 +21,9 @@ const Dash = () => {
                 element={
                     userRole === "admin" ? (
                         <Dashboard />
-                    ) : userRole === "trainer" ? (
+                    ) : userRole == "trainer" ? (
                         <TeacherComponent />
-                    ) : userRole === "student" ? (
+                    ) : userRole == "student" ? (
                         <StudentComponent />
                     ) : (
                         <navigate to="/login" />

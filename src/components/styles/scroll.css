@@ -139,6 +139,35 @@ text-align: center;
     width: 50%;
     padding: 2%;
 }
+.co-teacher-view{
+    display: flex;
+    align-items:center;
+    justify-content: center;
+    width: 100%;
+    
+}
+.teacher-view{
+    width:70%;
+    display: flex;
+    flex-direction: row-reverse;
+    margin: 2%;
+    border-radius: 30px;
+    background-color: #A1A4CD;
+    padding: 3%;
+    align-items: center;
+    justify-content: center;
+}
+.teacher-view-img{
+    border-bottom-right-radius: 30px;
+    border-top-right-radius: 30px;
+    width:60%;
+}
+.the-users-table tr{
+ text-align: center;
+}
+.not-blue-in-teacher{
+    color: black;
+}
 /* Responsive for iPad*/
 @media screen and (min-width:767px) and (max-width:1123px){
     .header-back{
@@ -218,8 +247,39 @@ text-align: center;
         border-collapse: collapse;
       }
       
-      /* Add any other styles as needed */
       
+      .ConferencePage{
+        flex-direction: column;
+      }
+      .ConferencePageimg{
+        width: 100%;
+       }
+       .conference-side{
+        width: 100%;
+       }
+       .co-teacher-view{
+        display: flex;
+        align-items:center;
+        justify-content: center;
+        width: 100%;
+        
+    }
+    .teacher-view{
+        width:70%;
+        display: flex;
+        flex-direction: column-reverse;
+        margin: 2%;
+        border-radius: 30px;
+        background-color: #A1A4CD;
+        padding: 3%;
+        align-items: center;
+        justify-content: center;
+    }
+    .teacher-view-img{
+        border-top-left-radius: 30px;
+        border-top-right-radius: 30px;
+        width:98%;
+    }
 }
 
 
@@ -324,7 +384,37 @@ text-align: center;
         width: 100%;
         border-collapse: collapse;
       }
-      
-   
-      
+      .ConferencePage{
+        flex-direction: column;
+      }
+   .ConferencePageimg{
+    width: 100%;
+   }
+   .conference-side{
+    width: 100%;
+   }
+   .co-teacher-view{
+    display: flex;
+    align-items:center;
+    justify-content: center;
+    width: 100%;
+    
+}
+.teacher-view{
+    width:70%;
+    display: flex;
+    flex-direction: column-reverse;
+    margin: 2%;
+    border-radius: 30px;
+    background-color: #A1A4CD;
+    padding: 3%;
+    align-items: center;
+    justify-content: center;
+}
+.teacher-view-img{
+    border-top-left-radius: 30px;
+    border-top-right-radius: 30px;
+    border-bottom-left-radius: 30px;
+    width:98%;
+}
 }

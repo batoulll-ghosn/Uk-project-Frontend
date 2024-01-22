@@ -180,7 +180,7 @@ const Login = () => {
         <div className="mb-4 text-left">
           <Link to="/SignUp">
             <a href="" id="forget_password" className="underline text-lg hover:text-#2E3480 text-shadow">
-              forget password?
+            
             </a>
           </Link>
         </div>

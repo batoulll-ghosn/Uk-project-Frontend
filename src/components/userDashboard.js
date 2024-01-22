@@ -2,22 +2,24 @@ import React, { useState, useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { useDispatch } from 'react-redux';
 import { getAllEnngagedConferences } from './actions/conference';
-import { getAllEngagedWorkshops } from './actions/workshop';
 import { getScheduleOfCourse } from './actions/schedule';
 import { AddReview } from './actions/review';
 import { Link } from 'react-router-dom';
 import { toast } from 'react-toastify'; 
 import { updateUserInfo } from './actions/user';
 import { useNavigate } from 'react-router-dom';
+import axios from 'axios';
 import './styles/header.css';
 import {getUserID} from '../Data/getData';
 const UserDashboard = () => {
   const navigate = useNavigate();
  const conferences = useSelector((state) => state.conferences);
- const workshops = useSelector((state) => state.workshops);
+ 
+ console.log(workshops);
  const schedule= useSelector((state) => state.schedules);
  const dispatch = useDispatch();
  const userId = getUserID();
+ const [workshops,setWorkshops]=useState([])
  const [selectedConference, setSelectedConference] = useState(null);
  const [selectedWorkshop, setSelectedWorkshop] = useState(null);
  const emailFromLocalStorage = sessionStorage.getItem('email');
@@ -76,7 +78,7 @@ const handleCloseWorkshopPopup = () => {
  const now = new Date();
  const pastConferences = conferences.filter((conference) => parseDate(conference.date) < now);
  const upcomingConferences = conferences.filter((conference) => parseDate(conference.date) >= now);
- const upcomingWorkshops = workshops.filter((workshop) => parseDate(workshop.date) >= now);
+ 
 
  const handleConferenceClick = (conference, isPast) => {
   setSelectedConference({...conference, isPast});
@@ -163,10 +165,21 @@ const handleCloseWorkshopPopup = () => {
         localStorage.removeItem('token');
         navigate('/');
   };
+  const fetchWorkshops = async () => {
+    try {
+      const response = await axios.get(`https://ukbackendproject.onrender.com/workshops/getEngagedWorkshops/${userId}`);
+   
+      setWorkshops(response.data.data);
+    } catch (error) {
+      console.error('Error fetching workshops:', error);
+      toast.error('Error fetching workshops');
+    }
+  };
+  const upcomingWorkshops = workshops.filter((workshop) => parseDate(workshop.date) >= now);
   useEffect(() => {
     dispatch(getScheduleOfCourse(userId));
     dispatch(getAllEnngagedConferences(userId));
-    dispatch(getAllEngagedWorkshops(userId));
+    fetchWorkshops();
    }, [userId, dispatch]);
  return (
   <>
