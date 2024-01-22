@@ -125,9 +125,7 @@ const handleRegisterYes = async () => {
                     <h2 className="header-in-thee-slide">{course.type} Course</h2>
                     <p className="text-in-thee-slide">{course.languageName}</p>
                     <p className="text-in-thee-slide">{course.level}</p>
-                    <p className="textt-in-thee-slide">
-                      Find the best online and On-site Courses & Conferences. Find the best online.
-                    </p>
+                   
                     <p className="header-in-thee-slide">{course.price}</p>
                   </div>
                 </div>
