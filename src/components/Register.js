@@ -74,8 +74,6 @@ const Login = () => {
       toast.error("Passwords don't match");
       return;
     }
-  
-    // If no errors, proceed with signup
     const formData = {
       fullName: fullName,
       email: email,
@@ -85,12 +83,7 @@ const Login = () => {
   
     try {
       
-      await dispatch(register(formData));
-  
- 
-      
-  
-    
+      await dispatch(register(formData));  
       onSignup();
      toast.success("Registration successful!");
       setPasswordError("");
@@ -135,7 +128,7 @@ const Login = () => {
         console.log(res);
         setUser(res.user);
         setLoading(false);
-        toast.success("You logged in successfully!");
+        toast.success("You have Registered successfully!");
         navigate("/");
       })
       .catch((err) => {
@@ -204,7 +197,17 @@ const Login = () => {
           <h2 className='the-welcome-sentencee'> Let's Get  Started</h2>
         <p className="text-after-welcomee">
         Looking beyond to see you a part of our community 
-        </p>
+        </p>  <div className="mb-8">
+              <input
+                type="text"
+                id="fullname"
+                name="fullname"
+                value={fullName}
+                className="rounded-full p-2 py-2 border border-black bg-gray-100 italic text-xl w-80"
+                placeholder="Full Name"
+                onChange={(e) => setFullName(e.target.value)}
+              />
+            </div>
             <div className="mb-8">
               <input
                 type="email"
@@ -298,17 +301,7 @@ const Login = () => {
                   borderColor:"black"
                 }} />
 </div>
-            <div className="mb-8">
-              <input
-                type="text"
-                id="fullname"
-                name="fullname"
-                value={fullName}
-                className="rounded-full p-2 py-2 border border-black bg-gray-100 italic text-xl w-80"
-                placeholder="Full Name"
-                onChange={(e) => setFullName(e.target.value)}
-              />
-            </div>
+          
             
             <button className='loginButton' type="submit" >Register
             </button>
