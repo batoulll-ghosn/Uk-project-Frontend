@@ -23,7 +23,7 @@ const Faq = () => {
               {question.question}
             </p>
             <p className={`arrow-icon ${activeIndex === index ? "active" : ""}`}>
-              ▼
+             <p>▼</p> 
             </p>
           </div>
           <p className={`answer-text ${activeIndex === index ? "active" : ""}`}>

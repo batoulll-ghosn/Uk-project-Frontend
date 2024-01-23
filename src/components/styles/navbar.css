@@ -117,6 +117,9 @@ body {
   .burger-menu.close-icon::before {
     content: '&times;';
   }
+  .text-nnnf a:hover{
+    color: white;
+    }
   /* Responsive Styles */
   @media screen and (min-width:767px) and (max-width:1123px){
     .navbarr {
@@ -180,6 +183,9 @@ body {
      .text-nnnf a{
       color: white;
       }
+      .text-nnnf a:hover{
+        color: white;
+        }
       .ninFullscreen{
         display: none;
       }

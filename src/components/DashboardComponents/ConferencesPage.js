@@ -139,7 +139,7 @@ const [selectedCourseForTrainer, setSelectedCourseForTrainer] = useState('');
     <>
       <div className='first-div-in-users'>
         <button onClick={() => setShowAddConfPopup(true)} className="left-side-of-header-button"> + Add Conference</button>
-        <button onClick={() => setShowAddTrainerPopup(true)} className="left-side-of-header-button">+ Add Trainer Course</button>
+        <button onClick={() => setShowAddTrainerPopup(true)} className="left-side-of-header-button">+ Add Trainer Conf</button>
        
         <input
           type="text"

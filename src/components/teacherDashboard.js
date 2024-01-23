@@ -156,6 +156,7 @@ const handleCloseWorkshopPopup = () => {
         sessionStorage.removeItem('email');
         localStorage.removeItem('token');
         navigate('/');
+        toast.success('You Logged Out SuccessFully!')
   };
   const fetchWorkshops = async () => {
     try {
@@ -163,8 +164,7 @@ const handleCloseWorkshopPopup = () => {
    
       setWorkshops(response.data.data);
     } catch (error) {
-      console.error('Error fetching workshops:', error);
-      toast.error('Error fetching workshops');
+     
     }
   };
   useEffect(() => {
@@ -172,7 +172,7 @@ const handleCloseWorkshopPopup = () => {
     dispatch(getAllEnngagedConferences(userId));
     fetchWorkshops();
    }, [userId, dispatch]);
-   console.log(workshops)
+  
  return (
   <>
    <div className="the-header-in-conferences">
@@ -182,11 +182,11 @@ const handleCloseWorkshopPopup = () => {
          </Link>
        </div>
        <div>
-       <h2 className="the-Our-Conferencess">Welcome Teacher {nameFromLocalStorage}!</h2>
+       <h2 className="the-Our-Conferencess">Welcome {nameFromLocalStorage}!</h2>
 
        </div>
-       <div className="person-icon" onClick={handlePersonIconClick}> <img src='./images/settings.svg'/></div>
-     </div>
+       <div className="person-icon" onClick={handlePersonIconClick}> <img src='./images/settings.svg'/>
+        <img src='./images/door-svgrepo-com.svg' onClick={handleLogoutProfile}/></div></div>
      <div>
       <div className='afterEdit'>
         <>{upcomingConferences.length > 0 && (

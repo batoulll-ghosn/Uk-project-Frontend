@@ -130,7 +130,8 @@ const Login = () => {
           Login to your existing account in our community 
         </p>
         <div className="mb-8">
-          <input
+          <input 
+            autoComplete="off"
             type="email"
             id="email"
             name="email"
@@ -138,11 +139,13 @@ const Login = () => {
             className="rounded-full p-2 py-2 border border-black bg-gray-100 italic text-xl w-80"
             placeholder="Email"
             onChange={(e) => setEmail(e.target.value)}
+          
           />
         </div>
 
         <div className="rounded-full mb-4 relative ">
           <input
+           autoComplete="off"
             type={showPassword ? "text" : "password"}
             id="password"
             name="password"

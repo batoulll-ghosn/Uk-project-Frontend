@@ -145,23 +145,30 @@ const handleCloseWorkshopPopup = () => {
     });
   };
   const handleSaveProfile = () => {
-    dispatch(
-      updateUserInfo(
-        userId,
-        profileFormData.fullName,
-        profileFormData.email,
-        profileFormData.oldPassword,
-        profileFormData.newPassword,
+    try {
+      dispatch(
+        updateUserInfo(
+          userId,
+          profileFormData.fullName,
+          profileFormData.email,
+          profileFormData.oldPassword,
+          profileFormData.newPassword
+        )
+      );
+  
+      toast.success('Profile updated successfully!');
+      handleCloseProfilePopup();
+    } catch (error) {
       
-      )
-    );
-    handleCloseProfilePopup();
-   };
+      toast.error('Failed to update profile!');
+    }
+  };
    const handleLogoutProfile = () => {
         sessionStorage.removeItem('fullName');
         sessionStorage.removeItem('email');
         localStorage.removeItem('token');
         navigate('/');
+        toast.success('You Logged Out SuccessFully!')
   };
   const fetchWorkshops = async () => {
     try {
@@ -169,8 +176,7 @@ const handleCloseWorkshopPopup = () => {
    
       setWorkshops(response.data.data);
     } catch (error) {
-      console.error('Error fetching workshops:', error);
-      toast.error('Error fetching workshops');
+     
     }
   };
   const upcomingWorkshops = workshops.filter((workshop) => parseDate(workshop.date) >= now);
@@ -178,7 +184,7 @@ const handleCloseWorkshopPopup = () => {
     dispatch(getScheduleOfCourse(userId));
     dispatch(getAllEnngagedConferences(userId));
     fetchWorkshops();
-   }, [userId, dispatch]);
+   }, [userId, dispatch,handleSaveProfile]);
  return (
   <>
    <div className="the-header-in-conferences">
@@ -188,9 +194,11 @@ const handleCloseWorkshopPopup = () => {
          </Link>
        </div>
        <div>
-         <h2 className="the-Our-Conferencess">Welcome to your dashboard!</h2>
+         <h2 className="the-Our-Conferencess">Welcome {nameFromLocalStorage}!</h2>
        </div>
-       <div className="person-icon" onClick={handlePersonIconClick}> <img src='./images/settings.svg'/></div>
+       <div className="person-icon" onClick={handlePersonIconClick}> <img src='./images/settings.svg'/>
+        <img src='./images/door-svgrepo-com.svg' onClick={handleLogoutProfile}/></div>
+    
      </div>
      <div>
       <div className='afterEdit'>
@@ -367,7 +375,7 @@ const handleCloseWorkshopPopup = () => {
                 />
               </div>
               <div  className='inputs-in-user-info'>
-                <label>Password: </label>
+                <label>Old Password: </label>
                 <input
                   type="password"
                   name="oldPassword"
@@ -376,7 +384,7 @@ const handleCloseWorkshopPopup = () => {
                 />
               </div>
               <div  className='inputs-in-user-info'>
-                <label>Confirm Password: </label>
+                <label>New Password: </label>
                 <input
                   type="password"
                   name="newPassword"
@@ -386,7 +394,7 @@ const handleCloseWorkshopPopup = () => {
               </div>
              
               <div className='buttons-in-edit-user'> <button className='saveButton' onClick={handleSaveProfile}>Save</button>
-              <button className='saveButton' onClick={handleLogoutProfile}>Logout</button></div>
+              <img src='./images/doorrrr.svg' onClick={handleLogoutProfile}/></div>
             </div>
           </div>
         </div>
