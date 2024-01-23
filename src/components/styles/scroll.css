@@ -1,115 +1,123 @@
-.heading-in-scroll{
+/* Common styles */
+.heading-in-scroll {
     color: white;
     font-size: 50px;
     font-style: normal;
     font-weight: 700;
     line-height: 100px;
     letter-spacing: 0px;
-}
-.first-div-in-scroll{
+  }
+  
+  .first-div-in-scroll {
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-}
-.conferences-container {
+  }
+  
+  .conferences-container,
+  .conferences-containerr {
     display: flex;
     flex-wrap: wrap;
     justify-content: flex-start;
-   }
-   .conferences-containerr {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: flex-start;
-   }
-.conference-cardd{
-    width:400px;
-    margin:20px;
-}
-.conference-card {
+  }
+  
+  .conference-cardd {
+    width: 400px;
+    margin: 20px;
+  }
+  
+  .conference-card {
     flex: 0 0 calc(30% - 10px);
     margin: 20px;
-}
-.main-container-conference{
+    border-radius: 50px;
+    box-shadow: 4px 4px 11px rgba(0, 0, 0, 0.8);
+  }
+  
+  .main-container-conference {
     display: flex;
     flex-direction: column;
-}
-.main-container-conferencee{
+  }
+  
+  .main-container-conferencee {
     display: flex;
     flex-direction: row;
     column-gap: 15%;
-}
-.the-heading-in-conferences{
+  }
+  
+  .the-heading-in-conferences {
     color: #2E3480;
-font-family: Poppins;
-font-size: 48px;
-font-style: normal;
-font-weight: 700;
-line-height: 1.2;
-margin-left: 10px;
-}
-
-.the-header-in-conferences{
+    font-family: Poppins;
+    font-size: 48px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 1.2;
+    margin-left: 10px;
+  }
+  
+  .the-header-in-conferences {
     background-color: #2E3480;
-    width:100%;
+    width: 100%;
     height: fit-content;
     padding: 20px;
     display: flex;
     flex-direction: row;
     align-items: center;
     column-gap: 20px;
-}
-.the-Our-Conferences{
+  }
+  
+  .the-Our-Conferences {
     color: #FFF;
-font-family: Poppins;
-font-size: 78px;
-font-style: normal;
-font-weight: 700;
-line-height: 30px; /* 23.438% */
-}
-.workshop-page-header{
+    font-family: Poppins;
+    font-size: 78px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 30px;
+  }
+  
+  .workshop-page-header {
     color: #FFF;
     font-family: Poppins;
     font-size: 60px;
     font-style: normal;
     font-weight: 700;
-    line-height: 30px; 
-}
-.the-Our-Conferencess{
+    line-height: 30px;
+  }
+  
+  .the-Our-Conferencess {
     color: #FFF;
-
-font-size: 58px;
-font-style: normal;
-font-weight: 600;
-line-height: 30px; /* 23.438% */
-display: flex;
-align-items: center;
-justify-content: center;
-padding: 15px;
-text-align: center;
-}
-
+    font-size: 58px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 15px;
+    text-align: center;
+  }
   
   .table-container {
     max-width: 98%;
-    overflow-y: hidden; 
-    max-height: 400px; 
+    overflow-y: hidden;
+    max-height: 400px;
   }
   
- .the-div-of-userss-schedule{
-    width:100%;
+  .the-div-of-userss-schedule {
+    width: 100%;
     padding: 25px 0px 50px 8%;
- } 
-
- .the-users-table{
+  }
+  
+  .the-users-table {
     color: #2E3480;
- }
- .the-users-table td{
-    border:1px solid #7576C6;
-    width:fit-content
- }
-
- .the-header-in-conferences {
+  }
+  
+  .the-users-table td {
+    border: 1px solid #7576C6;
+    width: fit-content;
+  }
+  
+  .the-header-in-conferences {
     align-items: center;
     background-color: #2e3480;
     -webkit-column-gap: 20px;
@@ -121,325 +129,383 @@ text-align: center;
     height: fit-content;
     padding: 20px;
     width: 100%;
-}
- .schedule-in-student-dashboard{
+  }
+  
+  .schedule-in-student-dashboard {
     width: 100%;
-    display:flex;
+    display: flex;
     justify-content: center;
     align-items: center;
- }
-.ConferencePage{
-    width:100%;
+  }
+  
+  .ConferencePage {
+    width: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
     column-gap: 0px;
-}
-.ConferencePageimg{
- width:50%;
- height: fit-content;
-}
-.ConferencePageimg img{
-    width:100%;
+  }
+  
+  .ConferencePageimg {
+    width: 50%;
     height: fit-content;
-   }
-.conference-side{
+  }
+  
+  .ConferencePageimg img {
+    width: 100%;
+    height: fit-content;
+  }
+  
+  .conference-side {
     width: 50%;
     padding: 2%;
-}
-.co-teacher-view{
+  }
+  
+  .co-teacher-view {
     display: flex;
-    align-items:center;
+    align-items: center;
     justify-content: center;
     width: 100%;
-    
-}
-.teacher-view{
-    width:70%;
+  }
+  
+  .teacher-view {
+    width: 70%;
     display: flex;
     flex-direction: row-reverse;
     margin: 2%;
     border-radius: 30px;
-    background-color: #A1A4CD;
+    background-color: #a1a4cd;
     padding: 3%;
     align-items: center;
     justify-content: center;
-}
-.teacher-view-img{
+  }
+  
+  .teacher-view-img {
     border-bottom-right-radius: 30px;
     border-top-right-radius: 30px;
-    width:60%;
-}
-.the-users-table tr{
- text-align: center;
-}
-.not-blue-in-teacher{
+    width: 60%;
+  }
+  
+  .the-users-table tr {
+    text-align: center;
+  }
+  
+  .not-blue-in-teacher {
     color: black;
-}
-/* Responsive for iPad*/
-@media screen and (min-width:767px) and (max-width:1123px){
-    .header-back{
-        display: flex;
-        flex-direction: column;
+  }
+  
+  /* Responsive for iPad */
+  @media screen and (min-width: 767px) and (max-width: 1123px) {
+    .header-back {
+      display: flex;
+      flex-direction: column;
     }
-    .services-mini-one{
-     display: flex;
-     flex-direction: column;
+  
+    .services-mini-one {
+      display: flex;
+      flex-direction: column;
     }
-    .header-main{
-        background-image: none;
-        height: auto;
-        background-color: #F0EEF0;
-       }
-    .left-side-of-header{
-        width:100%;
-        display: flex;
-        flex-direction: column;
-        justify-content: flex-start;
-        align-items: flex-start;
-        margin: 1%;
+  
+    .header-main {
+      background-image: none;
+      height: auto;
+      background-color: #f0eef0;
     }
-    .left-side-of-header h1{
-        color: #2E3480;
-        font-family: Poppins;
-        font-size: 80px;
-        font-style: normal;
-        font-weight: 700;
-        line-height: normal;
-        margin: 0px;
+  
+    .left-side-of-header {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      align-items: flex-start;
+      margin: 1%;
     }
-    .left-side-of-header p{
-        color: #7576C6;
-        font-family: Poppins;
-        font-size: 22px;
-        font-style: normal;
-        font-weight: 400;
-        line-height: normal;
-        width: 100%;
+  
+    .left-side-of-header h1 {
+      color: #2e3480;
+      font-family: Poppins;
+      font-size: 80px;
+      font-style: normal;
+      font-weight: 700;
+      line-height: normal;
+      margin: 0px;
     }
-    .right-side-of-header{
-        width: 100%;
-        margin-top: 9%;
+  
+    .left-side-of-header p {
+      color: #7576c6;
+      font-family: Poppins;
+      font-size: 22px;
+      font-style: normal;
+      font-weight: 400;
+      line-height: normal;
+      width: 100%;
     }
-    .right-side-of-header-img{
-        width:100%;
-        transform: scaleX(1);
+  
+    .right-side-of-header {
+      width: 100%;
+      margin-top: 9%;
     }
-    .left-side-of-servicess{
-        width:0%;
-        display: none;
-        margin:12px;
+  
+    .right-side-of-header-img {
+      width: 100%;
+      transform: scaleX(1);
     }
-    .main-div-of-servicess{
-        margin:2%;
+  
+    .left-side-of-servicess {
+      width: 0%;
+      display: none;
+      margin: 12px;
     }
-    .right-side-of-servicess p{
-        width:80%;
+  
+    .main-div-of-servicess {
+      margin: 2%;
     }
-    .the-Our-Conferencess{
-        font-size: 33px;
-        padding: 0px;
+  
+    .right-side-of-servicess p {
+      width: 80%;
     }
-
-    .workshop-page-header{
-        color: #FFF;
-        font-family: Poppins;
-        font-size: 23px;
-        font-style: normal;
-        font-weight: 700;
-        line-height: 30px; 
-    }
-    .the-div-of-userss-schedule {
-        overflow-x: auto; /* Horizontal scroll if needed */
-      }
-      
-      .table-container {
-        max-width: 100%;
-        overflow-y: auto; /* Vertical scroll if needed */
-        max-height: 400px; /* Set a max height for the container */
-      }
-      
-      .the-users-table {
-        width: 100%;
-        border-collapse: collapse;
-      }
-      
-      
-      .ConferencePage{
-        flex-direction: column;
-      }
-      .ConferencePageimg{
-        width: 100%;
-       }
-       .conference-side{
-        width: 100%;
-       }
-       .co-teacher-view{
-        display: flex;
-        align-items:center;
-        justify-content: center;
-        width: 100%;
-        
-    }
-    .teacher-view{
-        width:70%;
-        display: flex;
-        flex-direction: column-reverse;
-        margin: 2%;
-        border-radius: 30px;
-        background-color: #A1A4CD;
-        padding: 3%;
-        align-items: center;
-        justify-content: center;
-    }
-    .teacher-view-img{
-        border-top-left-radius: 30px;
-        border-top-right-radius: 30px;
-        width:98%;
-    }
-}
-
-
-
-/* Responsive for Phone*/
-@media (max-width: 766px) {
-    .header-main{
-        background-image: none;
-        height: auto;
-        background-color: #F0EEF0;
-       }
-       .services-mini-one{
-        display: flex;
-        flex-direction: column;
-       }
-    .header-back{
-        display: flex;
-        flex-direction: column;
-       
-    }
-    .left-side-of-servicess{
-        width:0%;
-        display: none;
-        margin:12px;
-    }
-    .main-div-of-servicess{
-        margin:2%;
-    }
-    .left-side-of-header{
-        width:100%;
-        display: flex;
-        flex-direction: column;
-        justify-content: flex-start;
-        align-items: flex-start;
-        margin: 1%;
-    }
-    .left-side-of-header h1{
-        color: #2E3480;
-        font-family: Poppins;
-        font-size: 54px;
-        font-style: normal;
-        font-weight: 700;
-        line-height: normal;
-        margin: 0px;
-    }
-    .left-side-of-header p{
-        color: #7576C6;
-        font-family: Poppins;
-        font-size: 22px;
-        font-style: normal;
-        font-weight: 400;
-        line-height: normal;
-        width: 100%;
-    }
-    .right-side-of-header{
-        width: 100%;
-        margin-top: 9%;
-    }
-    .right-side-of-header-img{
-        width:100%;
-        transform: scaleX(1);
+    .the-Our-Conferences {
+        font-size: 68px;
     }
     .the-Our-Conferencess {
-        font-size: 25px;
-        padding: 3px;
-     
+      font-size: 33px;
+      padding: 0px;
     }
-    .workshop-page-header{
-        color: #FFF;
-        font-family: Poppins;
-        font-size: 30px;
-        font-style: normal;
-        font-weight: 700;
-        line-height: 30px; 
+  
+    .workshop-page-header {
+      color: #fff;
+      font-family: Poppins;
+      font-size: 23px;
+      font-style: normal;
+      font-weight: 700;
+      line-height: 30px;
     }
-    .div-of-logo-in-footer img{
-        width: 45px;
-        height: 45px;
-    }
-    .the-header-in-conferences {
-        column-gap: 41px;
-        padding: 7px;
-        width: 100%;
-    }
-    .the-heading-in-conferences {
-        font-size: 24px;
-    }
-    .conference-cardd{
-        width: 200px;
-    }
-    .img-in-thee-slide{
-        height: 230px;
-    }
-
-    .the-Our-Conferences{
-        font-size: 18px;
-    }
-
+  
     .the-div-of-userss-schedule {
-        overflow-x: auto; 
-      }
-      
-      .table-container {
-        max-width: 98%;
-        overflow-y: auto; 
-        max-height: 400px; 
-      }
-      
-      .the-users-table {
-        width: 100%;
-        border-collapse: collapse;
-      }
-      .ConferencePage{
-        flex-direction: column;
-      }
-   .ConferencePageimg{
-    width: 100%;
-   }
-   .conference-side{
-    width: 100%;
-   }
-   .co-teacher-view{
-    display: flex;
-    align-items:center;
-    justify-content: center;
-    width: 100%;
-    
-}
-.teacher-view{
-    width:70%;
-    display: flex;
-    flex-direction: column-reverse;
-    margin: 2%;
-    border-radius: 30px;
-    background-color: #A1A4CD;
-    padding: 3%;
-    align-items: center;
-    justify-content: center;
-}
-.teacher-view-img{
-    border-top-left-radius: 30px;
-    border-top-right-radius: 30px;
-    border-bottom-left-radius: 30px;
-    width:98%;
-}
-}
+      overflow-x: auto;
+      /* Horizontal scroll if needed */
+    }
+  
+    .table-container {
+      max-width: 100%;
+      overflow-y: auto;
+      /* Vertical scroll if needed */
+      max-height: 400px;
+      /* Set a max height for the container */
+    }
+  
+    .the-users-table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+  
+    .ConferencePage {
+      flex-direction: column;
+    }
+  
+    .ConferencePageimg {
+      width: 100%;
+    }
+  
+    .conference-side {
+      width: 100%;
+    }
+  
+    .co-teacher-view {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+    }
+  
+    .teacher-view {
+      width: 70%;
+      display: flex;
+      flex-direction: column-reverse;
+      margin: 2%;
+      border-radius: 30px;
+      background-color: #a1a4cd;
+      padding: 3%;
+      align-items: center;
+      justify-content: center;
+    }
+  
+    .teacher-view-img {
+      border-top-left-radius: 30px;
+      border-top-right-radius: 30px;
+      width: 98%;
+    }
+  }
+  
+  /* Responsive for Laptop */
+  @media screen and (min-width: 1124px) {
+    .conference-cardd {
+      flex: 0 0 calc(33.333% - 20px);
+      /* Set to 33.333% for three items per row on Laptop */
+    }
+  }
+  
+  /* Responsive for Phone */
+  @media (max-width: 766px) {
+    .header-main {
+      background-image: none;
+      height: auto;
+      background-color: #f0eef0;
+    }
+  
+    .services-mini-one {
+      display: flex;
+      flex-direction: column;
+    }
+  
+    .header-back {
+      display: flex;
+      flex-direction: column;
+    }
+  
+    .left-side-of-servicess {
+      width: 0%;
+      display: none;
+      margin: 12px;
+    }
+  
+    .main-div-of-servicess {
+      margin: 2%;
+    }
+  
+    .left-side-of-header {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      align-items: flex-start;
+      margin: 1%;
+    }
+  
+    .left-side-of-header h1 {
+      color: #2e3480;
+      font-family: Poppins;
+      font-size: 54px;
+      font-style: normal;
+      font-weight: 700;
+      line-height: normal;
+      margin: 0px;
+    }
+  
+    .left-side-of-header p {
+      color: #7576c6;
+      font-family: Poppins;
+      font-size: 22px;
+      font-style: normal;
+      font-weight: 400;
+      line-height: normal;
+      width: 100%;
+    }
+  
+    .right-side-of-header {
+      width: 100%;
+      margin-top: 9%;
+    }
+  
+    .right-side-of-header-img {
+      width: 100%;
+      transform: scaleX(1);
+    }
+  
+    .the-Our-Conferencess {
+      font-size: 25px;
+      padding: 3px;
+    }
+  
+    .workshop-page-header {
+      color: #fff;
+      font-family: Poppins;
+      font-size: 30px;
+      font-style: normal;
+      font-weight: 700;
+      line-height: 30px;
+    }
+  
+    .div-of-logo-in-footer img {
+      width: 45px;
+      height: 45px;
+    }
+  
+    .the-header-in-conferences {
+      column-gap: 41px;
+      padding: 7px;
+      width: 100%;
+    }
+  
+    .the-heading-in-conferences {
+      font-size: 24px;
+    }
+  
+    .conference-cardd {
+      width: 200px;
+    }
+  
+    .img-in-thee-slide {
+      height: 230px;
+    }
+  
+    .the-Our-Conferences {
+      font-size: 18px;
+    }
+  
+    .the-div-of-userss-schedule {
+      overflow-x: auto;
+    }
+  
+    .table-container {
+      max-width: 98%;
+      overflow-y: auto;
+      max-height: 400px;
+    }
+  
+    .the-users-table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+  
+    .ConferencePage {
+      flex-direction: column;
+    }
+  
+    .ConferencePageimg {
+      width: 100%;
+    }
+  
+    .conference-side {
+      width: 100%;
+    }
+  
+    .co-teacher-view {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+    }
+  
+    .teacher-view {
+      width: 70%;
+      display: flex;
+      flex-direction: column-reverse;
+      margin: 2%;
+      border-radius: 30px;
+      background-color: #a1a4cd;
+      padding: 3%;
+      align-items: center;
+      justify-content: center;
+    }
+  
+    .teacher-view-img {
+      border-top-left-radius: 30px;
+      border-top-right-radius: 30px;
+      border-bottom-left-radius: 30px;
+      width: 98%;
+    }
+    .conference-card {flex: 0 0 48%; 
+        margin-left: 22%;}
+  }
+  
