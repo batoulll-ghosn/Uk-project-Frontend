@@ -28,6 +28,7 @@ import OurTeam from './components/ourTeam';
 import Conference from './components/Conference';
 import Course from './components/Course';
 import Workshop from './components/Workshop';
+import PageNotFound from './components/PageNotFound';
 import {getUserID,getUserRole } from './Data/getData';
 
 function App() {
@@ -55,6 +56,7 @@ function App() {
        <Route path="/workshop/:id" element={<Workshop/>}/>
       <Route path="/theTeam" element={<OurTeam/>}/>
       <Route path="/contactUs" element={<ContactUs/>}/>
+      <Route path="*" element={<PageNotFound/>}/>
        <Route
             path="/dash/*"
             element={
