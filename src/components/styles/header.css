@@ -116,8 +116,8 @@
 }
 .meet-team-button:hover{
     border-radius: 23px;
-    color: #F0EEF0;
-    border-color: #2E3480;
+    color: hsl(300, 6%, 94%);
+    border:2px solid #F0EEF0;
     background-color: #2E3480;
     font-size: 20px;
     padding: 3%;

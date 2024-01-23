@@ -315,11 +315,11 @@
     color: #2E3480;
    }
 .person-icon img{
-    width: 70px;
+    width: 60px;
     height: 70px;
 }
 .person-icon img:hover{
-    width: 70px;
+    width: 66px;
     height: 70px;
     cursor: pointer;
 }

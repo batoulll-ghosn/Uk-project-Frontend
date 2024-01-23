@@ -62,10 +62,18 @@ margin-left: 10px;
 .the-Our-Conferences{
     color: #FFF;
 font-family: Poppins;
-font-size: 88px;
+font-size: 78px;
 font-style: normal;
 font-weight: 700;
 line-height: 30px; /* 23.438% */
+}
+.workshop-page-header{
+    color: #FFF;
+    font-family: Poppins;
+    font-size: 60px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 30px; 
 }
 .the-Our-Conferencess{
     color: #FFF;
@@ -232,6 +240,15 @@ text-align: center;
         font-size: 33px;
         padding: 0px;
     }
+
+    .workshop-page-header{
+        color: #FFF;
+        font-family: Poppins;
+        font-size: 23px;
+        font-style: normal;
+        font-weight: 700;
+        line-height: 30px; 
+    }
     .the-div-of-userss-schedule {
         overflow-x: auto; /* Horizontal scroll if needed */
       }
@@ -346,6 +363,14 @@ text-align: center;
         font-size: 25px;
         padding: 3px;
      
+    }
+    .workshop-page-header{
+        color: #FFF;
+        font-family: Poppins;
+        font-size: 30px;
+        font-style: normal;
+        font-weight: 700;
+        line-height: 30px; 
     }
     .div-of-logo-in-footer img{
         width: 45px;

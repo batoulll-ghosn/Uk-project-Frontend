@@ -88,11 +88,11 @@ const Login = () => {
       await dispatch(register(formData));
   
  
-      toast.success("Registration successful!");
+      
   
     
       onSignup();
-
+     toast.success("Registration successful!");
       setPasswordError("");
     } catch (error) {
       if (error.response && error.response.data) {
@@ -154,9 +154,9 @@ const Login = () => {
             👍Login Success
           </h2>
         ) : (
-          <div className="register">
+          <div className="flex h-screen SignIn-container scale-95 justify-center items-center pt-0 ">
             {showOTP ? (
-              <div className="card">
+              <div>
                     <h1 className="text-center leading-normal text-white font-medium text-3xl mb-6">
                         Verify Your Phone Number <br /> 
                     </h1>
@@ -199,7 +199,7 @@ const Login = () => {
           <img className='logo-img-in-login' src='./images/logo.png' alt='Logo' />
           
         </div>
-        <div className="flex h-screen SignIn-container scale-95 justify-center items-center pt-0">
+        <div className="flex h-screen SignIn-container scale-95 justify-center items-center pt-0 ">
           <form className="form-of-register" onSubmit={(e) => handleRegister(e)}>
           <h2 className='the-welcome-sentencee'> Let's Get  Started</h2>
         <p className="text-after-welcomee">

@@ -15,7 +15,7 @@ const Course = () => {
 
           <div className='columnOfContent'>
             <div>
-              <h3 className='title-in-contact'>ADDRESS</h3>
+              <h3 className='title-in-contact'>Address</h3>
               <p className='text-in-contact'><a href='https://maps.app.goo.gl/Ls1AcPDtLUqFWZgNA' target='_blank' rel='noopener noreferrer'>
               
              London: 71-75 Shelton Street </a> </p>

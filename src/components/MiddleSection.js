@@ -109,7 +109,7 @@ const MiddleSection = () => {
           navigate(`/course/${selectedConference.id}`)
           break;
           case "w":
-            navigate(`/conference/${selectedConference.id}`)
+            navigate(`/workshop/${selectedConference.id}`)
           break;
         default:
           break;
@@ -238,7 +238,7 @@ const closePopup = () => {
       </div>
       <div className="buttons-in-middle-section">
         <div className='buttons-in-middle-sectionn'> <button onClick={() => handleButtonClick('transcourses')}>Translation Courses</button>
-        <button onClick={() => handleButtonClick('lancourses')}>Language Courses</button>
+        <button onClick={() => handleButtonClick('lancourses')} >Language Courses</button>
         <button onClick={() => handleButtonClick('conferences')}>Conferences</button></div>
         <div className='buttons-in-middle-sectionn'>
         <button onClick={() => handleButtonClick('workshops')}>Workshops</button>

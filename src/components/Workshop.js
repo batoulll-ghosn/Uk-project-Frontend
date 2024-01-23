@@ -48,7 +48,7 @@ const Conferences = () => {
       const userMail = sessionStorage.getItem('email');
       const emailData = {
         email: userMail,
-        content: `Registration for ${workshops.name} - ${workshops.description}. Price: ${workshops.price}`,
+        content: `Registration for ${workshops.workshopname} - ${workshops.description}. Price: ${workshops.price}`,
       };
       switch (workshops.abv) {
         case "w":
@@ -99,7 +99,7 @@ const Conferences = () => {
               </Link>
             </div>
             <div>
-              <h2 className="the-Our-Conferences">{workshops.languageName}{workshops.level}</h2>
+              <h2 className="workshop-page-header">{workshops.workshopname}</h2>
             </div>
           </div>
        

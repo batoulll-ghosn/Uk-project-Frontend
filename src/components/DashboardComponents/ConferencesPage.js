@@ -167,18 +167,20 @@ const [selectedCourseForTrainer, setSelectedCourseForTrainer] = useState('');
               })
               .map((conference, index) => (
                 <div key={index} className="conference-card">
-                  <div className='buttons-in-courses-of-admin'>
+                 
+                  <img className="img-in-thee-slide" src={conference.img} alt={conference.conference_name} />
+                  <div className="dddt"> 
+                   <div className='buttons-in-courses-of-admin'>
                        <button ><img className='bin-in-tables' src='./images/pen.svg' onClick={() => handleUpdate(conference.id)}/></button>
                        <button onClick={() => handleDeleteCourse(conference.id)}><img className='bin-in-tables' src='./images/bin.svg'/></button>
                   </div>
-                  <img className="img-in-thee-slide" src={conference.img} alt={conference.conference_name} />
-                  <div className="dddt">
                     <h2 className="header-in-thee-slide">{conference.conference_name}</h2>
                     <p className="text-in-thee-slide">{conference.type}</p>
-                    <p className="textt-in-thee-slide">{conference.description}</p>
+                    
                     <p className="textt-in-thee-slide">Date: {conference.date}</p>
                     <p className="header-in-thee-slide">{conference.price}</p>
                   </div>
+                
                 </div>
               ))}
           </div>

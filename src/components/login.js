@@ -65,12 +65,14 @@ const Login = () => {
   }, []);
 
   const handleClick = async (googleEmail) => {
+    console.log(googleEmail)
     try {
+    
       const response1 = await dispatch(loginGoogle(googleEmail));
       localStorage.setItem('token', response1.token);
       
       const response = await dispatch(getUsersByEmail(googleEmail));
-      if (response.length === 1) {
+      if (response.length >= 1) {
         const email = response[0].email;
         const fullName = response[0].fullName;
         sessionStorage.setItem('email', email);
