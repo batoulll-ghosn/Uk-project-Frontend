@@ -12,6 +12,7 @@ const TeamMember = ({ image, name, role, about,flip, videoSrc }) => {
   };
 
   useEffect(() => {
+    window.scrollTo(0, 0);
     if (showPopup && videoRef.current) {
       videoRef.current.play();
     }

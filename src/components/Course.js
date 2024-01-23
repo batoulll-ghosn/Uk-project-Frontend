@@ -86,6 +86,7 @@ const Conferences = () => {
    
    };
   useEffect(() => {
+    window.scrollTo(0, 0);
     dispatch(getCourseById(id));
   }, [dispatch, id]);
 
@@ -145,7 +146,7 @@ const Conferences = () => {
         <li className='text-nnnf'><Link to='/workshops'>Workshops</Link></li>
         <li className='text-nnnf'><Link to='/conferences'>Conferences</Link></li>
         <li className='text-nnnf'><Link to='/courses'>Courses</Link></li>
-        
+        <li className='text-nnnf'><Link to='/contactUs'>Contact Us</Link></li>
         </ul>
       </div>
       <div className='third-div-in-footer'><h2 className='the-follow-us'>Let's Keep in Touch!</h2>
