@@ -14,8 +14,6 @@ import {getUserID} from '../Data/getData';
 const UserDashboard = () => {
   const navigate = useNavigate();
  const conferences = useSelector((state) => state.conferences);
- 
- console.log(workshops);
  const schedule= useSelector((state) => state.schedules);
  const dispatch = useDispatch();
  const userId = getUserID();

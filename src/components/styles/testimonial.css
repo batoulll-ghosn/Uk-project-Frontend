@@ -84,6 +84,11 @@ line-height: 90px; /* 163.636% */
    padding-top:50px;
    margin-bottom: 0px;
 }
+
+.main-div-of-serviess{
+    padding-top:2%;
+    padding-bottom: 2%;
+}
 @media screen and (min-width:767px) and (max-width:1123px){
     .main-div-of-servies{
         display: flex;

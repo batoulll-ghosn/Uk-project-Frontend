@@ -104,6 +104,7 @@ font-weight: 700;
 .the-subscribe-button:hover{
     color: #A1A4CD;
     background-color: #2E3480;
+    border:2px solid #A1A4CD;
 }
 .the-ul-in-the-footer li:hover{
     text-decoration: underline;

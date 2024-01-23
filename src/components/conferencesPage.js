@@ -3,10 +3,11 @@ import { useSelector, useDispatch } from 'react-redux';
 import { getAllConferences, engageToConference } from './actions/conference';
 import { Link } from 'react-router-dom';
 import { toast } from 'react-toastify';
-import {getUserID} from '../Data/getData';
+import { getUserID } from '../Data/getData';
 import { useNavigate } from 'react-router-dom';
 import './styles/header.css';
 import './styles/scroll.css';
+
 const Conferences = () => {
   const navigate = useNavigate();
   const conferences = useSelector((state) => state.conferences);
@@ -29,78 +30,85 @@ const Conferences = () => {
   const upcomingConferences = conferences.filter((conference) => parseDate(conference.date) > now);
 
   const [showPopup, setShowPopup] = useState(false);
+  const [showPopupPast, setShowPopupPast] = useState(false);
   const [selectedConference, setSelectedConference] = useState(null);
 
   const openPopup = (conference) => {
     setSelectedConference(conference);
     setShowPopup(true);
   };
+  const openPopupp = () => {
 
+    setShowPopupPast(true);
+  };
   const closePopup = () => {
     setShowPopup(false);
     setSelectedConference(null);
   };
-
+  const closePopupp = () => {
+    setShowPopupPast(false);
+    setSelectedConference(null);
+  };
   const handleRegisterYes = async () => {
     const userId = getUserID();
     if (userId >= 1) {
-    if (selectedConference) {
-     
-      const userMail = sessionStorage.getItem('email');
-      const emailData = {
-        email: userMail,
-        content: `Registration for ${selectedConference.name} - ${selectedConference.description}. Price: ${selectedConference.price}`,
-      };
-      switch (selectedConference.abv) {
-        case "con":
-          try {
-            const userId = getUserID();
-            dispatch(engageToConference(selectedConference.id, userId));
-            toast.success("Successfully registered to the Conference!");
-            setShowPopup(false);
-          } catch (error) {
-            toast.error("Failed to register to the Conference!");
-            setShowPopup(false);
-          }
-          break;
-          
-        default:
-          break;
+      if (selectedConference) {
+        const userMail = sessionStorage.getItem('email');
+        const emailData = {
+          email: userMail,
+          content: `Registration for ${selectedConference.name} - ${selectedConference.description}. Price: ${selectedConference.price}`,
+        };
+        switch (selectedConference.abv) {
+          case 'con':
+            try {
+              const userId = getUserID();
+              dispatch(engageToConference(selectedConference.id, userId));
+              toast.success('Successfully registered to the Conference!');
+              setShowPopup(false);
+            } catch (error) {
+              toast.error('Failed to register to the Conference!');
+              setShowPopup(false);
+            }
+            break;
+
+          default:
+            break;
+        }
+        const response = await fetch('https://ukbackendproject.onrender.com/email/registerToConf', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(emailData),
+        });
+        if (!response.ok) {
+          throw new Error('HTTP error ' + response.status);
+        }
       }
-      const response = await fetch('https://ukbackendproject.onrender.com/email/registerToConf', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(emailData),
-      });
-      if (!response.ok) {
-        throw new Error('HTTP error ' + response.status);
-      }
-    }} else {
-      navigate('/Login'); 
-      toast.error('You need to login first!')
-  }
-    setShowPopup(false);
-   };
-   const handleViewDetails = () => {
-    if (selectedConference) {
-      switch (selectedConference.abv) {
-        case "con":
-         navigate(`/conference/${selectedConference.id}`)
-          break;
-        case "co":
-          navigate(`/course/${selectedConference.id}`)
-          break;
-          case "w":
-            navigate(`/workshop/${selectedConference.id}`)
-          break;
-        default:
-          break;
-      }
-      
+    } else {
+      navigate('/Login');
+      toast.error('You need to login first!');
     }
-  };  
+    setShowPopup(false);
+  };
+
+  const handleViewDetails = () => {
+    if (selectedConference) {
+      switch (selectedConference.abv) {
+        case 'con':
+          navigate(`/conference/${selectedConference.id}`);
+          break;
+        case 'co':
+          navigate(`/course/${selectedConference.id}`);
+          break;
+        case 'w':
+          navigate(`/workshop/${selectedConference.id}`);
+          break;
+        default:
+          break;
+      }
+    }
+  };
 
   return (
     <>
@@ -122,7 +130,6 @@ const Conferences = () => {
               <img className="img-in-thee-slide" src={conference.img} alt={conference.conference_name} />
               <div className="dddt">
                 <h2 className="header-in-thee-slide">{conference.conference_name}</h2>
-                
                 <p className="textt-in-thee-slide">Date: {conference.date}</p>
                 <p className="header-in-thee-slide">{conference.price}</p>
               </div>
@@ -132,11 +139,10 @@ const Conferences = () => {
         <h2 className="the-heading-in-conferences">Past Conferences</h2>
         <div className="conferences-container">
           {pastConferences.map((conference, index) => (
-            <div key={index} className="conference-card" onClick={() => openPopup(conference)}>
+            <div key={index} className="conference-card" onClick={() => openPopupp()}>
               <img className="img-in-thee-slide" src={conference.img} alt={conference.conference_name} />
               <div className="dddt">
                 <h2 className="header-in-thee-slide">{conference.conference_name}</h2>
-             
                 <p className="textt-in-thee-slide">Date: {conference.date}</p>
                 <p className="header-in-thee-slide">{conference.price}</p>
               </div>
@@ -148,17 +154,35 @@ const Conferences = () => {
         <div className="Confoverlay">
           <div className="Conferencepopup">
             <div className="Conferencepopup-content">
-            <div className="titleandclose">   <p>{`Do you want to Register?`}</p> <button  onClick={closePopup}>&#10005;</button></div>
-            <h2>{selectedConference.conference_name}</h2>
+              <div className="titleandclose">
+                <p>{`Do you want to Register?`}</p> <button onClick={closePopup}>&#10005;</button>
+              </div>
+              <h2>{selectedConference.conference_name}</h2>
               <p>{selectedConference.description}</p>
               <p>{selectedConference.price}</p>
               <div className="buttonsOfConfPopup">
                 <button className="left-side-of-header-button" onClick={handleRegisterYes}>
                   Yes
                 </button>
-                <button className='left-side-of-header-button' onClick={handleViewDetails} >View More Details</button>
-           
+                <button className="left-side-of-header-button" onClick={handleViewDetails}>
+                  View More Details
+                </button>
               </div>
+            </div>
+          </div>
+        </div>
+      )}
+      {showPopupPast && (
+        <div className="Confoverlay">
+          <div className="Conferencepopup">
+            <div className="Conferencepopup-content">
+              <div className="titleandclose">
+                <p>{`Ooppss this Conference has been done!  `}</p> <button onClick={closePopupp}>&#10005;</button>
+               </div>
+             
+                <p>Explore Other Upcoming Conferences</p>
+             
+              
             </div>
           </div>
         </div>

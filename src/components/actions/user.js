@@ -50,10 +50,10 @@ export const login = (Email, password) => {
         });
     };
    };
-export const loginGoogle = (Email) => {
+export const loginGoogle = (email) => {
     return (dispatch) => {
       return axios
-        .post(`https://ukbackendproject.onrender.com/users/loginGoogle`, { Email})
+        .post(`https://ukbackendproject.onrender.com/users/loginGoogle`, {"Email":email})
         .then((response) => {
           dispatch({
             type: "login",
@@ -247,37 +247,38 @@ export const updateUsertoStudent = (Id) => {
         });
     };
    };
-export const updateUserInfo = (
+  export const updateUserInfo = (
     Id,
     fullName,
     email,
     oldPassword,
-    newPassword,
-    img
+    newPassword
   ) => {
     const newUser = {
       fullName,
       email,
       oldPassword,
       newPassword,
-      img
     };
+  
     return (dispatch) => {
       axios
-        .put(`https://ukbackendproject.onrender.com/users/editUser/${Id}`, newUser,{
+        .put(`https://ukbackendproject.onrender.com/users/editUser/${Id}`, newUser, {
           headers: {
-          'Content-Type': 'multipart/form-data',
-        },})
+            'Content-Type': 'application/json', // Change content type to application/json
+          },
+        })
         .then((response) => {
           const user = response.data.user;
           dispatch({
-            type: "updateUserInfo",
+            type: "updateUserInfo", // Use uppercase for action type
             payload: { user, Id },
           });
         })
         .catch((error) => {
-          console.error("Error fetching data:", error);
+          console.error("Error updating user information:", error);
+          // You might want to dispatch an action to handle the error, e.g., dispatch({ type: "UPDATE_USER_INFO_ERROR", payload: error });
         });
     };
   };
-   
+  
