@@ -38,7 +38,7 @@ const Reviews = () => {
         <table className="the-users-table">
           <thead>
             <tr>
-              <th></th>
+              
               
               <th>Provider</th>
               <th>Description</th>
@@ -49,7 +49,7 @@ const Reviews = () => {
           <tbody>
             {reviews?.map((review, index) => (
               <tr className='reviews-row' key={index}>
-                <td>{index+1}</td>
+                
                 
                 <td>{review.nameOftestemoniated}</td>
                 <td>{review.description}</td>

@@ -132,7 +132,7 @@ line-height: 90px; /* 163.636% */
         row-gap: 250px;
     }
     .dots-container{
-        margin-top: 290px;
+        margin-top: 326px;
         margin-left: 5%;
     }
     .name-testi{
@@ -143,7 +143,7 @@ line-height: 90px; /* 163.636% */
         width:100px;
     }
     .right-in-testimlonial img{
-        margin-top: 5%;
+        margin-top: 13%;
     }
 }
 @media (max-width: 766px) {

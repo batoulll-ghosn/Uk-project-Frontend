@@ -20,10 +20,8 @@ function Dashboard() {
     const navigate = useNavigate();
     const handleLogout = () => {
         
-        sessionStorage.removeItem('fullName');
-        sessionStorage.removeItem('userrole');
-     
-        sessionStorage.removeItem('email');
+       sessionStorage.clear();
+       localStorage.clear();
         
         navigate('/');
         toast.success('Logout was done successfully!')

@@ -244,6 +244,13 @@
     flex-direction: row;
     column-gap: 5%;
 }
+.buttonspaymentOfUpdatePopupp{
+    display: flex;
+    position: absolute;
+    left: 60%;
+    flex-direction: row;
+    column-gap: 5%;
+}
 .row-in-Add-Popupp{
     display: flex;
     flex-direction: row;
@@ -352,6 +359,12 @@
 padding-left: 3%;
 border-radius: 30px;
 }
+
+.innput-of-popup{
+    padding-left: 1%;
+    border-radius: 30px;
+    margin-bottom: 5%;
+    }
 .input-of-popupp{
     padding-left: 3%;
     border-radius: 30px;

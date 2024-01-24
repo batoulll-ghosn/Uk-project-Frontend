@@ -17,10 +17,7 @@ import ConferencesPage from './components/conferencesPage';
 import CoursesPage from './components/coursesPage';
 import WorkshopSection from './components/workshopSection';
 import Faq from './components/FAQ';
-import AdminDashboard from './components/DashboardComponents/sideBar';
 import EmailSender from './components/sendingEmail';
-import UserDashboard from './components/userDashboard';
-import TeacherDashboard from './components/teacherDashboard';
 import ProtectedRoute from './components/protectedRoute';
 import MainDash from './components/mainDashboard';
 import Servicess from './components/ServicesSection';
@@ -47,9 +44,6 @@ function App() {
        <Route path="/workshops" element={<Workshops/>} />
        <Route path="/conferences" element={<ConferencesPage/>} />
        <Route path="/courses" element={<CoursesPage/>} />
-       <Route path="/dashboard" element={<AdminDashboard/>} />
-       <Route path="/userdashboard" element={<UserDashboard/>} />
-       <Route path="/teacherdashboard" element={<TeacherDashboard/>} />
        <Route path="/.email" element={<EmailSender/>} />
        <Route path="/conference/:id" element={<Conference/>}/>
        <Route path="/course/:id" element={<Course/>}/>

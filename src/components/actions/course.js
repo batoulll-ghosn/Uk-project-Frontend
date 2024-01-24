@@ -189,11 +189,10 @@ export const deleteCourse = (Id) => {
       });
   };
 };
-
-export const updateCourseetoPaid = (email) => {
+export const updateCourseetoPaid = (email,course_id) => {
   return (dispatch) => {
     axios
-      .put(`https://ukbackendproject.onrender.com/courses/UpdateToPaid/${email}`)
+      .put(`https://ukbackendproject.onrender.com/courses/UpdateToPaid/${email}/${course_id}`)
       .then((response) => {
       
         const course = response.data.user;
@@ -208,10 +207,10 @@ export const updateCourseetoPaid = (email) => {
       });
   };
 };
-export const updateCourseetoNotPaid = (email) => {
+export const updateCourseetoNotPaid = (email,course_id) => {
   return (dispatch) => {
     axios
-      .put(`https://ukbackendproject.onrender.com/courses/UpdateToNotPaid/${email}`)
+      .put(`https://ukbackendproject.onrender.com/courses/UpdateToNotPaid/${email}/${course_id}`)
       .then((response) => {
       
         const course = response.data.user;

@@ -141,11 +141,12 @@ const [selectedCourseForTrainer, setSelectedCourseForTrainer] = useState('');
             <div className="conferences-container">
               {courses.map((course, index) => (
                 <div key={index} className="conference-card">
-                   <div className='buttons-in-courses-of-admin'>
+                  
+                  <img className="img-in-thee-slide" src={course.img} alt={course.course_name} />
+                  <div className='buttons-in-courses-of-admin'>
                        <button onClick={() => handleEditCourse(course)}><img className='bin-in-tables' src='./images/pen.svg'/></button>
                        <button onClick={() => handleDeleteCourse(course.id)}><img className='bin-in-tables' src='./images/bin.svg'/></button>
                   </div>
-                  <img className="img-in-thee-slide" src={course.img} alt={course.course_name} />
                   <div className="dddt">
                     <h2 className="header-in-thee-slide">{course.type} Course</h2>
                     <p className="text-in-thee-slide">{course.languageName}</p>
