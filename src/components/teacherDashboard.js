@@ -367,7 +367,7 @@ const handleCloseWorkshopPopup = () => {
                 />
               </div>
               <div  className='inputs-in-user-info'>
-                <label>Password: </label>
+                <label>Old Password: </label>
                 <input
                   type="password"
                   name="oldPassword"
@@ -376,7 +376,7 @@ const handleCloseWorkshopPopup = () => {
                 />
               </div>
               <div  className='inputs-in-user-info'>
-                <label>Confirm Password: </label>
+                <label>New Password: </label>
                 <input
                   type="password"
                   name="newPassword"

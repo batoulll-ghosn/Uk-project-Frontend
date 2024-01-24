@@ -19,7 +19,7 @@ const Slice = () => {
         slidesToShow: 2, 
         slidesToScroll: 1,
         infinite: true,
-        dots: true
+        dots: false
       }
     },
     {
