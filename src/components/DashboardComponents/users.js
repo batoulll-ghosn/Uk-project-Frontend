@@ -212,9 +212,11 @@ const Users = () => {
               </tr>
             </thead>
             <tbody>
-              {filteredUsers.map((user) => (
+              {filteredUsers.map((user,index) => (
                 <tr key={user.id}>
-                  <td>{user.id}</td>
+
+                  <td>{index+1}</td>
+                  
                   <td>{user.fullName}</td>
                   <td>{user.email}</td>
                   <td>{user.role}{(user.role === 'trainer' || user.role === 'student') && (
@@ -279,12 +281,14 @@ const Users = () => {
                 value={newFullName}
                 onChange={handleFullNameChange}
                 placeholder="Enter new Full Name"
+                className='innput-of-popup'
               />
               <input
                 type="text"
                 value={newEmail}
                 onChange={handleEmailChange}
                 placeholder="Enter new Email"
+                className='innput-of-popup'
               /> </div>
               <div className="buttonsOfUpdatePopupp">
                 <button className="left-side-of-header-button" onClick={confirmUpdate}>
@@ -364,7 +368,7 @@ const Users = () => {
         <table className="the-users-table">
           <thead>
             <tr>
-              <th>ID</th>
+              <th></th>
               <th>Full Name</th>
               <th>Email</th>
               <th>Role</th>
@@ -374,9 +378,9 @@ const Users = () => {
             </tr>
           </thead>
           <tbody>
-            {users.map((user) => (
+            {users.map((user,index) => (
               <tr key={user.id}>
-                <td>{user.id}</td>
+                <td>{index+1}</td>
                 <td>{user.fullName}</td>
                 <td>{user.email}</td>
                 <td>{user.role}

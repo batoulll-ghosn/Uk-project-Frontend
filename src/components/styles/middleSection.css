@@ -169,6 +169,7 @@ line-height: normal;
     display: flex;
     flex-wrap: wrap; /* Enable wrapping to create a new row when necessary */
     justify-content: space-between; /* Distribute items evenly */
+    padding: 2%;
   }
 
   .slide {
@@ -181,8 +182,10 @@ line-height: normal;
   }
 
   #ddd {
-    flex: 0 0 48%; 
-    margin-left: 12%;
+    flex: 0 0 45%; 
+    margin-left: 6%;
+
+    width:auto;
   }
 
   .dddt {
@@ -206,7 +209,7 @@ line-height: normal;
   }
 
   #ddd {
-    width: 100%; 
+    width: 90%; 
     margin-left: 12%;
   }
 

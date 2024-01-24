@@ -158,10 +158,10 @@ export const getAllConfsWh = () => {
       });
   };
 };
-export const updateConftoPaid = (email) => {
+export const updateConftoPaid = (email,id) => {
   return (dispatch) => {
     axios
-      .put(`https://ukbackendproject.onrender.com/confrences/UpdateToPaid/${email}`)
+      .put(`https://ukbackendproject.onrender.com/confrences/UpdateToPaid/${email}/${id}`)
       .then((response) => {
       
         const conferences = response.data.user;
@@ -176,10 +176,10 @@ export const updateConftoPaid = (email) => {
       });
   };
 };
-export const updateConftoNotPaid = (email) => {
+export const updateConftoNotPaid = (email,id) => {
   return (dispatch) => {
     axios
-      .put(`https://ukbackendproject.onrender.com/confrences/UpdateToNotPaid/${email}`)
+      .put(`https://ukbackendproject.onrender.com/confrences/UpdateToNotPaid/${email}/${id}`)
       .then((response) => {
       
         const conferences = response.data.user;

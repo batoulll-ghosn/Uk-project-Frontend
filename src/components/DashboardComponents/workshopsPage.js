@@ -122,12 +122,13 @@ const [selectedCourseForTrainer, setSelectedCourseForTrainer] = useState('');
             {filteredWorkshops.map((workshop, index) => (
               <div key={index} className='conference-card'>
 
-                    <div className='buttons-in-courses-of-admin'>
+                   
+                <img className='img-in-thee-slide' src={workshop.img} alt={`workshop-${index}`} />
+                <div className='buttons-in-courses-of-admin'>
                     <button onClick={() => handleEditCourse(workshop)}><img className='bin-in-tables' src='./images/pen.svg'/></button>
                       
                      <button onClick={() => handleDeleteCourse(workshop.id)}><img className='bin-in-tables' src='./images/bin.svg'/></button>
                   </div>
-                <img className='img-in-thee-slide' src={workshop.img} alt={`workshop-${index}`} />
                 <div className='dddt'>
                   <h2 className='header-in-thee-slidee'>{workshop.workshopname}</h2>
                   <p className='text-in-thee-slidee'>Date: {workshop.date}</p>
