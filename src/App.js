@@ -27,7 +27,7 @@ import Course from './components/Course';
 import Workshop from './components/Workshop';
 import PageNotFound from './components/PageNotFound';
 import {getUserID,getUserRole } from './Data/getData';
-
+import './components/styles/header.css';
 function App() {
   const id = getUserID();
   const role = getUserRole();
@@ -38,7 +38,7 @@ function App() {
   <Router>
     
    <Routes>
-       <Route exact  path="/" element={<><Header /> <Slice /><Servicess/><MiddleSection /><WorkshopSection/><Testimonial/><Faq/><Footer/></>}/>
+       <Route exact  path="/" element={<div className='responsive-div'><Header /> <Slice /><Servicess/><MiddleSection /><WorkshopSection/><Testimonial/><Faq/><Footer/></div>}/>
        <Route path="/Login" element={ <Login />}/>
        <Route path="/SignUp" element={ <Register />}/>
        <Route path="/workshops" element={<Workshops/>} />

@@ -376,6 +376,10 @@
 
 /* Responsive for Phone*/
 @media (max-width: 766px) {
+    .responsive-div{
+      margin-left: 0px;
+      margin-right: 0px;
+    }
     .header-main{
         background-image: none;
         height: auto;
