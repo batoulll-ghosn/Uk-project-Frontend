@@ -428,7 +428,7 @@ const handleCloseWorkshopPopup = () => {
                     value={reviewFormData.description}
                     onChange={handleReviewInputChange}
                   />
-                </div>
+                </div>    
                 
                 <button type="submit" className='saveButton'>Submit</button>
               </form>
